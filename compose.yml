@@ -1,0 +1,152 @@
+version: "3.8"
+
+services:
+  # --- API Laravel ---
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: ../../docker/php/Dockerfile
+    volumes:
+      - ./apps/api:/var/www/html
+      - ./docker/php/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    environment:
+      - APP_ENV=local
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=restau_db
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=secret
+      - REDIS_HOST=redis
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=mailpit
+      - MAIL_PORT=1025
+    depends_on:
+      - mysql
+      - redis
+      - mailpit
+    networks:
+      - backend
+      - database
+    ports:
+      - "8000:80"
+
+  # --- Admin Laravel (Filament) ---
+  admin:
+    build:
+      context: ./apps/admin
+      dockerfile: ../../docker/php/Dockerfile
+    volumes:
+      - ./apps/admin:/var/www/html
+      - ./docker/php/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    environment:
+      - APP_ENV=local
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=restau_db
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=secret
+      - REDIS_HOST=redis
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=mailpit
+      - MAIL_PORT=1025
+    depends_on:
+      - mysql
+      - redis
+      - mailpit
+    networks:
+      - backend
+      - database
+    ports:
+      - "8001:80"
+
+  # --- Frontend Next.js ---
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: ../../docker/node/Dockerfile
+    volumes:
+      - ./apps/frontend:/app  
+      - frontend_node_modules:/app/node_modules  # Volume nommé pour node_modules
+    environment:
+      - API_URL=http://api:8000/api
+    networks:
+      - frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  # --- NGINX reverse proxy ---
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - api
+      - admin
+      - frontend
+
+  # --- MySQL ---
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: restau_db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - database
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+  # --- phpMyAdmin ---
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - mysql
+    networks:
+      - database
+    ports:
+      - "8080:80"
+      
+  # --- Redis ---
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - backend
+    ports:
+      - "6379:6379"
+
+  # --- Mailpit (SMTP de test) ---
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "8025:8025"
+    networks:
+      - database
+
+volumes:
+  mysqldata:
+  frontend_node_modules:
+
+networks:
+  frontend:
+  backend:
+  database:
