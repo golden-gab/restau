@@ -1,0 +1,6 @@
+.home-container{
+    margin-top: var(--margin-top);
+}
+.home-container + footer{
+    display: none !important;
+}

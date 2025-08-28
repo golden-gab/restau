@@ -1,0 +1,28 @@
+.spinner{
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 3px solid var(--main-color) ;
+    border-radius: 50%;
+    animation: spin 1s ease-in 0s infinite ;
+    border-color:  var(--second-color) transparent;
+    z-index: 50;
+}
+
+.page-spinner{
+    height: 60dvh;
+    width: 100%;
+    display:flex ;
+    align-items:center ;
+    justify-content:center;
+    
+}
+.page-spinner .spinner{
+    
+    height: 3.5rem;
+    width: 3.5rem;
+}
+@keyframes spin{
+    0%{
+        transform: rotate(360deg);
+    }
+}

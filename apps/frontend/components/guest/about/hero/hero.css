@@ -1,0 +1,132 @@
+.about-hero {
+    height: 100dvh;
+    background-color: var(--dark);
+    position: relative;
+}
+
+.about-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 55%;
+}
+
+.about-hero-label{
+    padding:calc(var(--padding)/6) calc(var(--padding)/2);
+    color: var(--white) !important;
+    background-color: var(--glass);
+    width: fit-content !important;
+    border-radius:var(--bradius);
+    border: var(--glass-border);
+    font-size: var(--fs-sm);
+}
+
+.about-hero-container h1 {
+    color: var(--white);
+    line-height: 1.2;
+    text-align: center;
+}
+
+.about-hero-container p {
+    color: var(--gray2);
+    text-align: center;
+    width: 80%;
+}
+
+.about-hero-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 80%;
+    margin-top: 1rem;
+}
+
+.about-hero-cta .form-group {
+    width: 75%;
+}
+
+.about-hero-cta .form-group .form-input {
+
+    background-color: var(--glass);
+    color: var(--white) !important;
+    border: var(--glass-border);
+}
+
+.about-hero-cta .form-group .form-input:focus {
+    box-shadow: 0 0 0 0.1rem var(--gray2);
+}
+
+.about-hero-cta .button {
+    width: fit-content;
+}
+
+.about-hero-img {
+    position: absolute;
+    left: -15rem;
+    top: 0;
+    width: 30rem;
+    animation: rotatePlat 25s linear 0s infinite reverse;
+}
+
+.about-hero-img2 {
+    position: absolute;
+    right: -15rem;
+    top: 0;
+    width: 30rem;
+    animation: rotatePlat 25s linear 0s infinite;
+}
+
+@keyframes rotatePlat {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.about-hero-footer {
+    position: absolute;
+    bottom: 2rem;
+    color: var(--gray2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.about-hero-footer .fi-rr-arrow-down {
+    background-color: var(--glass);
+    color: var(--white) !important;
+    border: var(--glass-border);
+    width: fit-content;
+    padding: calc(var(--padding)/4) calc(var(--padding)/6);
+    border-radius: var(--bradius);
+}
+
+@media screen and (max-width:768px) {
+
+    .about-hero-img,
+    .about-hero-img2 {
+        display: none
+    }
+
+    .about-hero-container,
+    .about-hero-cta .form-group,
+    .about-hero-cta,
+    .about-hero-container p {
+        width: 90%;
+    }
+
+}

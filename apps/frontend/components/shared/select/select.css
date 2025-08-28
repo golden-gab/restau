@@ -1,0 +1,16 @@
+option{
+    width: 100%;
+    height: fit-content;
+    padding: calc(var(--padding)/4);
+    font-size: var(--text-size);
+    font-weight: 400;
+    background-color: var(--white);
+    border: 1px solid var(--white2);
+    border-radius: var(--bradius);
+    font-family: var(--font1);
+}
+option:focus {
+    outline: none;
+    background-color: var(--white) !important;
+    box-shadow: 0 0 0 0.1rem var(--second-color);
+}

@@ -1,0 +1,14 @@
+textarea:focus {    
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 0.1rem var(--main-color);
+  }
+  .form-area{
+    padding: calc(var(--padding)/2);
+    font-size: var(--text-size);
+    font-weight: 400;
+    background-color: var(--white);
+    border: 1px solid var(--white2);
+    color: var(--glass-border) !important;
+    border-radius: var(--bradius);
+  }

@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,300..800;1,300..800&display=swap');
+:root {
+  /* Couleurs (inchangé) */
+  --main-color: #D45C3A;
+  --second-color: #2E4057;
+  --third-color: rgba(242, 212, 204, 0.6);
+  --fourth-color: rgba(212, 92, 58, 0.15);
+
+  --box-shadow: 9px 7px 46px -25px rgba(0, 0, 0, 0.75);
+  --box-shadow2: 2px 7px 23px -15px rgba(0, 0, 0, 0.75);
+  --white: #fff;
+  --white2: #525252;
+  --black: #000;
+  --dark: #1c1c1c;
+
+  /* Marges & paddings */
+  --margin-top: 5.1rem;
+  --padding: 2rem;
+
+  /* État */
+  --success: #00a65a;
+  --danger: #d9534f;
+  --blue: #0062cc;
+  --warning: #f39c12;
+
+    /* Variantes transparentes */
+  --success2: rgba(0, 166, 90, 0.15);   /* vert clair */
+  --danger2: rgba(217, 83, 79, 0.15);   /* rouge clair */
+  --blue2: rgba(0, 98, 204, 0.15);      /* bleu clair */
+  --warning2: rgba(243, 156, 18, 0.15); /* orange clair */
+  
+  --gray1: #d4d4d8;
+  --gray2: rgb(160, 158, 158);
+  --gray3: #F5F5F5;
+  --gray4: rgb(245, 247, 250);
+
+  /* Typographie */
+  --font1: "Montserrat", sans-serif;
+  --font2: "Roboto", sans-serif;
+
+  /* Échelle des tailles de police */
+  --fs-xs: 0.75rem;   /* 12px */
+  --fs-sm: 0.875rem;  /* 14px */
+  --fs-base: 1rem;    /* 16px */
+  --fs-md: 1.125rem;  /* 18px */
+  --fs-lg: 1.5rem;    /* 24px */
+  --fs-xl: 2.5rem;      /* 32px */
+  --fs-xxl: 3.5rem;     /* 48px */
+
+  /* Valeurs dérivées */
+  --text-size: var(--fs-base);
+  --letter: 0.3rem;
+
+  /* Bordures */
+  --bradius: 1rem;
+  --border: 0.2rem solid var(--second-color);
+  --borderdark: .1rem solid var(--dark);
+
+  /* Autres */
+  --header: 7rem;
+  --linear-gradient: var(--main-color), var(--second-color);
+  --loader: pulse 1.5s ease-in-out infinite;
+  --glass:rgba(173, 216, 230, 0.15);
+  --glass-border:1px solid rgba(255, 255, 255, 0.125);
+}
+
+body {
+  font-size: var(--fs-base);
+  font-family: var(--font2);
+  background-color: var(--gray3);
+  /* line-height: 1.6; */
+}
+
+h1 { font-size: var(--fs-xxl); font-family: var(--font1); }
+h2 { font-size: var(--fs-xl); font-family: var(--font1); }
+h3 { font-size: var(--fs-lg); }
+h4 { font-size: var(--fs-md); }
+p  { font-size: var(--fs-base); line-height: 1.5;}
+small { font-size: var(--fs-sm); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page{
+  padding: calc(var(--padding)/1) calc(var(--padding)*2);
+  /* background-color: var(--gray3); */
+  min-height: 100vh;
+}
+.bo-page{
+  padding: var(--padding) calc(var(--padding)*2);
+}
+.column-page{
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--padding)/1);
+}
+img {
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  user-select: none;
+  vertical-align: bottom;
+  object-fit:contain;
+  user-select: none;
+}
+.fa-solid.fa-star{
+  color: var(--warning);
+}
+main{
+  /* padding: var(--padding); */
+}
+strong{
+  font-weight: 700 !important;
+}
+section{
+  padding: calc(var(--padding)*2) calc(var(--padding)*4);
+}
+* {
+  margin: 0;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.43, 1.1, 0.62, 1.08);
+  box-sizing: border-box;
+  outline: 0;
+}
+.main-color{
+  color: var(--main-color) !important;
+}
+.second-color{
+  color: var(--second-color) !important;
+}
+
+
+textarea {
+  resize: none;
+}
+li {
+  list-style: none;
+}
+#app {
+  /* background-color: var(--gray3); */
+}
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn linear forwards;
+  animation-timeline: view(); /* lié à l’élément */
+  animation-range: entry 0% cover 30%; /* commence quand l’élément entre dans la vue */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: zoomIn 0.6s ease-out forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+  .a-page{
+    margin-left: 0 !important;
+  }
+  .page , .bo-page{
+    padding: 1rem;
+  }
+  section{
+  padding: calc(var(--padding)/1) calc(var(--padding)/2);
+}
+}
