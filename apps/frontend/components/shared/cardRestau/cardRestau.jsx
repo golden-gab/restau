@@ -2,12 +2,12 @@ import React from "react";
 import "./cardRestau.css";
 import Image from "next/image";
 
-const CardRestau = () => {
+const CardRestau = ({userPosition}) => {
     return (
         <div className="restaurant-card">
             <div className="restaurant-details">
                 <Image
-                    src={"/logo-noir.png"}
+                    src={"/logo-white.png"}
                     width={500}
                     height={500}
                     alt="restaurant-logo"

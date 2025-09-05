@@ -6,6 +6,8 @@
     align-items: center;
     width: 12rem;
     gap: calc(var(--padding)/2);
+    background-color: var(--dark);
+    border-radius:var(--bradius);
 }
 
 .restaurant-details {
@@ -20,15 +22,19 @@
     /* height: 8rem; */
     border-radius: var(--bradius);
 }
-
+.leaflet-popup-content-wrapper{
+    background-color: transparent !important;
+}
 .leaflet-popup-content,
 .leaflet-popup-content p {
     margin: 0 !important;
     width: fit-content !important;
+    background-color: transparent !important;
 }
 
 .restaurant-name{
     font-weight: bold;
+    color: var(--white);
     line-height: 1.2;
 }
 .restaurant-number{
