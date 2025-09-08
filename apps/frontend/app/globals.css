@@ -39,7 +39,7 @@
   --font2: "Roboto", sans-serif;
 
   /* Échelle des tailles de police */
-  --fs-xs: 0.75rem;   /* 12px */
+  --fs-xs: 0.80rem;   /* 12px */
   --fs-sm: 0.875rem;  /* 14px */
   --fs-base: 1rem;    /* 16px */
   --fs-md: 1.125rem;  /* 18px */
@@ -57,7 +57,7 @@
   --borderdark: .1rem solid var(--dark);
 
   /* Autres */
-  --header: 7rem;
+  --header: 5rem;
   --linear-gradient: var(--main-color), var(--second-color);
   --loader: pulse 1.5s ease-in-out infinite;
   --glass:rgba(173, 216, 230, 0.15);
@@ -109,6 +109,7 @@ img {
   color: var(--warning);
 }
 main{
+  margin-top: var(--header);
   /* padding: var(--padding); */
 }
 strong{

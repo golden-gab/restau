@@ -20,12 +20,19 @@ class PlatForm
                     ->columns(1)
                     ->columnSpanFull()
                     ->schema([
+                        // FileUpload::make('image_path')
+                        //     ->label('Image du plat')
+                        //     ->image()
+                        //     ->maxSize(2048)
+                        //     ->nullable()
+                        // ->disk('public'),
                         FileUpload::make('image_path')
                             ->label('Image du plat')
                             ->image()
                             ->directory('restaurants/plats')
                             ->disk('public')
                             ->visibility('public')
+
                             // ->avatar()
                             // ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
                             ->maxSize(2048)

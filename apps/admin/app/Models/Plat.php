@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Plat extends Model
 {
@@ -28,5 +29,14 @@ class Plat extends Model
     public function categorie(): BelongsTo
     {
         return $this->belongsTo(Categorie::class);
+    }
+
+     public function getImageUrlAttribute()
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+        
+        return url(Storage::disk('public')->path($this->image_path));
     }
 }

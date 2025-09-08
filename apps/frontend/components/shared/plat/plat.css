@@ -1,0 +1,63 @@
+.plat-card {
+    background-color: var(--white);
+    padding: calc(var(--padding)/2);
+    border-radius: var(--bradius);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid var(--gray1);
+    /* height: ; */
+}
+
+.plat-image {
+    height: 11rem;
+    object-fit: cover;
+    border-radius: var(--bradius);
+    margin-bottom: 0.75rem;
+}
+
+.plat-name {
+    font-size: var(--fs-md);
+    font-weight: bold;
+}
+
+.plat-category {
+    /* font-weight: bold; */
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: var(--fs-xs);
+    padding: calc(var(--padding)/6) calc(var(--padding)/3);
+    background-color: var(--dark);
+    border-radius: var(--bradius);
+    color: var(--white);
+    width: fit-content;
+}
+
+.plat-description {
+    color: var(--white2);
+    font-size: var(--fs-sm);
+}
+
+.plat-prix {
+    font-size: var(--fs-lg);
+    font-weight: bold;
+    color: var(--main-color);
+}
+.plat-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.plat-footer i{
+    /* font-size: var(--fs-sm);
+    cursor: pointer;
+    color: var(--main-color);
+    height: 2rem;
+    width: 2rem;
+    border-radius:var(--bradius);
+    display:flex ;
+    align-items:center ;
+    justify-content:center;
+    background-color: var(--fourth-color); */
+}

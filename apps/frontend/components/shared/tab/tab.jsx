@@ -1,36 +1,38 @@
 import React from "react";
 import "./tab.css";
 
-const Tab = ({ tabs , active , setActive}) => {
+const Tab = ({ tabs, active, setActive }) => {
     return (
         <div className="tabs">
-            {tabs.map((tab, index) => (
-                <TabLink
-                    icon={tab.icon}
-                    info={tab.info}
-                    onActive={setActive}
-                    key={index}
-                    isActive={active}
-                />
-            ))}
+            <div className="tabs-container">
+                {tabs.map((tab, index) => (
+                    <TabLink
+                        icon={tab.icon}
+                        designation={tab.designation}
+                        onActive={setActive}
+                        key={index}
+                        isActive={active}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
 
 export default Tab;
 
-function TabLink({ icon, info, onActive = () => {}, isActive = "" }) {
+function TabLink({ icon, designation, onActive = () => {}, isActive = "" }) {
     return (
         <div
             className={
-                isActive === info
+                isActive === designation
                     ? "tab-link event-icon-detail active"
                     : "tab-link event-icon-detail "
             }
-            onClick={() => onActive(info)}
+            onClick={() => onActive(designation)}
         >
             {icon && <i className={"fa-solid " + icon}></i>}
-            <span>{info}</span>
+            <span>{designation}</span>
         </div>
     );
 }

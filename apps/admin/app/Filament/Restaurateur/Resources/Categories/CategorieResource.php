@@ -22,7 +22,7 @@ class CategorieResource extends Resource
 {
     protected static ?string $model = Categorie::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::InboxStack;
 
     public static function form(Schema $schema): Schema
     {

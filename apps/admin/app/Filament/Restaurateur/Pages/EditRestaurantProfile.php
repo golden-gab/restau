@@ -112,7 +112,7 @@ class EditRestaurantProfile extends EditTenantProfile
                     TextInput::make('whatsapp_number')
                         ->label('Numéro WhatsApp')
                         ->tel()
-                        ->placeholder('+237 6 12 34 56 78')
+                        ->placeholder('+237 600 00 00 00')
                         ->nullable(),
                 ]),
 

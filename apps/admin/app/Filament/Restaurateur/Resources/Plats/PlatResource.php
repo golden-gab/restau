@@ -20,7 +20,7 @@ class PlatResource extends Resource
 {
     protected static ?string $model = Plat::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Sparkles;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
     {

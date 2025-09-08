@@ -1,0 +1,11 @@
+.restaurant-page{
+    display:flex ;
+    flex-direction:column ;
+    gap:1rem;
+    padding-bottom: var(--padding);
+}
+.resto-menu-panier {
+    padding: 0 calc(var(--padding)*4);
+    display: flex;
+    gap: 1rem;
+}

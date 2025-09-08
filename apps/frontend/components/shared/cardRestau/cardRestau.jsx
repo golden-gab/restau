@@ -1,8 +1,9 @@
 import React from "react";
 import "./cardRestau.css";
 import Image from "next/image";
+import Link from "next/link";
 
-const CardRestau = ({userPosition}) => {
+const CardRestau = ({ userPosition }) => {
     return (
         <div className="restaurant-card">
             <div className="restaurant-details">
@@ -19,8 +20,17 @@ const CardRestau = ({userPosition}) => {
                 </div>
             </div>
             <div className="restaurant-actions">
-                <i className="fi fi-sr-up-right-from-square" title="En savoir plus"></i>
-                <i className="fi fi-sr-diamond-turn-right" title="Itinéraire"></i>
+                <Link href={"/restaurants/le-petit-gourmet"}>
+                    <i
+                        className="fi fi-sr-up-right-from-square"
+                        title="En savoir plus"
+                    ></i>
+                </Link>
+
+                <i
+                    className="fi fi-sr-diamond-turn-right"
+                    title="Itinéraire"
+                ></i>
             </div>
         </div>
     );
