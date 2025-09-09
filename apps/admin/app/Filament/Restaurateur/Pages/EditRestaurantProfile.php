@@ -35,6 +35,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->disk('public')
                         ->visibility('public')
                         ->avatar()
+    
                         // ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
                         ->maxSize(2048)
                         ->nullable()

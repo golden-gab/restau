@@ -31,11 +31,12 @@ class RestaurateurPanelProvider extends PanelProvider
             ->id('restaurateur')
             ->path('restaurateur')
             ->login()
+            ->passwordReset() 
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => '#D45C3A',
+                'primary' => '#D45C3A', 
                 'success' => Color::Emerald, 
                 'warning' => Color::Orange,
             ])

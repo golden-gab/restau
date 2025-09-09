@@ -13,16 +13,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\QueryParameter;
+use App\State\RestaurantCollectionProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
     operations: [
-        new GetCollection(normalizationContext: ['groups' => ['restaurant:read']]),
+        new GetCollection(
+            name: "get_restaurants",
+            normalizationContext: ['groups' => ['restaurant:read']],
+            provider: RestaurantCollectionProvider::class
+        ),
         new Get(
             uriTemplate: '/restaurants/{slug}',
             // requirements: ['slug' => '[a-z0-9\-]+'],
             uriVariables: ['slug'],
-            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:categorie:read', 'restaurant:plat:read','restaurant:plat:categorie:read']]
+            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read']]
         ),
         new Post(denormalizationContext: ['groups' => ['restaurant:write']]),
     ]
@@ -44,7 +49,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'accept_order')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'opening_hours')]
 #[ApiProperty(serialize: new Groups(['restaurant:categorie:read']), property: 'categories')]
-#[ApiProperty(serialize: new Groups(['restaurant:plat:read','restaurant:plat:categorie:read']), property: 'plats')]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:read', 'restaurant:plat:categorie:read']), property: 'plats')]
 
 class Restaurant extends Model
 {

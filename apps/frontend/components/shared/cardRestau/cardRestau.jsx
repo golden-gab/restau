@@ -3,7 +3,8 @@ import "./cardRestau.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const CardRestau = ({ userPosition }) => {
+const CardRestau = ({ userPosition,data }) => {
+    console.log(data)
     return (
         <div className="restaurant-card">
             <div className="restaurant-details">
@@ -20,7 +21,7 @@ const CardRestau = ({ userPosition }) => {
                 </div>
             </div>
             <div className="restaurant-actions">
-                <Link href={"/restaurants/le-petit-gourmet"}>
+                <Link href={"/restaurants/"+data.slug}>
                     <i
                         className="fi fi-sr-up-right-from-square"
                         title="En savoir plus"

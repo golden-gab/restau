@@ -30,7 +30,7 @@ const FlyToLocation = ({ position }) => {
     return null;
 };
 
-const Map = () => {
+const Map = ({ data }) => {
     const initialPosition = [5.47775, 10.41759];
     const [userPosition, setUserPosition] = useState(null);
 
@@ -178,7 +178,7 @@ const Map = () => {
             type: "Snack & boissons",
         },
     ];
-    console.log(restaurants);
+
     return (
         <div className="map-container">
             <div className="map-header">
@@ -202,23 +202,35 @@ const Map = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {restaurants.map((resto) => (
-                    <Marker
-                        position={resto.coords}
-                        icon={customIcon()}
-                        key={resto.id}
-                    >
-                        <Popup>
-                            <CardRestau  userPosition={userPosition} data={resto}/>
-                        </Popup>
-                    </Marker>
-                ))}
-                {/* Marker statique initial */}
-                <Marker position={initialPosition} icon={customIcon()}>
-                    <Popup>
-                        <CardRestau userPosition={userPosition} />
-                    </Popup>
-                </Marker>
+                {data.map((resto) => {
+                    // Vérifier que les coordonnées sont valides
+                    const lat = parseFloat(resto.latitude);
+                    const lng = parseFloat(resto.longitude);
+
+                    if (isNaN(lat) || isNaN(lng)) {
+                        console.warn(
+                            `Coordonnées invalides pour ${resto.name}:`,
+                            resto.latitude,
+                            resto.longitude
+                        );
+                        return null;
+                    }
+
+                    return (
+                        <Marker
+                            position={[lat, lng]}
+                            icon={customIcon()}
+                            key={resto.slug}
+                        >
+                            <Popup>
+                                <CardRestau
+                                    userPosition={userPosition}
+                                    data={resto}
+                                />
+                            </Popup>
+                        </Marker>
+                    );
+                })}
 
                 {/* Marker utilisateur */}
                 {userPosition && (
