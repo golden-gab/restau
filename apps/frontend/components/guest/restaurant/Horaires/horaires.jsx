@@ -1,16 +1,17 @@
 import React from "react";
 import "./horaires.css";
 
-const Horaires = () => {
-    const week = [
-        { day: "Lundi", open_at: "08:00", close_at: "22:00" },
-        { day: "Mardi", open_at: "08:00", close_at: "22:00" },
-        { day: "Mercredi", open_at: "08:00", close_at: "22:00" },
-        { day: "Jeudi", open_at: "08:00", close_at: "22:00" },
-        { day: "Vendredi", open_at: "08:00", close_at: "23:00" },
-        { day: "Samedi", open_at: "09:00", close_at: "23:00" },
-        { day: "Dimanche", open_at: "09:00", close_at: "21:00" },
-    ];
+const Horaires = ({ week }) => {
+    console.log(week);
+    // const week = [
+    //     { day: "Lundi", opens_at: "08:00", closes_at: "22:00" },
+    //     { day: "Mardi", opens_at: "08:00", closes_at: "22:00" },
+    //     { day: "Mercredi", opens_at: "08:00", closes_at: "22:00" },
+    //     { day: "Jeudi", opens_at: "08:00", closes_at: "22:00" },
+    //     { day: "Vendredi", opens_at: "08:00", closes_at: "23:00" },
+    //     { day: "Samedi", opens_at: "09:00", closes_at: "23:00" },
+    //     { day: "Dimanche", opens_at: "09:00", closes_at: "21:00" },
+    // ];
     let date = new Date();
     return (
         <section id="horaires">
@@ -30,14 +31,18 @@ function HoraireCard({ data, index }) {
     let date = new Date();
     // Conversion des heures en minutes pour comparaison
     const now = date.getHours() * 60 + date.getMinutes();
-    const open =
-        parseInt(data.open_at.split(":")[0], 10) * 60 +
-        parseInt(data.open_at.split(":")[1], 10);
-    const close =
-        parseInt(data.close_at.split(":")[0], 10) * 60 +
-        parseInt(data.close_at.split(":")[1], 10);
 
     // Vérifie si c'est le jour courant
+    const open =
+        data.opens_at && data.closes_at
+            ? parseInt(data.opens_at.split(":")[0], 10) * 60 +
+              parseInt(data.opens_at.split(":")[1], 10)
+            : "";
+    const close =
+        data.opens_at && data.closes_at
+            ? parseInt(data.closes_at.split(":")[0], 10) * 60 +
+              parseInt(data.closes_at.split(":")[1], 10)
+            : "";
     const isToday = date.getDay() === index;
 
     // Statut ouvert/fermé
@@ -52,11 +57,14 @@ function HoraireCard({ data, index }) {
                     {isOpen ? "Ouvert" : "Fermé"}
                 </span>
             )}
-
             <h3 className="horaire-day">{data.day}</h3>
-            <p className="horaire-hour">
-                {data.open_at} - {data.close_at}
-            </p>
+            {data.opens_at && data.closes_at ? (
+                <p className="horaire-hour">
+                    {data.opens_at} - {data.closes_at}
+                </p>
+            ) : (
+                <span className={``}></span>
+            )}
         </div>
     );
 }

@@ -18,9 +18,9 @@
 }
 
 .restaurant-logo {
-    width: 8rem;
-    /* height: 8rem; */
-    border-radius: var(--bradius);
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
 }
 .leaflet-popup-content-wrapper{
     background-color: transparent !important;

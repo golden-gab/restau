@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: []
 )]
 #[ApiProperty(serialize: new Groups(['restaurant:categorie:read','restaurant:plat:categorie:read']), property: 'designation')]
-#[ApiProperty(serialize: new Groups(['restaurant:categorie:read','restaurant:plat:categorie:read']), property: 'description')]
+#[ApiProperty(serialize: new Groups(['restaurant:categorie:read']), property: 'description')]
 
 class Categorie extends Model
 {

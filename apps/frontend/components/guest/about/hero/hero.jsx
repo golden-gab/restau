@@ -4,9 +4,9 @@ import Image from "next/image";
 import * as motion from "motion/react-client";
 import Button from "@/components/shared/button/button";
 import Input from "@/components/shared/input/input";
+import Link from "next/link";
 
 const Hero = () => {
-  
     return (
         <div className="about-hero">
             <Image
@@ -39,8 +39,8 @@ const Hero = () => {
                 </p>
                 <h1>
                     Une plateforme{" "}
-                    <span className="main-color">simple et rapide</span> pour votre restaurant 
-                    
+                    <span className="main-color">simple et rapide</span> pour
+                    votre restaurant
                 </h1>
                 <p>
                     Mettez en ligne vos menus en quelques clics, recevez vos
@@ -49,10 +49,10 @@ const Hero = () => {
                     complication technique.
                 </p>
                 <div className="about-hero-cta">
-                    <Button type="glass-btn">
+                    <Link href={"/"} className="button glass-btn">
                         Recherchez un restaurant{" "}
                         <i className="fi fi-rr-search"></i>
-                    </Button>
+                    </Link>
                     <Button>
                         commencer dès maintenant{" "}
                         <i className="fi fi-rr-play"></i>
@@ -62,8 +62,6 @@ const Hero = () => {
             <div className="about-hero-footer">
                 <i className="fi fi-rr-arrow-down"></i>
             </div>
-
-
         </div>
     );
 };

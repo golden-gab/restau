@@ -17,19 +17,19 @@ const Page = () => {
         slug ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}` : null,
         fetcher
     );
-    console.log(data);
+    console.log(data)
     return (
         <main className="restaurant-page">
             {isLoading ? (
                 <RestoLoader/>
             ) : (
                 <>
-                    <RestoInfo />
+                    <RestoInfo data={data}/>
                     <div className="resto-menu-panier">
-                        <RestoMenu />
-                        <RestoCart />
+                        <RestoMenu plats={data.plats} categories={data.categories}/>
+                        <RestoCart tel={data.whatsappNumber}/>
                     </div>
-                    <Horaires />
+                    <Horaires week={data.openingHours}/>
                     
                 </>
             )}

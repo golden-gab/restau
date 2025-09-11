@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: []
 )]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'id')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'name')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'description')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'price')]

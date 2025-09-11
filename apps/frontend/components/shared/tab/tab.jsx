@@ -5,6 +5,12 @@ const Tab = ({ tabs, active, setActive }) => {
     return (
         <div className="tabs">
             <div className="tabs-container">
+                <TabLink
+                        designation={"Tout"}
+                        onActive={setActive}
+                        key={0}
+                        isActive={active}
+                    />
                 {tabs.map((tab, index) => (
                     <TabLink
                         icon={tab.icon}

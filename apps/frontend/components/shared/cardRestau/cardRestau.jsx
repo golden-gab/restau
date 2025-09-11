@@ -1,23 +1,23 @@
 import React from "react";
 import "./cardRestau.css";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; 
 
 const CardRestau = ({ userPosition,data }) => {
-    console.log(data)
+   
     return (
         <div className="restaurant-card">
             <div className="restaurant-details">
                 <Image
-                    src={"/logo-white.png"}
+                src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`}
                     width={500}
                     height={500}
                     alt="restaurant-logo"
                     className="restaurant-logo"
                 />
                 <div className="restaurant-info">
-                    <p className="restaurant-name">Le Petit Gourmet</p>
-                    <span className="restaurant-number">+237 00 00 00 00</span>
+                    <p className="restaurant-name">{data.name}</p>
+                    <span className="restaurant-number">{data.phone}</span>
                 </div>
             </div>
             <div className="restaurant-actions">

@@ -10,12 +10,15 @@
     flex-direction: column;
     gap: 0.5rem;
     border-radius: var(--bradius);
-    background-color: var(--gray1);
     border: var(--border);
+    background-color: var(--white);
+    color: var(--dark);
 }
 
 .horaire-card.active {
-    background-color: var(--white);
+    background-color: var(--second-color);
+    color: var(--white);
+    box-shadow:var(--box-shadow2);
 }
 
 .horaires-grid {

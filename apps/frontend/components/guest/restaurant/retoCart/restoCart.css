@@ -20,9 +20,8 @@
 /* .resto-cart-list{
     padding:calc(var(--padding)/2) calc(var(--padding)/1);
 } */
-.resto-cart-list {
-    /* height: 70%; */
-    /* background-color: red; */
+.resto-cart-list{
+    height: 72%;
 }
 
 .resto-cart-item {
@@ -91,5 +90,15 @@
     display:flex ;
     align-items:center ;
     justify-content:center;
-    
+}
+.cart-empty{
+    display:flex ;
+    align-items:center ;
+    justify-content:center;
+    height: 100%;
+    flex-direction: column;
+    color: var(--white2);
+}
+.cart-empty i{
+    font-size: var(--fs-xl);
 }

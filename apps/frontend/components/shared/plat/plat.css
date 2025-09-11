@@ -6,7 +6,8 @@
     flex-direction: column;
     position: relative;
     border: 1px solid var(--gray1);
-    /* height: ; */
+    max-width: 350px;
+    width: 100%;
 }
 
 .plat-image {
@@ -37,6 +38,7 @@
 .plat-description {
     color: var(--white2);
     font-size: var(--fs-sm);
+    margin-bottom: 0.5rem;
 }
 
 .plat-prix {
@@ -44,12 +46,15 @@
     font-weight: bold;
     color: var(--main-color);
 }
-.plat-footer{
+
+.plat-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 }
-.plat-footer i{
+
+.plat-footer i {
     /* font-size: var(--fs-sm);
     cursor: pointer;
     color: var(--main-color);
