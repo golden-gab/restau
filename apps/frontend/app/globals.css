@@ -53,7 +53,7 @@
 
   /* Bordures */
   --bradius: 1rem;
-  --border: 0.2rem solid var(--second-color);
+  --border: 1px solid var(--gray2);
   --borderdark: .1rem solid var(--dark);
 
   /* Autres */

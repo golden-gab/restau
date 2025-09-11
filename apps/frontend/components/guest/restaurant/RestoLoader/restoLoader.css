@@ -1,0 +1,25 @@
+.resto-loader{
+    padding: calc(var(--padding)/1) calc(var(--padding)*4);
+    display:flex ;
+    flex-direction:column ;
+    gap:1rem;
+    
+}
+.resto-loader-info{
+    height: 9rem;
+}
+.resto-loader-plats{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: calc(var(--padding)/4);
+}
+.resto-loader-plats-panier{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.resto-loader-panier{
+    height: 90dvh;
+    width: 25%;
+}

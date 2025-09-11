@@ -1,0 +1,41 @@
+#horaires {
+    padding: calc(var(--padding)/2) calc(var(--padding)*4);
+}
+
+.horaire-card {
+    padding: calc(var(--padding)/1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: var(--bradius);
+    background-color: var(--gray1);
+    border: var(--border);
+}
+
+.horaire-card.active {
+    background-color: var(--white);
+}
+
+.horaires-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.5rem;
+    padding: calc(var(--padding)/2) 0;
+}
+
+.horaire-statut {
+    font-size: var(--fs-xs);
+    padding: calc(var(--padding) / 6) calc(var(--padding) / 3);
+    border-radius: var(--bradius);
+    width: fit-content;
+}
+.horaire-statut.open{
+    background-color: var(--success2);
+    color: var(--success);
+}
+.horaire-statut.closed{
+    background-color: var(--danger2);
+    color: var(--danger);
+}

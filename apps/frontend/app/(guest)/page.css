@@ -4,3 +4,11 @@
 .home-container + footer{
     display: none !important;
 }
+.map-loader{
+    display:flex ;
+    align-items:center ;
+    justify-content:center;
+    flex-direction: column;
+    height: 90dvh;
+    gap: 1rem;
+}

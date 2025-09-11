@@ -6,3 +6,14 @@
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 0.5rem;
 }
+.resto-menu-header{
+    display: flex;
+    align-items: center;
+}
+.resto-menu-header .form-group{
+    width: 40%;
+}
+.resto-menu-header .form-group .form-input{
+    padding: calc(var(--padding) / 4) calc(var(--padding) / 2);
+    font-size: var(--fs-sm);
+}

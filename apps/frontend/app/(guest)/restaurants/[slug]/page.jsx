@@ -1,19 +1,40 @@
-import RestoInfo from '@/components/guest/restaurant/restoInfo/restoInfo';
-import RestoMenu from '@/components/guest/restaurant/restoMenu/restoMenu';
-import React from 'react';
-import './style.css'
-import RestoCart from '@/components/guest/restaurant/retoCart/restoCart';
+"use client";
+import useSWR from "swr";
+import RestoInfo from "@/components/guest/restaurant/restoInfo/restoInfo";
+import RestoMenu from "@/components/guest/restaurant/restoMenu/restoMenu";
+import React from "react";
+import "./style.css";
+import RestoCart from "@/components/guest/restaurant/retoCart/restoCart";
+import Horaires from "@/components/guest/restaurant/Horaires/horaires";
+import { useParams } from "next/navigation";
+import SkeletonLoader from "@/components/shared/skeletonLoader/skeletonLoader";
+import RestoLoader from "@/components/guest/restaurant/RestoLoader/restoLoader";
 
 const Page = () => {
+    const { slug } = useParams();
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+    const { data, error, isLoading } = useSWR(
+        slug ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}` : null,
+        fetcher
+    );
+    console.log(data);
     return (
-        <main className='restaurant-page'>
-            <RestoInfo/>
-            <div className='resto-menu-panier'>
-                <RestoMenu/>
-                <RestoCart/>
-            </div>
+        <main className="restaurant-page">
+            {isLoading ? (
+                <RestoLoader/>
+            ) : (
+                <>
+                    <RestoInfo />
+                    <div className="resto-menu-panier">
+                        <RestoMenu />
+                        <RestoCart />
+                    </div>
+                    <Horaires />
+                    
+                </>
+            )}
         </main>
     );
-}
+};
 
 export default Page;

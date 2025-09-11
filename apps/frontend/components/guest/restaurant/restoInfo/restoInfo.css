@@ -34,3 +34,6 @@
     color: var(--white2);
 
 }
+a.resto-detail:hover{
+    color: var(--main-color);
+}

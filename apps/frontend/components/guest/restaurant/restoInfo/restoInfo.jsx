@@ -1,6 +1,7 @@
 import React from "react";
 import "./restoInfo.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const RestoInfo = () => {
     return (
@@ -23,6 +24,10 @@ const RestoInfo = () => {
                         <i className="fi fi-rr-phone-flip"></i>
                         <span>+237 670 00 00 00</span>
                     </p>
+                    <Link href={"#horaires"} className="resto-detail">
+                        <i className="fi fi-rr-clock-three"></i>
+                        <span><u>Horaires</u></span>
+                    </Link>
                 </div>
                 <p className="resto-description">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
