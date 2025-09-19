@@ -32,7 +32,7 @@ const Header = () => {
     const links = [
         {
             to: "/",
-            text: "Accueil",
+            text: "Explorer",
             icon: "fi fi-rr-home",
         },
         {
@@ -41,14 +41,14 @@ const Header = () => {
             icon: "fi fi-rr-info",
         },
         {
-          to: "/about#pricing-section",
-          text: "Tarif",
-          icon: "fi fi-rr-info",
+            to: "/about#pricing-section",
+            text: "Tarif",
+            icon: "fi fi-rr-info",
         },
         {
-          to: "/about#faq-section",
-          text: "FAQ",
-          icon: "fi fi-rr-info",
+            to: "/about#faq-section",
+            text: "FAQ",
+            icon: "fi fi-rr-info",
         },
         // {
         //   to: "/seminaire",
@@ -64,7 +64,7 @@ const Header = () => {
             </Link>
 
             <nav className="navbar" ref={nav}>
-                <Link href="/" className="lg-logo" style={{width:"25%"}}>
+                <Link href="/" className="lg-logo" style={{ width: "25%" }}>
                     logo
                 </Link>
 
@@ -78,9 +78,9 @@ const Header = () => {
                     >
                         Se connecter
                     </Link>
-                    <Button onClick={handleNavMobile}>
-                        Ouvrir mon restaurant
-                    </Button>
+                    <Link href={"/register"} onClick={handleNavMobile}>
+                        <Button>Ouvrir mon restaurant</Button>
+                    </Link>
                 </div>
             </nav>
 

@@ -7,7 +7,7 @@ import Input from "@/components/shared/input/input";
 import Paginator from "@/components/shared/paginator/paginator";
 import { useRouter } from "next/navigation";
 
-const RestoMenu = ({ plats, categories }) => {
+const RestoMenu = ({ plats, categories, acceptOrder }) => {
     const [active, setActive] = useState("Tout");
     const [data, setData] = useState(plats);
     const [search, setSearch] = useState(""); // <-- Ajout du state recherche
@@ -22,7 +22,7 @@ const RestoMenu = ({ plats, categories }) => {
 
     function handlePageChange(pageNumber) {
         setCurrentPage(pageNumber);
-        router.push("#menu");
+        router.push("#menu"); 
     }
 
     useEffect(() => {
@@ -40,9 +40,9 @@ const RestoMenu = ({ plats, categories }) => {
         setData(filtered);
         setCurrentPage(1);
     }, [active, plats, search]);
-
+    
     return (
-        <div className="resto-menu" id="menu">
+        <div className={acceptOrder == 0 ? "resto-menu full" : "resto-menu "} id="menu" >
             <h3 className="main-color">- Menu du restaurant</h3>
             <div className="resto-menu-header">
                 <Input
@@ -54,26 +54,15 @@ const RestoMenu = ({ plats, categories }) => {
             </div>
             <div className="resto-menu-grid">
                 {visibleItems.map((p) => (
-                    <Plat data={p} key={p.id} />
-                ))}
-                {visibleItems.map((p) => (
-                    <Plat data={p} key={p.id} />
-                ))}
-                {visibleItems.map((p) => (
-                    <Plat data={p} key={p.id} />
-                ))}
-                {visibleItems.map((p) => (
-                    <Plat data={p} key={p.id} />
+                    <Plat data={p} key={p.id} acceptOrder={acceptOrder}/>
                 ))}
             </div>
-            {totalPages !== 1 ? (
+            {totalPages !== 0 && (
                 <Paginator
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                 />
-            ) : (
-                <span> </span>
             )}
         </div>
     );

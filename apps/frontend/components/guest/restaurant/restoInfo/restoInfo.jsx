@@ -8,7 +8,11 @@ const RestoInfo = ({ data }) => {
     return (
         <div className="resto-info">
             <Image
-                src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`}
+                src={
+                    data.logoPath
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`
+                        : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg`
+                }
                 alt="logo-du-restaurant"
                 height={300}
                 width={300}

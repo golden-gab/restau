@@ -5,8 +5,8 @@
  }
 
  .form-label {
-     font-size: calc(var(--text-size)/1.2);
-     color: var(--white2);
+     font-size: calc(var(--text-size)/1);
+     color: var(--dark);
      padding-bottom: 0.5rem;
 
      /* text-transform: capitalize; */
@@ -55,11 +55,10 @@
      color: var(--glass-border) !important;
      border: 1px solid var(--white2);
      border-radius: var(--bradius);
-     font-family: var(--font1);
+     font-family: var(--font);
  }
 
  .form-input::placeholder {
-     font-family: var(--font1);
  }
 
  .form-group .fa-eye {

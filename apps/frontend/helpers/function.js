@@ -21,7 +21,7 @@ export function haversineDistance(coord1, coord2) {
 }
 
 export function kFormatter(num, digits = 1) {
-    const lookup = [
+    const lookup = [ 
         { value: 1, symbol: "" },
         { value: 1e3, symbol: "k" },
         { value: 1e6, symbol: "M" },
@@ -72,4 +72,17 @@ export function seeMore(description, maxLength = 120) {
     if (!description) return "";
     if (description.length <= maxLength) return description;
     return description.slice(0, maxLength) + "… voir plus";
+}
+
+export const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export async function sendRequest(url, { arg }) {
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json", // très important
+        },
+        body: JSON.stringify(arg),
+    }).then((res) => res.json());
 }

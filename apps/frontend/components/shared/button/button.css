@@ -41,7 +41,7 @@ button.delete-btn{
     color:var(--white) !important;
 }
 .outline-btn{
-    color:var(--dark) !important;
+    color:var(--main-color) !important;
     border:2px solid var(--main-color);
 }
 .outline-btn:hover{

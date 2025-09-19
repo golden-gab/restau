@@ -74,7 +74,7 @@
   border: 1px solid var(--white2);
   cursor: pointer;
   color: var(--white2);
-
+  height: fit-content;
   &:hover{
     background-color: var(--main-color);
     color:var(--white);

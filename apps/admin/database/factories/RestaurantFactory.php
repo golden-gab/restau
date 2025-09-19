@@ -19,7 +19,7 @@ class RestaurantFactory extends Factory
             'user_id' => User::factory(), 
             'name' => $name,
             'slug' => Str::slug($name) . '-' . Str::random(5),
-            'description' => $this->faker->optional()->paragraph(),
+            'description' => $this->faker->paragraph(),
             'logo_path' => null,
             'phone' => $this->faker->optional()->phoneNumber(),
             'ville' => $this->faker->optional()->city(),

@@ -22,6 +22,7 @@
 } */
 .resto-cart-list{
     height: 72%;
+    overflow-y: scroll;
 }
 
 .resto-cart-item {

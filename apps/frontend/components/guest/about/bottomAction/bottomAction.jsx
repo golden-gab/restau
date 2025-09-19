@@ -1,6 +1,7 @@
 import Button from "@/components/shared/button/button";
 import React from "react";
 import "./bottomAction.css";
+import Link from "next/link";
 
 const BottomAction = () => {
     return (
@@ -12,9 +13,9 @@ const BottomAction = () => {
                     et suivez vos ventes en quelques clics. Simple, rapide et pensé 
                     pour les restaurateurs qui veulent gagner du temps et attirer plus de clients.
                 </p>
-                <Button>
+                <Link href={"/register"} className="button full-btn">
                     Ouvrir mon restaurant <i className="fi fi-rr-shop"></i>
-                </Button>
+                </Link>
             </div>
         </section>
     );

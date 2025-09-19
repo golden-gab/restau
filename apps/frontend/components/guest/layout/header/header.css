@@ -11,7 +11,8 @@
     right: 0;
     background-color: var(--dark);
     /* color: var(--white); */ 
-    backdrop-filter: blur(200px)
+    backdrop-filter: blur(200px);
+    overflow: hidden;
 }
 .header.scrolled {
   backdrop-filter: blur(200px) saturate(160%);
@@ -107,6 +108,10 @@
 #header-mobile-icons{
     display: none;
 }
+#header-mobile-icons i{
+  color: var(--white) !important;
+
+}
 .header-mobile-icon{
   font-size: 2rem;
   cursor: pointer;
@@ -143,7 +148,7 @@
   
 }
 
-@media(max-width:768px){
+@media(max-width:1200px){
   .dropdiv a:hover{
     background-color: transparent;
   }

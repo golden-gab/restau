@@ -29,3 +29,8 @@
 .bottom-action-container .button {
     margin-top: 1rem;
 }
+@media screen and (max-width:768px) {
+.bottom-action-container {
+    width: 100%;
+}
+}

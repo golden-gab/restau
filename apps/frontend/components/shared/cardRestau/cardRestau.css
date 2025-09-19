@@ -15,12 +15,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 .restaurant-logo {
-    width: 7rem;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
+
+    object-fit: cover;
 }
 .leaflet-popup-content-wrapper{
     background-color: transparent !important;

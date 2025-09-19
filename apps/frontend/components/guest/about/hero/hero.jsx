@@ -50,11 +50,11 @@ const Hero = () => {
                 </p>
                 <div className="about-hero-cta">
                     <Link href={"/"} className="button glass-btn">
-                        Recherchez un restaurant{" "}
+                        Retrouver un restaurant{" "}
                         <i className="fi fi-rr-search"></i>
                     </Link>
                     <Button>
-                        commencer dès maintenant{" "}
+                        commencer maintenant{" "}
                         <i className="fi fi-rr-play"></i>
                     </Button>
                 </div>

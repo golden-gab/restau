@@ -1,6 +1,9 @@
 .resto-menu{
     width: 75%;
 }
+.resto-menu.full{
+    width: 100%;
+}
 .resto-menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -12,6 +15,9 @@
 }
 .resto-menu-header .form-group{
     width: 40%;
+}
+.resto-menu .tabs{
+    width: 60%;
 }
 .resto-menu-header .form-group .form-input{
     padding: calc(var(--padding) / 4) calc(var(--padding) / 2);

@@ -118,6 +118,9 @@ strong{
 section{
   padding: calc(var(--padding)*2) calc(var(--padding)*4);
 }
+section[aria-label="Notifications alt+T"]{
+  padding: 0 !important;
+}
 * {
   margin: 0;
   padding: 0;
@@ -134,7 +137,9 @@ section{
 
 
 textarea {
-  resize: none;
+  /* resize: none; */
+  max-width: 100%;
+  min-width: 100%;
 }
 li {
   list-style: none;
@@ -203,6 +208,13 @@ html {
     opacity: 1;
     transform: scale(1);
   }
+}
+@media screen and (max-width:1100px) {
+
+    section {
+    padding: calc(var(--padding)*2) calc(var(--padding)*2);
+    }
+
 }
 @media screen and (max-width: 768px) {
   html {

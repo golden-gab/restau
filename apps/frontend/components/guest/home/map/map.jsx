@@ -7,6 +7,7 @@ import L from "leaflet";
 import Input from "@/components/shared/input/input";
 import Image from "next/image";
 import CardRestau from "@/components/shared/cardRestau/cardRestau";
+import MapSearch from "../mapSearch/mapSearch";
 
 const customIcon = () =>
     L.divIcon({
@@ -31,7 +32,7 @@ const FlyToLocation = ({ position }) => {
 };
 
 const Map = ({ data }) => {
-    const initialPosition = [5.47775, 10.41759];
+    const initialPosition = [4.0511, 9.7679];
     const [userPosition, setUserPosition] = useState(null);
 
     // Demande de géolocalisation au chargement de la page
@@ -182,10 +183,7 @@ const Map = ({ data }) => {
     return (
         <div className="map-container">
             <div className="map-header">
-                <div className="map-search-bar">
-                    <Input placeholder="Rechercher un restaurant" />
-                    <i className="fi fi-rr-search"></i>
-                </div>
+                <MapSearch/>
                 <i
                     title="Ma position"
                     className="fi fi-sr-land-layer-location location-btn"
@@ -195,7 +193,7 @@ const Map = ({ data }) => {
 
             <MapContainer
                 center={positionToUse}
-                zoom={15}
+                zoom={8}
                 scrollWheelZoom={true}
             >
                 <TileLayer

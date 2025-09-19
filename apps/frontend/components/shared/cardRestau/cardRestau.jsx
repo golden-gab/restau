@@ -1,15 +1,18 @@
 import React from "react";
 import "./cardRestau.css";
 import Image from "next/image";
-import Link from "next/link"; 
+import Link from "next/link";
 
-const CardRestau = ({ userPosition,data }) => {
-   
+const CardRestau = ({ userPosition, data }) => {
     return (
         <div className="restaurant-card">
             <div className="restaurant-details">
                 <Image
-                src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`}
+                    src={
+                        data.logoPath
+                            ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`
+                            : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg` 
+                    }
                     width={500}
                     height={500}
                     alt="restaurant-logo"
@@ -21,7 +24,7 @@ const CardRestau = ({ userPosition,data }) => {
                 </div>
             </div>
             <div className="restaurant-actions">
-                <Link href={"/restaurants/"+data.slug}>
+                <Link href={"/restaurants/" + data.slug}>
                     <i
                         className="fi fi-sr-up-right-from-square"
                         title="En savoir plus"

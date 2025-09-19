@@ -19,7 +19,8 @@ const Tab = ({ tabs, active, setActive }) => {
                         key={index}
                         isActive={active}
                     />
-                ))}
+                ))} 
+                
             </div>
         </div>
     );
