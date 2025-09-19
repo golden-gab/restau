@@ -65,14 +65,14 @@ const Header = () => {
 
             <nav className="navbar" ref={nav}>
                 <Link href="/" className="lg-logo" style={{ width: "25%" }}>
-                    logo
+                    logo 
                 </Link>
 
                 <Navigation links={links} onClick={handleNavMobile} />
 
                 <div className="nav-right">
                     <Link
-                        className="action-header"
+                       className="action-header"
                         href={"/devis"}
                         onClick={handleNavMobile}
                     >

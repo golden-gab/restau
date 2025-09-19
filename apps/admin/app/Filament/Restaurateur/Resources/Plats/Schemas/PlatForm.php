@@ -9,6 +9,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class PlatForm
 {
@@ -20,24 +21,19 @@ class PlatForm
                     ->columns(1)
                     ->columnSpanFull()
                     ->schema([
-                        // FileUpload::make('image_path')
-                        //     ->label('Image du plat')
-                        //     ->image()
-                        //     ->maxSize(2048)
-                        //     ->nullable()
-                        // ->disk('public'),
                         FileUpload::make('image_path')
                             ->label('Image du plat')
                             ->image()
                             ->directory('restaurants/plats')
                             ->disk('public')
                             ->visibility('public')
-
-                            // ->avatar()
-                            // ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
                             ->maxSize(2048)
                             ->nullable()
-                            ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB'),
+                            ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB')
+                            ->deleteUploadedFileUsing(function ($file) {
+                                // Supprimer l’ancien fichier
+                                Storage::disk('public')->delete($file);
+                            }),
 
                         Select::make('categorie_id')
                             ->relationship('categorie', 'designation')

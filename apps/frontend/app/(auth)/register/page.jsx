@@ -118,7 +118,7 @@ const Register = () => {
                     <div>
                         <div className="tab-header">
                             <h3>
-                                Bienvenue sur APP NAME 🎉
+                                Bienvenue sur {process.env.NEXT_PUBLIC_APP_NAME}🎉
                             </h3>
                             <p>Merci de l'intérêt que vous nous portez !</p>
                             <p className="second-description">

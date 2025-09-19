@@ -17,7 +17,7 @@ const Page = () => {
         slug ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}` : null,
         fetcher
     );
- 
+
     return (
         <main className="restaurant-page">
             {isLoading ? (
@@ -33,7 +33,7 @@ const Page = () => {
                             categories={data.categories}
                         />
                         {data.acceptOrder == 1 && (
-                            <RestoCart tel={data.whatsappNumber} />
+                            <RestoCart tel={data.whatsappNumber} restoId={data.id}/>
                         )}
                     </div>
                     <Horaires week={data.openingHours} />

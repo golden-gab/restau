@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\State\CommandeProcessor;
+use ApiPlatform\State\ProcessorInterface;
 use App\State\RestaurantCollectionProvider;
 use ApiPlatform\State\ProviderInterface;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -27,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
 		$this->app->tag(RestaurantCollectionProvider::class, ProviderInterface::class);
+
+		$this->app->tag(CommandeProcessor::class, ProcessorInterface::class);
     }
 }

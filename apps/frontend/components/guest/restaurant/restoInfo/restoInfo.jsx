@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const RestoInfo = ({ data }) => {
-    console.log(data);
+
     return (
         <div className="resto-info">
             <Image

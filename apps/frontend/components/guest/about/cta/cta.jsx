@@ -18,7 +18,7 @@ const Cta = () => {
                     seul endroit. Notre solution vous aide à gagner du temps,
                     attirer plus de clients et booster vos revenus.
                 </p>
-                <Button>Commencez dès aujourd’hui</Button>
+                <Button>Commencez maintenant</Button>
             </div>
             <Image
                 src="/plat.png"

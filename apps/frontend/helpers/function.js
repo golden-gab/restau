@@ -21,7 +21,7 @@ export function haversineDistance(coord1, coord2) {
 }
 
 export function kFormatter(num, digits = 1) {
-    const lookup = [ 
+    const lookup = [
         { value: 1, symbol: "" },
         { value: 1e3, symbol: "k" },
         { value: 1e6, symbol: "M" },
@@ -53,15 +53,13 @@ export function formatNombre(nbr) {
     let retour = "";
     let count = 0;
     for (let i = entier.length - 1; i >= 0; i--) {
-        if (count !== 0 && count % 3 === 0)
-            retour = entier[i] + " " + retour;
-        else
-            retour = entier[i] + retour;
+        if (count !== 0 && count % 3 === 0) retour = entier[i] + " " + retour;
+        else retour = entier[i] + retour;
         count++;
     }
     // Ajoute la partie décimale si elle existe
     return decimal ? `${retour}.${decimal}` : retour;
-  }
+}
 export function tarif(nbr) {
     var res = formatNombre(nbr) + " FCFA";
 
@@ -80,8 +78,8 @@ export async function sendRequest(url, { arg }) {
     return fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json", // très important
+            "Content-Type": "application/ld+json",
+            'Accept': "application/ld+json",
         },
         body: JSON.stringify(arg),
     }).then((res) => res.json());

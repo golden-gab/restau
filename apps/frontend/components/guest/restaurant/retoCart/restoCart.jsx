@@ -3,27 +3,54 @@ import "./restoCart.css";
 import Button from "@/components/shared/button/button";
 import { useCart } from "@/context/CartContext";
 import { useParams } from "next/navigation";
-import { tarif } from "@/helpers/function";
+import { sendRequest, tarif } from "@/helpers/function";
+import useSWRMutation from "swr/mutation";
+import { toast } from "sonner";
+import Spinner from "@/components/shared/spinner/spinner";
 
-const RestoCart = ({tel}) => {
+const RestoCart = ({ tel, restoId }) => {
     const { slug } = useParams();
+    const { trigger, isMutating } = useSWRMutation(
+        `${process.env.NEXT_PUBLIC_API_URL}/commandes`,
+        sendRequest
+    );
     const { carts, removeFromCart, addToCart, getTotal } = useCart();
     const cart = carts[slug] || [];
-    const message =  `Bonjour, je souhaite commander :\n` +
-          cart
-              .map(
-                  (item) =>
-                      `- ${item.plat.name} x${item.qty} (${tarif(
-                          item.plat.price * item.qty
-                      )})`
-              )
-              .join("\n") +
-          `\nTotal : ${tarif(getTotal(slug))} \n`+
-          `\nCommande générée depuis ...`
+
+    const message =
+        `Bonjour, je souhaite commander :\n` +
+        cart
+            .map(
+                (item) =>
+                    `- ${item.plat.name} x${item.qty} (${tarif(
+                        item.plat.price * item.qty
+                    )})`
+            )
+            .join("\n") +
+        `\nTotal : ${tarif(getTotal(slug))} \n` +
+        `\nCommande générée depuis ...`;
 
     const whatsappUrl = `https://wa.me/${tel}?text=${encodeURIComponent(
         message
     )}`;
+    function handleOrder() {
+        try {
+            const result = trigger({
+                restaurant_id: restoId,
+                plats: cart.map((item) => ({
+                    platId: item.plat.id,
+                    quantite: item.qty,
+                })),
+            });
+            if (result) {
+                // window.open(whatsappUrl, "_blank");
+            }
+        } catch (error) {
+            toast.error("Erreur lors de la commande ");
+            alert("Erreur lors de la commande. Veuillez réessayer.");
+        }
+    }
+
     return (
         <div className="resto-cart-container">
             <div className="resto-cart">
@@ -31,13 +58,13 @@ const RestoCart = ({tel}) => {
                     <h3>- Panier</h3>
                 </div>
                 <ul className="resto-cart-list">
-                    {cart.length > 0 ?
+                    {cart.length > 0 ? (
                         cart.map((item, index) => (
                             <li className="resto-cart-item" key={index}>
                                 <div className="resto-cart-item-text">
                                     <p>{item.plat.name}</p>
                                     <span className="resto-cart-item-prix">
-                                        {tarif( item.plat.price)}
+                                        {tarif(item.plat.price)}
                                     </span>
                                 </div>
                                 <div className="resto-cart-item-footer">
@@ -45,7 +72,10 @@ const RestoCart = ({tel}) => {
                                         <i
                                             className="fi fi-sr-minus-circle"
                                             onClick={() =>
-                                                removeFromCart(slug, item.plat.id)
+                                                removeFromCart(
+                                                    slug,
+                                                    item.plat.id
+                                                )
                                             }
                                         ></i>
                                         <div>{item.qty}</div>
@@ -61,24 +91,26 @@ const RestoCart = ({tel}) => {
                                     </span>
                                 </div>
                             </li>
-                        )):
+                        ))
+                    ) : (
                         <div className="cart-empty">
                             <i className="fi fi-rr-shopping-cart"></i>
                             <p>Votre panier est vide</p>
                         </div>
-                    }
+                    )}
                 </ul>
                 <div className="resto-cart-footer">
                     <div className="reto-cart-total">
                         <p>Total</p>
-                        <p className="reto-cart-total-prix">{tarif(getTotal(slug))}</p>
+                        <p className="reto-cart-total-prix">
+                            {tarif(getTotal(slug))}
+                        </p>
                     </div>
-                    {cart.length > 0 && <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                        <Button>
-                            Commander sur WhatsApp
+                    {cart.length > 0 && (
+                        <Button onClick={handleOrder} disabled={isMutating}>
+                            {isMutating ? <Spinner/> :"Commander sur WhatsApp"}
                         </Button>
-                    </a>}
-                    
+                    )}
                 </div>
             </div>
         </div>

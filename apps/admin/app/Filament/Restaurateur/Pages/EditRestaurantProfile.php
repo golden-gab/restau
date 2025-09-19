@@ -14,6 +14,7 @@ use Filament\Pages\Page;
 use Filament\Pages\Tenancy\EditTenantProfile;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
+use Illuminate\Support\Facades\Storage;
 
 class EditRestaurantProfile extends EditTenantProfile
 {
@@ -35,11 +36,13 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->disk('public')
                         ->visibility('public')
                         ->avatar()
-    
-                        // ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
                         ->maxSize(2048)
                         ->nullable()
-                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB'),
+                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB')
+                        ->deleteUploadedFileUsing(function ($file) {
+                            // Supprimer l’ancien fichier
+                            Storage::disk('public')->delete($file);
+                        }),
 
                     TextInput::make('name')
                         ->label('Nom du restaurant')
@@ -51,8 +54,8 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->nullable(),
                     // ->visibility('public')
                     Toggle::make('accept_order')
-                    ->label('Accepter les livraison')
-                    ->required(), 
+                        ->label('Accepter les livraison')
+                        ->required(),
                 ]),
             Section::make('Localisation du restaurant')
                 ->schema([
