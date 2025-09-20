@@ -1,7 +1,7 @@
 import React from "react";
 import "./restoInfo.css";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; 
 
 const RestoInfo = ({ data }) => {
 

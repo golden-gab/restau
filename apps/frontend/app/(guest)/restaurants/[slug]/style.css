@@ -8,4 +8,10 @@
     padding: 0 calc(var(--padding)*4);
     display: flex;
     gap: 1rem;
+    position: relative;
+}
+@media screen and (max-width:1200px) {
+    .resto-menu-panier{
+        padding:calc(var(--padding)/2) calc(var(--padding)/2);
+    }
 }

@@ -38,3 +38,8 @@
 a.resto-detail:hover{
     color: var(--main-color);
 }
+@media screen and (max-width:1200px) {
+    .resto-info{
+        padding:calc(var(--padding)/1) calc(var(--padding)/2);
+    }
+}

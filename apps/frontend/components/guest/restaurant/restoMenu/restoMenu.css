@@ -23,3 +23,8 @@
     padding: calc(var(--padding) / 4) calc(var(--padding) / 2);
     font-size: var(--fs-sm);
 }
+@media screen and (max-width:1200px) {
+    .resto-menu{
+    width: 100%;
+}
+}

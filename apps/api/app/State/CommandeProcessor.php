@@ -6,11 +6,12 @@ namespace App\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
+use App\ApiResource\CommandeDto;
 use App\Models\Commande;
 use App\Models\Plat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+ 
 final class CommandeProcessor implements ProcessorInterface
 {
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
@@ -38,8 +39,12 @@ final class CommandeProcessor implements ProcessorInterface
                 'commande_id' => $commande->id,
                 'plats_count' => count($data->plats ?? [])
             ]);
-
-            return $commande->fresh(['plats']);
+            $commandeDto = new CommandeDto();
+            $commandeDto->id = $commande->id;
+            $commandeDto->restaurant_id = $commande->restaurant_id;
+            // $commandeDto->plats = $commande
+            
+            return $commandeDto;
         });
     }
 

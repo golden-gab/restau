@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import "./restoCart.css";
 import Button from "@/components/shared/button/button";
 import { useCart } from "@/context/CartContext";
@@ -10,11 +11,13 @@ import Spinner from "@/components/shared/spinner/spinner";
 
 const RestoCart = ({ tel, restoId }) => {
     const { slug } = useParams();
+    const nav = useRef();
+    const shadow = useRef();
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/commandes`,
         sendRequest
     );
-    const { carts, removeFromCart, addToCart, getTotal } = useCart();
+    const { carts, removeFromCart, addToCart, getTotal, getTotalItem } = useCart();
     const cart = carts[slug] || [];
 
     const message =
@@ -43,77 +46,92 @@ const RestoCart = ({ tel, restoId }) => {
                 })),
             });
             if (result) {
-                // window.open(whatsappUrl, "_blank");
+                window.open(whatsappUrl, "_blank");
             }
         } catch (error) {
             toast.error("Erreur lors de la commande ");
             alert("Erreur lors de la commande. Veuillez réessayer.");
         }
     }
-
+    function handleCart(){
+        nav.current.classList.toggle("active");
+        shadow.current.classList.toggle("active");
+    }
     return (
-        <div className="resto-cart-container">
-            <div className="resto-cart">
-                <div className="resto-cart-header">
-                    <h3>- Panier</h3>
-                </div>
-                <ul className="resto-cart-list">
-                    {cart.length > 0 ? (
-                        cart.map((item, index) => (
-                            <li className="resto-cart-item" key={index}>
-                                <div className="resto-cart-item-text">
-                                    <p>{item.plat.name}</p>
-                                    <span className="resto-cart-item-prix">
-                                        {tarif(item.plat.price)}
-                                    </span>
-                                </div>
-                                <div className="resto-cart-item-footer">
-                                    <div className="resto-cart-item-action">
-                                        <i
-                                            className="fi fi-sr-minus-circle"
-                                            onClick={() =>
-                                                removeFromCart(
-                                                    slug,
-                                                    item.plat.id
-                                                )
-                                            }
-                                        ></i>
-                                        <div>{item.qty}</div>
-                                        <i
-                                            className="fi fi-sr-add"
-                                            onClick={() =>
-                                                addToCart(slug, item.plat)
-                                            }
-                                        ></i>
-                                    </div>
-                                    <span className="main-color">
-                                        {tarif(item.plat.price * item.qty)}
-                                    </span>
-                                </div>
-                            </li>
-                        ))
-                    ) : (
-                        <div className="cart-empty">
-                            <i className="fi fi-rr-shopping-cart"></i>
-                            <p>Votre panier est vide</p>
-                        </div>
-                    )}
-                </ul>
-                <div className="resto-cart-footer">
-                    <div className="reto-cart-total">
-                        <p>Total</p>
-                        <p className="reto-cart-total-prix">
-                            {tarif(getTotal(slug))}
-                        </p>
+        <>
+            <div className="resto-cart-container" ref={nav}>
+                <div className="resto-cart">
+                    <div className="resto-cart-header">
+                        <h3>- Panier</h3>
                     </div>
-                    {cart.length > 0 && (
-                        <Button onClick={handleOrder} disabled={isMutating}>
-                            {isMutating ? <Spinner/> :"Commander sur WhatsApp"}
-                        </Button>
-                    )}
+                    <ul className="resto-cart-list">
+                        {cart.length > 0 ? (
+                            cart.map((item, index) => (
+                                <li className="resto-cart-item" key={index}>
+                                    <div className="resto-cart-item-text">
+                                        <p>{item.plat.name}</p>
+                                        <span className="resto-cart-item-prix">
+                                            {tarif(item.plat.price)}
+                                        </span>
+                                    </div>
+                                    <div className="resto-cart-item-footer">
+                                        <div className="resto-cart-item-action">
+                                            <i
+                                                className="fi fi-sr-minus-circle"
+                                                onClick={() =>
+                                                    removeFromCart(
+                                                        slug,
+                                                        item.plat.id
+                                                    )
+                                                }
+                                            ></i>
+                                            <div>{item.qty}</div>
+                                            <i
+                                                className="fi fi-sr-add"
+                                                onClick={() =>
+                                                    addToCart(slug, item.plat)
+                                                }
+                                            ></i>
+                                        </div>
+                                        <span className="main-color">
+                                            {tarif(item.plat.price * item.qty)}
+                                        </span>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                            <div className="cart-empty">
+                                <i className="fi fi-rr-shopping-cart"></i>
+                                <p>Votre panier est vide</p>
+                            </div>
+                        )}
+                    </ul>
+                    <div className="resto-cart-footer">
+                        <div className="reto-cart-total">
+                            <p>Total</p>
+                            <p className="reto-cart-total-prix">
+                                {tarif(getTotal(slug))}
+                            </p>
+                        </div>
+                        {cart.length > 0 && (
+                            <Button onClick={handleOrder} disabled={isMutating}>
+                                {isMutating ? (
+                                    <Spinner />
+                                ) : (
+                                    "Commander sur WhatsApp"
+                                )}
+                            </Button>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+            <div className="card-shadow" ref={shadow}>
+            </div>
+            <Button type="full-btn btn-card" onClick={handleCart}>
+                <i className="fi fi-rr-shopping-cart"></i>
+                <div className="btn-card-quantite">{getTotalItem(slug)}</div>
+            </Button>
+        </>
     );
 };
 

@@ -1,5 +1,6 @@
 .resto-cart-container{
     width: 25%;
+    z-index: 2;
 }
 .resto-cart {
     background-color: var(--white);
@@ -102,4 +103,62 @@
 }
 .cart-empty i{
     font-size: var(--fs-xl);
+}
+.card-shadow{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 1;
+    background-color: var(--dark);
+    opacity: 0;
+    display: none;
+}
+.card-shadow.active{
+    opacity: 0.8;
+    display: block;
+}
+.btn-card{
+    display:none;
+    background-color: var(--dark);
+    font-size: var(--fs-md);
+    position: relative;
+    z-index: 1;
+}
+.btn-card-quantite{
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    display:flex ;
+    align-items:center ;
+    font-size: var(--fs-sm);
+    justify-content:center;
+    background-color: var(--main-color);
+}
+@media screen and (max-width:1200px) {
+    .resto-cart-container{
+        position: fixed;
+        right: 0;
+        top: calc(var(--padding)*2);
+        bottom: 0;
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+       
+    }
+    .resto-cart-container.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        width: 80%;
+    }
+    .resto-cart{
+        height: 100%;
+    }
+ .btn-card{
+    display: block;
+    position: fixed;
+    bottom: 5rem;
+ }
 }

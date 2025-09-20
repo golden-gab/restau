@@ -55,9 +55,18 @@ export function CartProvider({ children }) {
         );
         return somme;
     }
+
+    function getTotalItem(restaurantSlug){
+        let somme = 0;
+        const cart = carts[restaurantSlug] || []
+        cart.map(
+            (item) => somme += item.qty
+        );
+        return somme;
+    }
     return (
         <CartContext.Provider
-            value={{ carts, addToCart, removeFromCart, clearCart, getTotal }}
+            value={{ carts, addToCart, removeFromCart, clearCart, getTotal, getTotalItem }}
         >
             {children}
         </CartContext.Provider>
