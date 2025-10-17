@@ -38,7 +38,7 @@ const Register = () => {
         // toast.success("Votre restaurant a été créé avec succès")
         try {
             const result = await trigger(data);
-            toast.success("Votre restaurant a été créé avec succès");
+            toast.success("Votre restaurant a été créé avec succès"); 
             router.push("/about");
         } catch (e) {
             // error handling
@@ -117,8 +117,10 @@ const Register = () => {
                 >
                     <div>
                         <div className="tab-header">
-                            <h3>
+                            {/* <h3>
                                 Bienvenue sur {process.env.NEXT_PUBLIC_APP_NAME}🎉
+                            </h3> */}<h3>
+                                Bienvenue 🎉
                             </h3>
                             <p>Merci de l'intérêt que vous nous portez !</p>
                             <p className="second-description">
@@ -155,7 +157,7 @@ const Register = () => {
                             <Input
                                 label={"Email"}
                                 type={"email"}
-                                placeholder={"Exemple : restoUser@gmail.com"}
+                                placeholder={"Exemple :User@gmail.com"}
                                 required
                                 value={data.email}
                                 name={"email"}

@@ -17,12 +17,16 @@ class PlatInfolist
             ->components([
                 Section::make('Informations du plat')
                     ->description('Détails sur ce plat ')
-                    ->columns(2)
+                    ->columns(1)
                     ->columnSpanFull()
                     ->schema([
-                        Section::make()
-                            ->columns(1)
-                            ->schema([
+                                ImageEntry::make('image_path')
+                                    ->label('Image du plat')
+                                    ->disk('public')
+                                    
+                                    ->square()
+                                    ->extraAttributes(['class' => 'rounded-lg shadow']),
+                           
                                 TextEntry::make('name')
                                     ->label('Nom du plat')
                                     ->weight('bold')
@@ -51,20 +55,10 @@ class PlatInfolist
                                     ->columnSpanFull()
                                     ->placeholder('Aucune description'),
                             ])
-                            ->columnSpan(1),
+                            ->columnSpan(2),
 
                         // 📌 Colonne droite (image)
-                        Section::make()
-                            ->schema([
-                                ImageEntry::make('image_path')
-                                    ->label('Image du plat')
-                                    ->disk('public')
-                                    ->imageHeight(300)
-                                    ->square()
-                                    ->extraAttributes(['class' => 'rounded-lg shadow']),
-                            ])
-                            ->columnSpan(1),
-                    ]),
+
             ]);
     }
 }

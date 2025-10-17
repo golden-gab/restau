@@ -10,6 +10,11 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewPlat extends ViewRecord
 {
     protected static string $resource = PlatResource::class;
+ 
+    public function getTitle(): string
+    {
+        return $this->record->name;
+    }
 
     protected function getHeaderActions(): array
     {

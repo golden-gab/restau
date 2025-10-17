@@ -72,8 +72,8 @@ const Header = () => {
 
                 <div className="nav-right">
                     <Link
-                       className="action-header"
-                        href={"/devis"}
+                       className="action-header button glass-btn"
+                        href={"/about"}
                         onClick={handleNavMobile}
                     >
                         Se connecter

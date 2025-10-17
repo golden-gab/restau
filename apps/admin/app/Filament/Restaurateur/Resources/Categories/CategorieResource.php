@@ -21,7 +21,7 @@ use Filament\Tables\Table;
 class CategorieResource extends Resource
 {
     protected static ?string $model = Categorie::class;
-
+    
     protected static string|BackedEnum|null $navigationIcon = Heroicon::InboxStack;
 
     public static function form(Schema $schema): Schema
@@ -57,7 +57,7 @@ class CategorieResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->modalHeading(fn () => 'Modifier '),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

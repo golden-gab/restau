@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Filament\Resources\Restaurants\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class RestaurantsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                ImageColumn::make('logo_path')
+                    ->disk('public')
+                    ->label('Logo')
+                    ->visibility('public')
+                    ->imageWidth(40)
+                    ->circular(),
+                TextColumn::make('name')
+                    ->label('Nom du restaurant')
+                    ->searchable(),
+                TextColumn::make('phone')
+                    ->label('Téléphone')
+                    ->searchable(),
+                TextColumn::make('user.email')
+                    ->label('Propriétaire')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('ville')
+                    ->searchable(),
+                TextColumn::make('whatsapp_number')
+                    ->label('WhatsApp')
+                    ->searchable(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        // 'draft' => 'gray',
+                        'inactive' => 'warning',
+                        'active' => 'success',
+                        'suspended' => 'danger',
+                    }),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                // EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}

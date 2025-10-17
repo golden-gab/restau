@@ -96,7 +96,7 @@
   display: none;
 }
 .nav-link:hover {
-  color: var(--second-color);
+  color: var(--main-color);
 }
 
 .lg-icon {

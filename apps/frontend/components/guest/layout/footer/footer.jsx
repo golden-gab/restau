@@ -16,7 +16,7 @@ const Footer = () => {
                     </p>
                     <div className="social-network">
                         <a
-                            href="https://web.facebook.com/zingana.hotel?_rdc=1&_rdr"
+                            href="https://web.facebook.com/"
                             target="_blank"
                             aria-label="Notre compte Facebook"
                         >

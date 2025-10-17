@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Pages;
+namespace App\Filament\Restaurateur\Pages;
 
 use App\Filament\Restaurateur\Widgets\BestPlats;
 use App\Filament\Restaurateur\Widgets\OrderChart;

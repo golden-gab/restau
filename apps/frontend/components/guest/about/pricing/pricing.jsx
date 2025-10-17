@@ -9,7 +9,7 @@ const Pricing = () => {
         name: "Plan Standard",
         description:
             "Une formule simple et efficace pour digitaliser votre restaurant et gérer vos commandes en toute sérénité.",
-        price: "XX",
+        price: "Gratuit",
         features: [
             "Création de menus en ligne attractifs",
             "Réception des commandes via WhatsApp",
@@ -48,9 +48,10 @@ function PricingCard({plan}) {
                 ))} 
             </ul>
             <p className="pricing-card-price">
-                {plan.price} <span>FCFA / mois</span>
+                {plan.price} 
+                {/* <span>FCFA / mois</span> */}
             </p>
-            <Link href='/' className="pricing-card-action">
+            <Link href='/register' className="pricing-card-action">
                 Commencer maintenant
             </Link>
         </div>

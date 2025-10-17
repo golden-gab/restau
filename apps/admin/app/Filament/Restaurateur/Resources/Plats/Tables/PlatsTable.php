@@ -17,11 +17,11 @@ class PlatsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image_path')
+               ImageColumn::make('image_path')
                     ->disk('public')
                     ->label('Image')
-                    ->visibility('public')
-                    ->imageWidth(75),
+                    ->imageWidth(100)
+                    ->visibility('public'),
                 TextColumn::make('categorie.designation')
                     ->searchable(),
                 TextColumn::make('name')
@@ -32,6 +32,7 @@ class PlatsTable
                     ->money('XAF')
                     ->sortable(),
                 IconColumn::make('is_available')
+                    ->label('Disponible')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()

@@ -40,6 +40,12 @@
     color: var(--white);
     line-height: 1.2;
 }
+.restaurant-description{
+    font-size:var(--fs-xs);
+    width: 100%;
+    display: block;
+    color: var(--gray2);
+}
 .restaurant-number{
     font-size:var(--fs-xs);
     text-align: center;

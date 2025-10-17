@@ -10,7 +10,6 @@ use Filament\Resources\Pages\EditRecord;
 class EditPlat extends EditRecord
 {
     protected static string $resource = PlatResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

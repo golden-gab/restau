@@ -9,6 +9,7 @@ use App\Models\Subscription;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,5 +26,12 @@ class DatabaseSeeder extends Seeder
         // Forfait::factory(3)->create();
         Restaurant::factory(10)->create();
         Subscription::factory(10)->create();
+        User::create([
+            'name' => "Goldengab",
+            'email' => "goldengab@gmail.com",
+            'email_verified_at' => now(),
+            'role_id' => 1,
+            'password' => Hash::make('password'),
+        ]);
     }
 }

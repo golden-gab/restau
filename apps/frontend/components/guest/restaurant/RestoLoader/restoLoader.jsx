@@ -9,7 +9,7 @@ const RestoLoader = () => {
             <div className='resto-loader-plats-panier'>
                 <div className='resto-loader-plats'>
                     <SkeletonLoaderBox/>
-                    <SkeletonLoaderBox/>
+                    <SkeletonLoaderBox/> 
                     <SkeletonLoaderBox/>
                     <SkeletonLoaderBox/>
                     <SkeletonLoaderBox/>

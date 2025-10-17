@@ -39,11 +39,6 @@
         padding:calc(var(--padding)/2);
         
     }
-    .section-titre{
-    font-size: calc(var(--font-size)*2);
-        
-        line-height: calc(var(--padding)*2);
-    }
     .section-description{
         width: 100%;
     font-size: calc(var(--text-size)/1.2);

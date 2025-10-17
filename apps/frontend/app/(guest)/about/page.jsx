@@ -13,8 +13,8 @@ const AboutPage = () => {
             <Hero/>
             <WhyUs/>
             <Features/>
-            <Cta/>
             <Pricing/>
+            <Cta/>
             <Faq/>
             <BottomAction/>
         </div>

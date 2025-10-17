@@ -61,7 +61,7 @@
  .form-input::placeholder {
  }
 
- .form-group .fa-eye {
+ .form-group i {
      position: absolute;
      right: 1rem;
      top: 60%;

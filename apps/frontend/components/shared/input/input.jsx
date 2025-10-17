@@ -41,7 +41,7 @@ const Input = ({ type, label, name, id = "", errors, required, max,  value,info,
                 )}
                 {type === "password" && (
                     <i
-                        className="fa-solid fa-eye"
+                        className="fi fi-ss-eye"
                         onClick={() => handlePassword()}
                     ></i>
                 )}

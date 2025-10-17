@@ -2,10 +2,13 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Restaurateur\Pages\EditRestaurantProfile;
 use App\Filament\Restaurateur\Pages\RegisterRestaurant;
+use App\Filament\Restaurateur\Pages\Settings;
 use App\Models\Restaurant;
+use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -31,19 +34,28 @@ class RestaurateurPanelProvider extends PanelProvider
             ->id('restaurateur')
             ->path('restaurateur')
             ->login()
-            ->passwordReset() 
+            ->passwordReset()
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => '#D45C3A', 
-                'success' => Color::Emerald, 
+                'primary' => '#D45C3A',
+                'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+            // ->userMenuItems([
+            //     Action::make('settings')
+            //         ->url(fn(): string => Settings::getUrl())
+            //         ->icon('heroicon-o-cog-6-tooth'),
+            //     // ...
+            // ])
+                
+            ->profile(EditProfile::class)
             ->discoverResources(in: app_path('Filament/Restaurateur/Resources'), for: 'App\Filament\Restaurateur\Resources')
             ->discoverPages(in: app_path('Filament/Restaurateur/Pages'), for: 'App\Filament\Restaurateur\Pages')
             ->pages([
-                Dashboard::class
+                Dashboard::class,
+                Settings::class,
                 // Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Restaurateur/Widgets'), for: 'App\Filament\Restaurateur\Widgets')
@@ -67,8 +79,9 @@ class RestaurateurPanelProvider extends PanelProvider
             ])
             ->tenant(Restaurant::class, ownershipRelationship: 'restaurant', slugAttribute: 'slug')
             ->tenantRegistration(RegisterRestaurant::class)
+
             ->tenantProfile(EditRestaurantProfile::class)
-           
+
         ;
     }
 }

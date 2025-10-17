@@ -2,6 +2,7 @@ import React from "react";
 import "./cardRestau.css";
 import Image from "next/image";
 import Link from "next/link";
+import { seeMore } from "@/helpers/function";
 
 const CardRestau = ({ userPosition, data }) => {
     return (
@@ -11,7 +12,7 @@ const CardRestau = ({ userPosition, data }) => {
                     src={
                         data.logoPath
                             ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`
-                            : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg` 
+                            : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg`
                     }
                     width={500}
                     height={500}
@@ -21,6 +22,7 @@ const CardRestau = ({ userPosition, data }) => {
                 <div className="restaurant-info">
                     <p className="restaurant-name">{data.name}</p>
                     <span className="restaurant-number">{data.phone}</span>
+                    <p className="restaurant-description">{seeMore( data.description,50)}</p>
                 </div>
             </div>
             <div className="restaurant-actions">
@@ -31,10 +33,10 @@ const CardRestau = ({ userPosition, data }) => {
                     ></i>
                 </Link>
 
-                <i
+                {/* <i
                     className="fi fi-sr-diamond-turn-right"
                     title="Itinéraire"
-                ></i>
+                ></i> */}
             </div>
         </div>
     );

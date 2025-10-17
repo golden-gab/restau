@@ -23,3 +23,20 @@
     height: 90dvh;
     width: 25%;
 }
+
+@media screen and (max-width: 1200px) {
+    .resto-loader{
+        padding: calc(var(--padding)/1) calc(var(--padding)/2);
+    }
+    .resto-loader-plats{
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+    .resto-loader-plats .skeleton-loader-box{
+        min-height: 15rem;
+        min-width: 15rem;
+    }
+    .resto-loader-panier{
+        display: none;
+    }   
+}

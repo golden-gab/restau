@@ -10,7 +10,7 @@ const Cta = () => {
                 <p className="cta-label">Passez à la vitesse supérieure</p>
                 <h2>
                     Donnez de la visibilité à vos{" "}
-                    <span className="main-color">menus et commandes</span>
+                    <span className="main-color">menus</span>
                 </h2>
                 <p>
                     Offrez à vos clients une expérience simple et rapide : menus

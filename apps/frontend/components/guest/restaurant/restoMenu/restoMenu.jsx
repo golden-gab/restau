@@ -13,7 +13,7 @@ const RestoMenu = ({ plats, categories, acceptOrder }) => {
     const [search, setSearch] = useState(""); // <-- Ajout du state recherche
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 15;
 
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;

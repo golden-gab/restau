@@ -37,7 +37,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[QueryParameter(key: 'name', filter: PartialSearchFilter::class, properties: ['name'])]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'id')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'name')]
-#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write']), property: 'description')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'description')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read']), property: 'logo_path')]
 #[ApiProperty(serialize: new Groups(['restaurant:read']), property: 'slug')]
 #[ApiProperty(serialize: new Groups(['restaurant:read']), property: 'latitude')]

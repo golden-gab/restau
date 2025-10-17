@@ -71,7 +71,13 @@ class User extends Authenticatable implements FilamentUser, HasTenants
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // return $this->restaurants()->exists();
-        return true;
+        if ($panel->getId() === 'admin') {
+            return $this->role_id === 1; // admin seulement
+        }
+
+        if ($panel->getId() === 'restaurateur') {
+            return $this->role_id === 2;
+        }
+        return false;
     }
 }

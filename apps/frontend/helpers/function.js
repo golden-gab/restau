@@ -69,7 +69,7 @@ export function tarif(nbr) {
 export function seeMore(description, maxLength = 120) {
     if (!description) return "";
     if (description.length <= maxLength) return description;
-    return description.slice(0, maxLength) + "… voir plus";
+    return description.slice(0, maxLength) + "…";
 }
 
 export const fetcher = (url) => fetch(url).then((res) => res.json());

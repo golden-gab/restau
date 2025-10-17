@@ -6,8 +6,8 @@
     gap: 2rem;
 }
 .skeleton-loader-box{
-    height: 18rem;
-    width: 18rem;
+    min-height: 18rem;
+    min-width: 18rem;
     border-radius: var(--bradius);
     background-color:var(--gray2);
     animation: var(--loader);
