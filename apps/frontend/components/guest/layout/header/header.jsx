@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./header.css";
 import Button from "../../../shared/button/button";
+import Logo from "@/components/shared/logo/logo";
 
 const Header = () => {
     const nav = useRef();
@@ -60,19 +61,19 @@ const Header = () => {
     return (
         <header className={`${isScrolled ? "header scrolled" : "header "}`}>
             <Link href="/" className="sm-logo">
-                logo
+                <Logo />
             </Link>
 
             <nav className="navbar" ref={nav}>
                 <Link href="/" className="lg-logo" style={{ width: "25%" }}>
-                    logo 
+                    <Logo />
                 </Link>
 
                 <Navigation links={links} onClick={handleNavMobile} />
 
                 <div className="nav-right">
                     <Link
-                       className="action-header button glass-btn"
+                        className="action-header button glass-btn"
                         href={"/about"}
                         onClick={handleNavMobile}
                     >

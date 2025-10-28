@@ -1,5 +1,15 @@
-.logo img{
-width: 100px;
-height: 40px;
-zoom: 100%;
+.logo-container {
+  position: relative;
+  width: 100px; /* taille réelle du logo */
+  height: 50px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    zoom: 140%;
+    /* background-color: var(--white); */
+}
+
+.logo-img {
+    height: 10rem;
+  object-fit: contain;
 }

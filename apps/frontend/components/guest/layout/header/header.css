@@ -1,6 +1,6 @@
 .header {
   min-height: fit-content;
-  padding: calc(var(--padding)/1.5) calc(var(--padding)*2);
+  padding: calc(var(--padding)/2) calc(var(--padding)*2);
   display: flex;
   align-items: center;
   position: sticky;
@@ -14,7 +14,7 @@
 
 .header .logo {
   /*  */
-  font-size: 2rem;
+  /* font-size: 2rem; */
   padding-right: var(--padding);
 }
 
@@ -23,6 +23,7 @@
   gap: var(--padding);
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   font-size: var(--text-size);
 }
 

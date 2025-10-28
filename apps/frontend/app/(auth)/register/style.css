@@ -26,9 +26,9 @@
   margin-bottom: 2rem;
 }
 .register-logo{
-   width: 3rem;
-   height: 3rem;
-   border-radius: 50%;
+   width: 5rem;
+   height: 5rem;
+   /* border-radius: 50%; */
    object-fit: cover;
 }
 .register-container .back:hover i{

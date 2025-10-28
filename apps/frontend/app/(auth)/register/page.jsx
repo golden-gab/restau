@@ -103,7 +103,7 @@ const Register = () => {
                             height={300}
                             width={300}
                             alt="fried-chicken-image"
-                            src={"/register-image.jpg"}
+                            src={"/logo1.png"}
                             className="register-logo"
                         />
                     </Link>
