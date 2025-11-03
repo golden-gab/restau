@@ -74,7 +74,8 @@ const Header = () => {
                 <div className="nav-right">
                     <Link
                         className="action-header button glass-btn"
-                        href={"/about"}
+                        href={"https://mealopadmin.grinboard.com/restaurateur/login"}
+                        target="_blank"
                         onClick={handleNavMobile}
                     >
                         Se connecter
