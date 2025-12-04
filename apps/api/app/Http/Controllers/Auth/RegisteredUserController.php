@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'restoName' => ['required', 'string', 'max:255'],
             // 'restoDescription' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'min:8'],
         ]);
 
@@ -46,6 +46,15 @@ class RegisteredUserController extends Controller
                 'name' => $request->restoName,
                 'slug' => Str::slug($request->restoName) . '-' . Str::random(5),
                 'description' => $request->restoDescription,
+                'opening_hours' => $request->opening_hours ? $request->opening_hours : [
+                    ['day' => 'Lundi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+                    ['day' => 'Mardi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+                    ['day' => 'Mercredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+                    ['day' => 'Jeudi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+                    ['day' => 'Vendredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+                    ['day' => 'Samedi', 'opens_at' => '10:00', 'closes_at' => '23:00'],
+                    ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null], // fermé
+                ],
             ]);
 
             $subscription = Subscription::create([
@@ -65,10 +74,9 @@ class RegisteredUserController extends Controller
                 'restaurant' => $restaurant,
                 'subscription' => $subscription
             ], 201);
-
         } catch (\Exception $e) {
             DB::rollBack();
-            
+
             return response()->json([
                 'success' => false,
                 'message' => 'Registration failed',

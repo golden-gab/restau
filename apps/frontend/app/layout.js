@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
                     rel="stylesheet"
                     href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
                 />
-                {/* leaflet */}
+                {/* leaflet */} 
                 <link
                     rel="stylesheet"
                     href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"

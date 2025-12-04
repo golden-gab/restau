@@ -127,7 +127,8 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->label("Jours de la semaine")
                         ->schema([
                             TextInput::make('day')
-                                ->label('Jour'), // Important pour sauvegarder la valeur
+                                ->label('Jour')
+                                ->readOnly(), // Important pour sauvegarder la valeur
                             TimePicker::make('opens_at')
                                 ->label('Ouvre à')
                                 ->seconds(false),
@@ -135,15 +136,7 @@ class EditRestaurantProfile extends EditTenantProfile
                                 ->label('Ferme à')
                                 ->seconds(false),
                         ])
-                        ->default([
-                            ['day' => 'Lundi', 'opens_at' => '08:00', 'closes_at' => '18:00'],
-                            ['day' => 'Mardi', 'opens_at' => '08:00', 'closes_at' => '18:00'],
-                            ['day' => 'Mercredi', 'opens_at' => '08:00', 'closes_at' => '18:00'],
-                            ['day' => 'Jeudi', 'opens_at' => '08:00', 'closes_at' => '18:00'],
-                            ['day' => 'Vendredi', 'opens_at' => '08:00', 'closes_at' => '18:00'],
-                            ['day' => 'Samedi', 'opens_at' => '09:00', 'closes_at' => '17:00'],
-                            ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null],
-                        ])
+                        ->defaultItems(7)
                         ->columns(3)
                         ->addable(false)
                         ->deletable(false)

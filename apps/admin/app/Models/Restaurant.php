@@ -38,7 +38,12 @@ class Restaurant extends Model implements HasAvatar
 
      public function getFilamentAvatarUrl(): ?string
     {
-        return $this->logo_path ? Storage::url($this->logo_path) : null;
+        if($this->logo_path){
+            return  Storage::url($this->logo_path);
+        }
+
+        $initial = strtoupper(substr($this->name,0,1));
+        return "https://ui-avatars.com/api/?name={$initial}&background=000&color=fff&size=128";
     }
 
     

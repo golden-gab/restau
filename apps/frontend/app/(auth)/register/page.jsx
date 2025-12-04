@@ -29,7 +29,7 @@ const Register = () => {
         confirmPassword: "",
         restoName: "",
     });
-    const router = useRouter();
+    const router = useRouter(); 
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/register`,
         sendRequest
@@ -38,8 +38,9 @@ const Register = () => {
         // toast.success("Votre restaurant a été créé avec succès")
         try {
             const result = await trigger(data);
+            console.log(result)
             toast.success("Votre restaurant a été créé avec succès"); 
-            router.push("/about");
+            // router.push("/about");
         } catch (e) {
             // error handling
             console.error(e);

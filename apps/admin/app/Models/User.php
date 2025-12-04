@@ -56,7 +56,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     public function restaurants()
     {
         return $this->hasMany(Restaurant::class);
-    }
+    } 
 
 
     public function getTenants(Panel $panel): Collection
@@ -80,4 +80,5 @@ class User extends Authenticatable implements FilamentUser, HasTenants
         }
         return false;
     }
+
 }

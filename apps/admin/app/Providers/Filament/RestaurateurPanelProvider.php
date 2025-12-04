@@ -50,7 +50,7 @@ class RestaurateurPanelProvider extends PanelProvider
             //     // ...
             // ])
                 
-            ->profile(EditProfile::class)
+            // ->profile(EditProfile::class)
             ->discoverResources(in: app_path('Filament/Restaurateur/Resources'), for: 'App\Filament\Restaurateur\Resources')
             ->discoverPages(in: app_path('Filament/Restaurateur/Pages'), for: 'App\Filament\Restaurateur\Pages')
             ->pages([
