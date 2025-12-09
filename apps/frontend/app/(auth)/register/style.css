@@ -1,7 +1,11 @@
 .register-page {
     height: 100dvh;
+    background-color: var(--white);
     position: relative;
-    display: flex;
+    display:flex ;
+    /* align-items:center ; */
+    justify-content:center;
+    
 }
 
 .register-image {
@@ -12,10 +16,9 @@
 
 .register-container {
     /* margin: calc(var(--padding)/1); */
-    background-color: var(--white);
     border-radius: var(--bradius);
-    width: 30%;
-   
+    width: 70%;
+   scrollbar-width: none;
     padding:calc(var(--padding)/1);
     overflow-y: scroll;
 }

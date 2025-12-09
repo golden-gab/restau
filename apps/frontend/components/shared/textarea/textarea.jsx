@@ -1,7 +1,7 @@
 import React from 'react';
 import './textarea.css'
 
-const Textarea = ({label, name, id = "",required, children,value , cols=10 , rows=10,...props }) => {
+const Textarea = ({label, name, id = "",required, children,value , cols=10 , rows=5,...props }) => {
     return (
         <div className="form-group">
         {label && (
