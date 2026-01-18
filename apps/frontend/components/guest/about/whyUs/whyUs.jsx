@@ -27,21 +27,17 @@ const WhyUs = () => {
     return (
         <section className="why-us-container">
             <SectionTItre
-                label={"Pourquoi choisir nomApp"}
+                label={"Pourquoi choisir Mealop"}
                 titre={"Pour vos restaurants et services"}
                 description="Un outil moderne et accessible qui simplifie la gestion de vos menus et optimise vos commandes."
             />
-            <motion.div
+            <div
                 className="why-us-cards"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true, amount: 0.2 }}
             >
                 {data.map((service, index) => (
                     <WhyUsCard key={index} data={service} />
                 ))}
-            </motion.div>
+            </div>
         </section>
     );
 };
@@ -52,13 +48,13 @@ function WhyUsCard({ data }) {
     return (
         <motion.div
             className="why-us-card"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
                 duration: 0.6, // petit décalage pour l’effet cascade
-                ease: "easeOut",
+                ease: "easeIn",
             }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true }}
         >
             <i className={data.icone}></i>
             <h4 className="why-us-nom">{data.nom}</h4>

@@ -13,18 +13,18 @@ const UserStep = ({ data, setData, onNext, onPrevious }) => {
 
     const handleValidate = () => {
         const errs = {};
-        // if (!data.email) errs.email = "Le champ email est requis";
-        // else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-        //     errs.email = "Veuillez renseigner un email correct";
+        if (!data.email) errs.email = "Le champ email est requis";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
+            errs.email = "Veuillez renseigner un email correct";
 
-        // if (!data.password) errs.password = "Le champ mot de passe est requis";
-        // else if (data.password.length < 5)
-        //     errs.password = "5 caractères minimum";
+        if (!data.password) errs.password = "Le champ mot de passe est requis";
+        else if (data.password.length < 5)
+            errs.password = "5 caractères minimum";
 
-        // if (!data.confirmPassword)
-        //     errs.confirmPassword = "Vous devez confirmer le mot de passe";
-        // else if (data.confirmPassword !== data.password)
-        //     errs.confirmPassword = "Vous devez utiliser le même mot de passe";
+        if (!data.confirmPassword)
+            errs.confirmPassword = "Vous devez confirmer le mot de passe";
+        else if (data.confirmPassword !== data.password)
+            errs.confirmPassword = "Vous devez utiliser le même mot de passe";
 
         setErrors(errs);
         if (Object.keys(errs).length === 0) {

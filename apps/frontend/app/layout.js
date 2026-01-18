@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                <Toaster position="top-right"/>
+                <Toaster position="top-right" richColors expand={true}/>
                 {children}
             </body>
         </html>

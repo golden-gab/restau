@@ -32,6 +32,7 @@ const Input = ({ type, label, name, id = "", errors, required, max,  value,info,
                     name={name}
                     className="form-input"
                     // ref={ref}
+                    
                     value={value}
                     required={required}
                     maxLength={max}

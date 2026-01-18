@@ -76,7 +76,7 @@ button.delete-btn{
 .button a:hover{
     color: var(--white);
 }
-.button .spinner{
+.button.full-btn .spinner{
     border: 3px solid var(--white) !important;
     border-color:  var(--white) transparent !important;
 }

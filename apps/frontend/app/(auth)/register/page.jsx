@@ -25,10 +25,10 @@ const Register = () => {
         confirmPassword: "",
         restoName: "",
         restoDescription: "",
-        ville:"",
-        latitude:"",
-        longitude:"",
-        openingHours:[
+        ville: "",
+        latitude: "",
+        longitude: "",
+        openingHours: [
             { day: "Lundi", open: "", close: "" },
             { day: "Mardi", open: "", close: "" },
             { day: "Mercredi", open: "", close: "" },
@@ -47,14 +47,20 @@ const Register = () => {
     const handleComplete = async () => {
         // toast.success("Votre restaurant a été créé avec succès")
         try {
-            const result = await trigger(data);
-            console.log(result);
-            toast.success("Votre restaurant a été créé avec succès");
-            // router.push("/about");
-        } catch (e) {
-            // error handling
-            console.error(e);
+        const result = await trigger(data);
+        console.log(result)
+        // Vérifier si le résultat contient une erreur
+        if (result?.errors) {
+            toast.error(result.message || "Une erreur est survenue");
+            return;
         }
+        
+        toast.success("Votre restaurant a été créé avec succès");
+        // router.push("/dashboard");
+        
+    } catch (e) {
+        toast.error(e.message || "Une erreur est survenue");
+    }
     };
     const [currentStep, setCurrentStep] = useState(1);
     const wizardRef = useRef(null);
@@ -77,7 +83,14 @@ const Register = () => {
         wizardRef.current.previousStep();
     };
 
-    const steps = ["Inscription", "Compte", "Restaurant","Localisation" ,"Horaire","Confirmation"];
+    const steps = [
+        "Inscription",
+        "Compte",
+        "Restaurant",
+        "Localisation",
+        "Horaire",
+        "Confirmation",
+    ];
     return (
         <div className="register-page">
             {/* <Image 
@@ -165,39 +178,24 @@ const Register = () => {
                         setData={setData}
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
-                    
                     />
                     <div>
                         <div className="tab-header">
                             <h3>Confirmation</h3>
                             <p>Confirmez les informations suivantes</p>
                         </div>
-                        <div className="tab-content">
-                            <div className="confirm-line">
+                        <div className="confirm-content">
+                            <p>
+                                Vous êtes sur le point de créer le restaurant{" "}
                                 <span className="confirm-label">
-                                    Email de l'administrateur:{" "}
+                                    {" "}
+                                    {data.restoName}{" "}
                                 </span>
-                                <span className="confirm-value">
+                                avec pour adresse email d'administration{" "}
+                                <span className="confirm-label">
                                     {data.email}
                                 </span>
-                            </div>
-                            <div className="confirm-line">
-                                <span className="confirm-label">
-                                    Nom du restaurant :{" "}
-                                </span>
-                                <span className="confirm-value">
-                                    {data.restoName}
-                                </span>
-                            </div>
-                            <div className="confirm-line">
-                                <span className="confirm-label">
-                                    Description du restaurant :{" "}
-                                </span>
-                                <p className="confirm-value">
-                                    {data.restoDescription ||
-                                        "Aucune description"}
-                                </p>
-                            </div>
+                            </p>
                         </div>
                         <div className="wizard-buttons">
                             <Button

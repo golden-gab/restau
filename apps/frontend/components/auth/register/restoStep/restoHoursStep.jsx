@@ -11,13 +11,28 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
             ),
         }));
     };
+    function handleSkip() {
+        setData((prev) => ({
+            ...prev,
+            openingHours: [
+                { day: "Lundi", open: "", close: "" },
+                { day: "Mardi", open: "", close: "" },
+                { day: "Mercredi", open: "", close: "" },
+                { day: "Jeudi", open: "", close: "" },
+                { day: "Vendredi", open: "", close: "" },
+                { day: "Samedi", open: "", close: "" },
+                { day: "Dimanche", open: "", close: "" },
+            ],
+        }));
+    }
     return (
         <div>
             <div className="tab-header">
                 <h3>Horaires du restaurant</h3>
                 <p>
                     Veuillez renseigner les horaires d'ouverture et de fermeture
-                    de votre restaurant. Laissez vide si le restaurant est fermé ce jour-là.
+                    de votre restaurant. Laissez vide si le restaurant est fermé
+                    ce jour-là.
                 </p>
             </div>
             <div className="tab-content">
@@ -57,7 +72,13 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
                 ))}
             </div>
             <div className="skip-step-container">
-                <p className="skip-step">Passer pour le moment</p>
+                <Button
+                    className="skip-step"
+                    type="outline-btn"
+                    onClick={handleSkip}
+                >
+                    Passer pour le moment
+                </Button>
             </div>
 
             <div className="wizard-buttons">

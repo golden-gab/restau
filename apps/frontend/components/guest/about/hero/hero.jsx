@@ -26,21 +26,20 @@ const Hero = () => {
             <motion.div
                 className="about-hero-container"
                 initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                     duration: 0.6,
                     ease: "easeOut",
-                    type: "spring",
-                    stiffness: 60,
                 }}
+            viewport={{ once: false}}
             >
                 <p className="about-hero-label">
                     Gérez vos menus, simplifiez vos commandes
                 </p>
                 <h1>
                     Une plateforme{" "}
-                    <span className="main-color">simple et rapide</span> pour
-                    votre restaurant
+                    <span className="main-color">simple</span> pour gérer
+                    votre <span className="main-color">restaurant</span> 
                 </h1>
                 <p>
                     Mettez en ligne vos menus en quelques clics, recevez vos

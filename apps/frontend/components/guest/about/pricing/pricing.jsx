@@ -1,7 +1,8 @@
 import Button from "@/components/shared/button/button";
 import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 import React from "react";
-import './pricing.css';
+import "./pricing.css";
+import * as motion from "motion/react-client";
 import Link from "next/link";
 
 const Pricing = () => {
@@ -26,7 +27,7 @@ const Pricing = () => {
                 description="Choisissez l’offre qui correspond à votre restaurant et commencez à simplifier la gestion de vos menus et commandes."
             />
             <div className="pricing-cards">
-                <PricingCard plan={freeplan}/>
+                <PricingCard plan={freeplan} />
             </div>
         </section>
     );
@@ -34,26 +35,35 @@ const Pricing = () => {
 
 export default Pricing;
 
-function PricingCard({plan}) {
+function PricingCard({ plan }) {
     return (
-        <div className="pricing-card">
+        <motion.div
+            className="pricing-card"
+            initial={{  y: 70 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+                duration: 0.4,
+                ease: "easeOut",
+            }}
+        >
             <h3 className="pricing-card-header">{plan.name}</h3>
             <p className="pricing-card-description">{plan.description}</p>
             <ul className="pricing-card-features">
-                {plan.features.map((feature,index)=>(
+                {plan.features.map((feature, index) => (
                     <li className="pricing-card-feature" key={index}>
                         <i className="fi fi-rr-check-circle"></i>
                         <span>{feature}</span>
                     </li>
-                ))} 
+                ))}
             </ul>
             <p className="pricing-card-price">
-                {plan.price} 
+                {plan.price}
                 {/* <span>FCFA / mois</span> */}
             </p>
-            <Link href='/register' className="pricing-card-action">
+            <Link href="/register" className="pricing-card-action">
                 Commencer maintenant
             </Link>
-        </div>
+        </motion.div>
     );
 }

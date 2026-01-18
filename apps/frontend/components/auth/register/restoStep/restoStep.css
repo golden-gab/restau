@@ -7,13 +7,12 @@
     width: 38%;
 }
 .localisation-line .button{
-
 }
 .skip-step-container{
     display:flex ;
     align-items:center ;
     justify-content:center;
-    padding:calc(var(--padding)/1);
+    padding-top:calc(var(--padding)/1);
     
 }
 .skip-step{

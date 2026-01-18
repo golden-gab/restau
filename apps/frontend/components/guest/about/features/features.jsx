@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import "./features.css";
+import * as motion from "motion/react-client";
 import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 
 const Features = () => {
@@ -35,7 +36,7 @@ const Features = () => {
         },
     ];
     return (
-        <section id="features" >
+        <section id="features">
             <SectionTItre
                 label={"Fonctionnalités"}
                 titre="Un outil pensé pour les restaurateurs"
@@ -55,11 +56,20 @@ export default Features;
 function FeatureCard({ data }) {
     return (
         <div className="feature-card">
-            <div className="feature-card-content">
+            <motion.div
+                className="feature-card-content"
+                initial={{ x: -100 }}
+                whileInView={{ x: 0 }}
+                transition={{
+                    duration: 0.6, // petit décalage pour l’effet cascade
+                    ease: "easeOut",
+                }}
+            viewport={{ once: true }}
+            >
                 <i className={data.icone + " feature-icon"}></i>
                 <h4 className="feature-nom">{data.nom}</h4>
                 <p className="feature-description">{data.description}</p>
-            </div>
+            </motion.div>
             <Image
                 width={400}
                 height={400}

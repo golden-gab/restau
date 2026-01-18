@@ -4,7 +4,7 @@
     border: 3px solid var(--main-color) ;
     border-radius: 50%;
     animation: spin 1s ease-in 0s infinite ;
-    border-color:  var(--second-color) transparent;
+    border-color:  var(--main-color) transparent;
     z-index: 50;
 }
 

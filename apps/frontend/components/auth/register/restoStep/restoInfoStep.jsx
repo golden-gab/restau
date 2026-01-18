@@ -11,7 +11,7 @@ const RestoInfoStep = ({ data, setData, onNext, onPrevious }) => {
     });
     const handleValidate = () => {
         const errs = {};
-        // if (!data.restoName) errs.restoName = "Le nom du restaurant est requis";
+        if (!data.restoName) errs.restoName = "Le nom du restaurant est requis";
 
         setErrors(errs);
         if (Object.keys(errs).length === 0) {

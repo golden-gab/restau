@@ -33,6 +33,7 @@
 .pricing-card-price{
     /* padding:calc(var(--padding)/2) 0; */
     font-size: var(--fs-xl);
+    color:var(--success);
     font-weight: 700;
 }
 

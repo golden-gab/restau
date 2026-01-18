@@ -99,13 +99,13 @@ return [
 
     'swagger_ui' => [
         'enabled' => true,
-        // 'apiKeys' => [
-        //    'api' => [
-        //        'type' => 'Bearer',
-        //        'name' => 'Authentication Token',
-        //        'in' => 'header'
-        //    ]
-        // ],
+        'apiKeys' => [
+           'api' => [
+               'type' => 'Bearer',
+               'name' => 'Authentication Token',
+               'in' => 'header'
+           ]
+        ],
         // 'oauth' => [
         //    'enabled' => true,
         //    'type' => 'oauth2',

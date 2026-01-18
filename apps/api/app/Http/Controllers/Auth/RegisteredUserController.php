@@ -26,7 +26,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'restoName' => ['required', 'string', 'max:255'],
-            // 'restoDescription' => ['required', 'string', 'max:255'],
+            'restoDescription' => ['nullable', 'string'],
+            'ville' => ['nullable', 'string'],
+            'latitude' => ['nullable', 'numeric', 'between:-90,90'],  // ✅ Changé
+            'longitude' => ['nullable', 'numeric', 'between:-180,180'], // ✅ Changé
+            'openingHours' => ['nullable', 'array'],
+            'openingHours.*.day' => ['string'], // ✅ Validation des éléments
+            'openingHours.*.opens_at' => ['nullable', 'string'],
+            'openingHours.*.closes_at' => ['nullable', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'min:8'],
         ]);
@@ -46,7 +53,10 @@ class RegisteredUserController extends Controller
                 'name' => $request->restoName,
                 'slug' => Str::slug($request->restoName) . '-' . Str::random(5),
                 'description' => $request->restoDescription,
-                'opening_hours' => $request->opening_hours ? $request->opening_hours : [
+                'ville' => $request->ville ?? null,
+                'latitude' => $request->latitude ?? null,
+                'longitude' => $request->longitude ?? null,
+                'opening_hours' => $request->openingHours ?? [
                     ['day' => 'Lundi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
                     ['day' => 'Mardi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
                     ['day' => 'Mercredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],

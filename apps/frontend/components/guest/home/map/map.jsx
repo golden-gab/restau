@@ -58,7 +58,7 @@ const Map = ({ data }) => {
         }
     }, []);
 
-    const handleLocate = () => {
+    const handleLocate = () => { 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
