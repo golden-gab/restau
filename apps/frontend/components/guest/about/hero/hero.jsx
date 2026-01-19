@@ -10,36 +10,30 @@ const Hero = () => {
     return (
         <div className="about-hero">
             <Image
-                src="/plat.png"
-                alt="hero section image"
+                src="/plat.webp"
+                alt="Image of a dish"
                 width={500}
                 height={500}
                 className="about-hero-img"
             />
             <Image
-                src="/plat.png"
-                alt="hero section image"
+                src="/plat.webp"
+                alt="Image of a dish"
                 width={500}
                 height={500}
                 className="about-hero-img2"
             />
             <motion.div
                 className="about-hero-container"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                    duration: 0.6,
-                    ease: "easeOut",
-                }}
-            viewport={{ once: false}}
+              
             >
                 <p className="about-hero-label">
                     Gérez vos menus, simplifiez vos commandes
                 </p>
                 <h1>
-                    Une plateforme{" "}
-                    <span className="main-color">simple</span> pour gérer
-                    votre <span className="main-color">restaurant</span> 
+                    Une plateforme <span className="main-color">simple</span>{" "}
+                    pour gérer votre{" "}
+                    <span className="main-color">restaurant</span>
                 </h1>
                 <p>
                     Mettez en ligne vos menus en quelques clics, recevez vos
@@ -53,8 +47,7 @@ const Hero = () => {
                         <i className="fi fi-rr-search"></i>
                     </Link>
                     <Button>
-                        commencer maintenant{" "}
-                        <i className="fi fi-rr-play"></i>
+                        commencer maintenant <i className="fi fi-rr-play"></i>
                     </Button>
                 </div>
             </motion.div>

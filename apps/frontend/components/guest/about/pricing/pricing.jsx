@@ -41,7 +41,7 @@ function PricingCard({ plan }) {
             className="pricing-card"
             initial={{  y: 70 }}
             whileInView={{ y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{
                 duration: 0.4,
                 ease: "easeOut",

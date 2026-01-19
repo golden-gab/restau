@@ -7,28 +7,28 @@ import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 const Features = () => {
     const data = [
         {
-            image: "/menu-img.png",
+            image: "/menu-img.webp",
             icone: "fi fi-rr-holding-hand-dinner",
             nom: "Menus en ligne",
             description:
                 "Mettez en valeur vos plats avec des visuels appétissants et des descriptions claires pour séduire vos clients dès le premier regard.",
         },
         {
-            image: "/wha-img.png",
+            image: "/wha-img.webp",
             icone: "fi fi-brands-whatsapp",
             nom: "Commandes via WhatsApp",
             description:
                 "Simplifiez la prise de commande : un simple clic permet à vos clients de commander directement via WhatsApp.",
         },
         {
-            image: "/gestion-img.png",
+            image: "/gestion-img.webp",
             icone: "fi fi-rr-snap",
             nom: "Gestion intuitive",
             description:
                 "Ajoutez, modifiez ou supprimez vos plats en quelques secondes et organisez-les facilement par catégories.",
         },
         {
-            image: "/dashboard-img.png",
+            image: "/dashboard-img.webp",
             icone: "fi fi-rr-chart-histogram",
             nom: "Statistiques intelligentes",
             description:
@@ -64,7 +64,7 @@ function FeatureCard({ data }) {
                     duration: 0.6, // petit décalage pour l’effet cascade
                     ease: "easeOut",
                 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             >
                 <i className={data.icone + " feature-icon"}></i>
                 <h4 className="feature-nom">{data.nom}</h4>

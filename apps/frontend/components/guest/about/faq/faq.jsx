@@ -1,8 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import "./faq.css";
+import * as motion from "motion/react-client";
 import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
-
+const container = {
+    hidden: { y: 50 },
+    visible: {
+        y: 0,
+        transition: {
+            staggerChildren: 0.07,
+            y: { type: "spring", stiffness: 200, damping: 50, duration: 0.5 },
+        },
+    },
+};
 const Faq = () => {
     const list = [
         {
@@ -11,12 +21,14 @@ const Faq = () => {
                 "C’est très simple ! Depuis votre tableau de bord, vous pouvez ajouter de nouveaux plats, modifier leurs descriptions, prix et images, ou encore les classer par catégories .",
         },
         {
-            question: "Mes clients doivent-ils installer une application pour commander ?",
+            question:
+                "Mes clients doivent-ils installer une application pour commander ?",
             reponse:
                 "Non, vos clients n’ont besoin d’aucune application. Ils consultent simplement votre menu via un lien unique et passent commande directement par WhatsApp.",
         },
         {
-            question: "Puis-je personnaliser mon espace avec le logo de mon restaurant ?",
+            question:
+                "Puis-je personnaliser mon espace avec le logo de mon restaurant ?",
             reponse:
                 "Oui ! Vous pouvez ajouter le nom de votre restaurant, votre logo ainsi que vos horaires d’ouverture pour un espace 100% personnalisé.",
         },
@@ -44,7 +56,13 @@ const Faq = () => {
                     titre={"Foire aux questions"}
                     description="Toutes les réponses aux questions les plus fréquentes sur notre solution pour restaurants et snacks."
                 />
-                <div className="faq-list">
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false }}
+                    className="faq-list"
+                >
                     {list.map((item, index) => (
                         <FaqBlock
                             key={index}
@@ -52,7 +70,7 @@ const Faq = () => {
                             reponse={item.reponse}
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

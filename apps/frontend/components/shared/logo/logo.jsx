@@ -7,10 +7,10 @@ const Logo = () => {
     return (
         <div className="logo-container">
             <Image
-                src="/logo3.png"
+                src="/logo3.webp"
                 alt="Logo"
-                width={180}
-                height={380}
+                width={140}
+                height={140}
                 priority
                 className="logo-img"
             />

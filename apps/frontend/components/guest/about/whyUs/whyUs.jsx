@@ -3,6 +3,27 @@ import "./whyUs.css";
 import * as motion from "motion/react-client";
 import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 
+
+const container = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1,
+        },
+    },
+};
+
+const item = {
+    hidden: { opacity: 1, y: 50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            y: { type: "spring",  duration: 0.3 },
+            opacity: { duration: 0.3, type: "ease" },
+        },
+    },
+};
 const WhyUs = () => {
     const data = [
         {
@@ -31,13 +52,17 @@ const WhyUs = () => {
                 titre={"Pour vos restaurants et services"}
                 description="Un outil moderne et accessible qui simplifie la gestion de vos menus et optimise vos commandes."
             />
-            <div
+            <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
                 className="why-us-cards"
             >
                 {data.map((service, index) => (
                     <WhyUsCard key={index} data={service} />
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };
@@ -48,13 +73,7 @@ function WhyUsCard({ data }) {
     return (
         <motion.div
             className="why-us-card"
-            initial={{ opacity: 1, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-                duration: 0.6, // petit décalage pour l’effet cascade
-                ease: "easeIn",
-            }}
-            viewport={{ once: true }}
+            variants={item}
         >
             <i className={data.icone}></i>
             <h4 className="why-us-nom">{data.nom}</h4>

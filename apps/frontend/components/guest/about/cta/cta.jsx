@@ -21,7 +21,7 @@ const Cta = () => {
                 <Button>Commencez maintenant</Button>
             </div>
             <Image
-                src="/plat.png"
+                src="/plat.webp"
                 alt="Call to Action"
                 width={500}
                 height={500}
