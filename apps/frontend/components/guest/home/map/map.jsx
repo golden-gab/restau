@@ -11,7 +11,7 @@ import MapSearch from "../mapSearch/mapSearch";
 
 const customIcon = () =>
     L.divIcon({
-        html: `<div class="marker-icon" style="width: 2rem; height: 2rem; border-radius: 50%;"><i class="fi fi-ss-marker"></i></div>`,
+        html: `<div class="marker-icon" style="width: 2rem; height: 2rem; border-radius: 50%;"><i class="fi fi-sr-marker"></i></div>`,
         iconSize: [20, 20],
         iconAnchor: [20, 20],
     });
