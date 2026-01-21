@@ -36,7 +36,7 @@ const Input = ({ type, label, name, id = "", errors, required, max,  value,info,
                     value={value}
                     required={required}
                     maxLength={max}
-                    placeholder={!disabled && placeholder}
+                    placeholder={!disabled ? placeholder : ""}
                     disabled={disabled}
                     {...props}
                 />

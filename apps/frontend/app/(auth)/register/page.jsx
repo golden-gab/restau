@@ -42,25 +42,24 @@ const Register = () => {
     const router = useRouter();
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/register`,
-        sendRequest
+        sendRequest,
     );
     const handleComplete = async () => {
         // toast.success("Votre restaurant a été créé avec succès")
         try {
-        const result = await trigger(data);
-        console.log(result)
-        // Vérifier si le résultat contient une erreur
-        if (result?.errors) {
-            toast.error(result.message || "Une erreur est survenue");
-            return;
+            const result = await trigger(data);
+            console.log(result);
+            // Vérifier si le résultat contient une erreur
+            if (result?.errors) {
+                toast.error(result.message || "Une erreur est survenue");
+                return;
+            }
+
+            toast.success("Votre restaurant a été créé avec succès");
+            // router.push("/dashboard");
+        } catch (e) {
+            toast.error(e.message || "Une erreur est survenue");
         }
-        
-        toast.success("Votre restaurant a été créé avec succès");
-        // router.push("/dashboard");
-        
-    } catch (e) {
-        toast.error(e.message || "Une erreur est survenue");
-    }
     };
     const [currentStep, setCurrentStep] = useState(1);
     const wizardRef = useRef(null);
@@ -100,6 +99,10 @@ const Register = () => {
                 src={"/register-image.jpg"}
                 className="register-image"
             />*/}
+
+            <Link href={"/about"} className="back-link">
+                <i className="fi fi-rr-arrow-left"></i> Acceuil
+            </Link>
             <div className="register-container">
                 <div className="back">
                     <Link href={"/about"}>
@@ -112,6 +115,7 @@ const Register = () => {
                         />
                     </Link>
                 </div>
+
                 <WizardHeader currentStep={currentStep} steps={steps} />
                 <StepWizard
                     ref={wizardRef}
