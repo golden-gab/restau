@@ -23,6 +23,16 @@
     padding: calc(var(--padding) / 4) calc(var(--padding) / 2);
     font-size: var(--fs-sm);
 }
+.no-results{
+    display:flex ;
+    align-items:center ;
+    justify-content:center;
+    background-color: var(--white);
+    height: 30rem;
+    border-radius:var(--bradius);
+    border: 1px solid var(--gray1);
+    font-size: var(--fs-md);
+}
 @media screen and (max-width:1200px) {
     .resto-menu{
     width: 100%;

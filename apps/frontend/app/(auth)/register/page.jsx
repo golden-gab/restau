@@ -56,7 +56,8 @@ const Register = () => {
             }
 
             toast.success("Votre restaurant a été créé avec succès");
-            // router.push("/dashboard");
+            window.open(process.env.NEXT_PUBLIC_ADMIN_URL, '_blank');
+            router.push("/");
         } catch (e) {
             toast.error(e.message || "Une erreur est survenue");
         }

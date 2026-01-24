@@ -3,7 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\EditProfile;
-use App\Filament\Pages\Dashboard;
+use App\Filament\Restaurateur\Pages\Dashboard;
+// use App\Filament\Pages\Dashboard;
 use App\Filament\Restaurateur\Pages\EditRestaurantProfile;
 use App\Filament\Restaurateur\Pages\RegisterRestaurant;
 use App\Filament\Restaurateur\Pages\Settings;
@@ -25,6 +26,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 
 class RestaurateurPanelProvider extends PanelProvider
 {
@@ -49,7 +52,7 @@ class RestaurateurPanelProvider extends PanelProvider
             //         ->icon('heroicon-o-cog-6-tooth'),
             //     // ...
             // ])
-                
+
             // ->profile(EditProfile::class)
             ->discoverResources(in: app_path('Filament/Restaurateur/Resources'), for: 'App\Filament\Restaurateur\Resources')
             ->discoverPages(in: app_path('Filament/Restaurateur/Pages'), for: 'App\Filament\Restaurateur\Pages')
@@ -81,7 +84,10 @@ class RestaurateurPanelProvider extends PanelProvider
             ->tenantRegistration(RegisterRestaurant::class)
 
             ->tenantProfile(EditRestaurantProfile::class)
-
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_BEFORE,
+                fn(): string => Blade::render('<livewire:tutorial-button />')
+            )
         ;
     }
 }

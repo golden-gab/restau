@@ -10,7 +10,7 @@ const Map = dynamic(() => import("@/components/guest/home/map/map"), {
 
 export default function Home() {
     const { data, error, isLoading } = RestaurantService.getAll();
- 
+    console.log(data);
     return (
         <main className="home-container">
             {isLoading ? (

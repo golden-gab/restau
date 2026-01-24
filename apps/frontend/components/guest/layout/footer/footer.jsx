@@ -46,6 +46,12 @@ const Footer = () => {
                         </Link>
                         <Link href={"/about#faq-section"} className="footer-text">
                             FAQ
+                        </Link> 
+                        <Link href={"/politique"} className="footer-text">
+                            Politique de confidentialité
+                        </Link>
+                        <Link href={"/conditions"} className="footer-text">
+                            Conditions d'utilisation
                         </Link>
                     </div>
                 </div>

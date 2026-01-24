@@ -22,27 +22,30 @@ const RestoMenu = ({ plats, categories, acceptOrder }) => {
 
     function handlePageChange(pageNumber) {
         setCurrentPage(pageNumber);
-        router.push("#menu"); 
+        router.push("#menu");
     }
 
     useEffect(() => {
         let filtered = plats;
         if (active !== "Tout") {
             filtered = filtered.filter(
-                (item) => item.categorie.designation === active
+                (item) => item.categorie.designation === active,
             );
         }
         if (search.trim() !== "") {
             filtered = filtered.filter((item) =>
-                item.name.toLowerCase().includes(search.trim().toLowerCase())
+                item.name.toLowerCase().includes(search.trim().toLowerCase()),
             );
         }
         setData(filtered);
         setCurrentPage(1);
     }, [active, plats, search]);
-    
+
     return (
-        <div className={acceptOrder == 0 ? "resto-menu full" : "resto-menu "} id="menu" >
+        <div
+            className={acceptOrder == 0 ? "resto-menu full" : "resto-menu "}
+            id="menu"
+        >
             <h3 className="main-color">- Menu du restaurant</h3>
             <div className="resto-menu-header">
                 <Input
@@ -52,11 +55,15 @@ const RestoMenu = ({ plats, categories, acceptOrder }) => {
                 />
                 <Tab tabs={categories} active={active} setActive={setActive} />
             </div>
-            <div className="resto-menu-grid">
-                {visibleItems.map((p) => (
-                    <Plat data={p} key={p.id} acceptOrder={acceptOrder}/>
-                ))}
-            </div>
+            {visibleItems.length === 0 ? (
+                <p className="no-results">Aucun plat trouvé pour ce restaurant.</p>
+            ) : (
+                <div className="resto-menu-grid">
+                    {visibleItems.map((p) => (
+                        <Plat data={p} key={p.id} acceptOrder={acceptOrder} />
+                    ))}
+                </div>
+            )}
             {totalPages !== 0 && (
                 <Paginator
                     currentPage={currentPage}
