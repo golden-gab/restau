@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('commande_plat', function (Blueprint $table) {
             $table->id();
             $table->foreignId('plat_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('commande_id')->constrained()->cascadeOnDelete();
             $table->integer('quantite')->default(1);
             $table->json('options')->nullable(); // Exemple : {"piment": "non", "boisson": "Coca"}
             $table->timestamps();

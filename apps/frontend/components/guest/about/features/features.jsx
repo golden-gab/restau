@@ -8,7 +8,7 @@ const Features = () => {
     const data = [
         {
             image: "/menu-img.webp",
-            icone: "fi fi-rr-holding-hand-dinner",
+            icone: "fi fi-rr-soup",
             nom: "Menus en ligne",
             description:
                 "Mettez en valeur vos plats avec des visuels appétissants et des descriptions claires pour séduire vos clients dès le premier regard.",

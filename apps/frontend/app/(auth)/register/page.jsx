@@ -38,7 +38,7 @@ const Register = () => {
             { day: "Dimanche", open: "", close: "" },
         ],
     });
-
+    console.log(data);
     const router = useRouter();
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/register`,
@@ -56,7 +56,7 @@ const Register = () => {
             }
 
             toast.success("Votre restaurant a été créé avec succès");
-            window.open(process.env.NEXT_PUBLIC_ADMIN_URL, '_blank');
+            window.open(process.env.NEXT_PUBLIC_ADMIN_URL, "_blank");
             router.push("/");
         } catch (e) {
             toast.error(e.message || "Une erreur est survenue");
@@ -101,11 +101,11 @@ const Register = () => {
                 className="register-image"
             />*/}
 
-            <Link href={"/about"} className="back-link">
-                <i className="fi fi-rr-arrow-left"></i> Acceuil
-            </Link>
             <div className="register-container">
                 <div className="back">
+                    <Link href={"/about"} className="back-link">
+                        <i className="fi fi-rr-arrow-left"></i> Accueil
+                    </Link>
                     <Link href={"/about"}>
                         <Image
                             height={300}

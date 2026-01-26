@@ -28,6 +28,7 @@
    align-items: center;
    justify-content: center;
    margin-bottom: 2rem;
+   position: relative;
 }
 
 .register-logo {
@@ -92,10 +93,11 @@
 
 .back-link{
    position: absolute;
-   top: var(--padding);
-   left: var(--padding);
-   padding:calc(var(--padding)/1);
-   display: block;
+   /* top: var(--padding); */
+   left: 0;
+   /* padding:calc(var(--padding)/1); */
+   display: flex;
+   gap: 0.5rem;
 
    &:hover{
       color:var(--main-color) !important;

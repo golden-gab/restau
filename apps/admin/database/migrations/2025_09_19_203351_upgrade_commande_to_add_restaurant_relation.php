@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignIdFor(Restaurant::class)->nullable()->constrained()->onDelete('cascade');
         });
 
-         Schema::table('commande_plat', function (Blueprint $table) {
+        Schema::table('commande_plat', function (Blueprint $table) {
             $table->foreignIdFor(Restaurant::class)->nullable()->constrained()->onDelete('cascade');
         });
     }
@@ -27,11 +27,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('commandes', function (Blueprint $table) {
-            $table->dropForeignIdFor(Restaurant::class);
+            $table->dropForeign(['restaurant_id']);
+            $table->dropColumn('restaurant_id');
         });
 
         Schema::table('commande_plat', function (Blueprint $table) {
-            $table->dropForeignIdFor(Restaurant::class);
+            $table->dropForeign(['restaurant_id']);
+            $table->dropColumn('restaurant_id'); 
         });
     }
 };

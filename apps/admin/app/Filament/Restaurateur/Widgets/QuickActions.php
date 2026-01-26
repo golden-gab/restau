@@ -36,14 +36,14 @@ class QuickActions extends StatsOverviewWidget
             Stat::make('Catégories de plats', Categorie::count())
                 ->description('Créer une nouvelle catégorie')
                 ->descriptionIcon('heroicon-m-plus-circle') // Ajoute un petit plus pour l'action
-                ->url('categories')
+                ->url($restaurant->slug . '/categories')
                 ->icon('heroicon-o-rectangle-stack') // L'icône principale
                 ->color('success'),
 
             Stat::make('Nombre de plats', Plat::count())
                 ->description('Créer un nouveau plat')
                 ->descriptionIcon('heroicon-m-plus-circle')
-                ->url('plats/create')
+                ->url($restaurant->slug . '/plats/create')
                 ->icon('heroicon-o-cake') // L'icône principale
                 ->color('success'),
 

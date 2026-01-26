@@ -15,7 +15,7 @@ class RegisterRestaurant extends RegisterTenant
 {
     public static function getLabel(): string
     {
-        return 'Créer un restaurant';
+        return 'Ajouter un autre restaurant';
     }
     
     public function form(Schema $schema): Schema
@@ -66,7 +66,7 @@ class RegisterRestaurant extends RegisterTenant
         // $data['owner_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['name']);
         $data['status'] = 'active';
-
+ 
         return Restaurant::create($data);
     }
 }

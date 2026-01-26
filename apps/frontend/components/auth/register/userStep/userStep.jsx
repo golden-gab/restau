@@ -18,8 +18,8 @@ const UserStep = ({ data, setData, onNext, onPrevious }) => {
             errs.email = "Veuillez renseigner un email correct";
 
         if (!data.password) errs.password = "Le champ mot de passe est requis";
-        else if (data.password.length < 5)
-            errs.password = "5 caractères minimum";
+        else if (data.password.length < 8)
+            errs.password = "8 caractères minimum";
 
         if (!data.confirmPassword)
             errs.confirmPassword = "Vous devez confirmer le mot de passe";

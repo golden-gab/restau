@@ -88,6 +88,8 @@ class RestaurateurPanelProvider extends PanelProvider
                 PanelsRenderHook::USER_MENU_BEFORE,
                 fn(): string => Blade::render('<livewire:tutorial-button />')
             )
-        ;
+            ->brandLogo(asset('images/logo2.png'))
+            ->favicon(asset('images/favicon.ico'))
+            ->brandLogoHeight('2rem');
     }
 }

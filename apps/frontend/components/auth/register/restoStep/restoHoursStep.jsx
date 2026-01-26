@@ -24,7 +24,9 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
                 { day: "Dimanche", open: "", close: "" },
             ],
         }));
+        onNext();
     }
+
     return (
         <div>
             <div className="tab-header">
