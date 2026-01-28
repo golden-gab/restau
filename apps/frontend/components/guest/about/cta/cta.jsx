@@ -2,6 +2,7 @@ import React from "react";
 import "./cta.css";
 import Image from "next/image";
 import Button from "@/components/shared/button/button";
+import Link from "next/link";
 
 const Cta = () => {
     return (
@@ -18,7 +19,9 @@ const Cta = () => {
                     seul endroit. Notre solution vous aide à gagner du temps,
                     attirer plus de clients et booster vos revenus.
                 </p>
-                <Button>Commencez maintenant</Button>
+                <Link href={"/register"} className="full-btn button">
+                    Commencez maintenant
+                </Link>
             </div>
             <Image
                 src="/plat.webp"

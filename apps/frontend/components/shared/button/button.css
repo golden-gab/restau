@@ -5,7 +5,7 @@
     align-items: center;
     border: none;
     border-radius: var(--bradius) 0 ;
-    font-size: calc(var(--fs-sm)/1);
+    font-size: var(--fs-md);
     /* text-transform:; */
     color: var(--white) !important;
     cursor: pointer;

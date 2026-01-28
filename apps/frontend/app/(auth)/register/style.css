@@ -88,7 +88,7 @@
 .wizard-buttons {
    display: flex;
    justify-content: space-between;
-   padding-top: var(--padding);
+   padding-top: calc(var(--padding)/2);
 }
 
 .back-link{

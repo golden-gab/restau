@@ -79,15 +79,14 @@ const Footer = () => {
                     </a>
                 </p>
                 <p className="footer-text">
-                    Développé par{" "}
+                    Copyright &copy;2026 Mealop. Développé par {""}
                     <a
                         href="https://golden-gab.com"
                         className="main-color"
                         target="_blank"
                     >
                         Golden Gab
-                    </a>{" "}
-                    &copy; 2025. Tous droits réservés.
+                    </a>
                 </p>
             </div>
         </footer>

@@ -57,7 +57,7 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
                         longitude: "Vous devez autoriliser la géolocalisation",
                     });
                     setLoadPosition(false);
-                }
+                },
             );
         } else {
             alert("La géolocalisation n'est pas supportée par ce navigateur.");
@@ -102,18 +102,23 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
                         name={"longitude"}
                         onChange={(e) => handleChange(e, data, setData)}
                     />
-                    <Button
-                        type="outline-btn"
-                        onClick={handleLocate}
-                        isLoading={loadPosition}
-                    >
-                        Récupérer ma position actuelle
-                    </Button>
+                    <div className="localte-section">
+                        <i
+                            className="fi fi-sr-land-layer-location  locate-btn"
+                            onClick={handleLocate}
+                            title="Récupérer ma position actuelle"
+                            // isLoading={loadPosition}
+                        ></i>
+                    </div>
                 </div>
                 <div className="skip-step-container">
-                    <Button className="skip-step" type="outline-btn" onClick={handleSkip}>
-                        Passer pour le moment
-                    </Button>
+                    <span
+                        className="skip-step"
+                        type="outline-btn"
+                        onClick={handleSkip}
+                    >
+                        Passer pour le moment <i className="fi fi-rr-arrow-right"></i>
+                    </span>
                 </div>
 
                 <div className="wizard-buttons">

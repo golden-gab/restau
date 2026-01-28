@@ -51,9 +51,9 @@ const Hero = () => {
                     </Button>
                 </div>
             </motion.div>
-            <div className="about-hero-footer">
+            {/* <div className="about-hero-footer">
                 <i className="fi fi-rr-arrow-down"></i>
-            </div>
+            </div> */}
         </div>
     );
 };

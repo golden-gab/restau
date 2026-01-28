@@ -17,6 +17,7 @@ import UserStep from "@/components/auth/register/userStep/userStep";
 import RestoInfoStep from "@/components/auth/register/restoStep/restoInfoStep";
 import RestoLocalisationStep from "@/components/auth/register/restoStep/restoLocalisationStep";
 import RestoHoursStep from "@/components/auth/register/restoStep/restoHoursStep";
+import Confirmation from "@/components/auth/register/restoStep/confirmation";
 
 const Register = () => {
     const [data, setData] = useState({
@@ -38,7 +39,7 @@ const Register = () => {
             { day: "Dimanche", open: "", close: "" },
         ],
     });
-    console.log(data);
+
     const router = useRouter();
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/register`,
@@ -110,7 +111,7 @@ const Register = () => {
                         <Image
                             height={300}
                             width={300}
-                            alt="fried-chicken-image"
+                            alt="logo"
                             src={"/logo1.png"}
                             className="register-logo"
                         />
@@ -184,39 +185,12 @@ const Register = () => {
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
                     />
-                    <div>
-                        <div className="tab-header">
-                            <h3>Confirmation</h3>
-                            <p>Confirmez les informations suivantes</p>
-                        </div>
-                        <div className="confirm-content">
-                            <p>
-                                Vous êtes sur le point de créer le restaurant{" "}
-                                <span className="confirm-label">
-                                    {" "}
-                                    {data.restoName}{" "}
-                                </span>
-                                avec pour adresse email d'administration{" "}
-                                <span className="confirm-label">
-                                    {data.email}
-                                </span>
-                            </p>
-                        </div>
-                        <div className="wizard-buttons">
-                            <Button
-                                type="outline-btn"
-                                onClick={handlePreviousStep}
-                                disabled={isMutating}
-                            >
-                                Précédent
-                            </Button>
-                            <Button onClick={handleComplete}>
-                                {isMutating
-                                    ? "Création en cours..."
-                                    : "Créer mon restaurant"}
-                            </Button>
-                        </div>
-                    </div>
+                    <Confirmation
+                        data={data}
+                        handlePreviousStep={handlePreviousStep}
+                        handleComplete={handleComplete}
+                        isMutating={isMutating}
+                    />
                 </StepWizard>
             </div>
         </div>

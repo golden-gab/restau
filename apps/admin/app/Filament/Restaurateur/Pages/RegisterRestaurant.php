@@ -17,7 +17,7 @@ class RegisterRestaurant extends RegisterTenant
     {
         return 'Ajouter un autre restaurant';
     }
-    
+
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -66,7 +66,15 @@ class RegisterRestaurant extends RegisterTenant
         // $data['owner_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['name']);
         $data['status'] = 'active';
- 
+        $data['opening_hours'] = [
+            ['day' => 'Lundi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+            ['day' => 'Mardi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+            ['day' => 'Mercredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
+            ['day' => 'Jeudi', 'opens_at' => '09:00', 'closes_at' => '22:00'],
+            ['day' => 'Vendredi', 'opens_at' => '09:00', 'closes_at' => '22:00'],
+            ['day' => 'Samedi', 'opens_at' => '10:00', 'closes_at' => '23:00'],
+            ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null], // fermé
+        ];
         return Restaurant::create($data);
     }
 }

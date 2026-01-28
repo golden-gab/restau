@@ -74,7 +74,11 @@ footer{
         width: 100%;
         
     }
+    footer{
+    padding:calc(var(--padding)/2) calc(var(--padding)/2);
+}
     .footer-top{
+        margin: calc(var(--padding)/2);
         justify-content: flex-start;
         gap: var(--padding);
     }

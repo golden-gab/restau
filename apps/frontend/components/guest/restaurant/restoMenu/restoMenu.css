@@ -20,7 +20,7 @@
     width: 60%;
 }
 .resto-menu-header .form-group .form-input{
-    padding: calc(var(--padding) / 4) calc(var(--padding) / 2);
+    /* padding: calc(var(--padding) / 4) calc(var(--padding) / 2); */
     font-size: var(--fs-sm);
 }
 .no-results{

@@ -144,7 +144,7 @@
     .resto-cart-container{
         position: fixed;
         right: 0;
-        top: calc(var(--padding)*2);
+        top:var(--margin-top);
         bottom: 0;
         clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
        

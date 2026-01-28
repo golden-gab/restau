@@ -1,7 +1,11 @@
 .wizard-header {
   display: flex;
   justify-content: space-between;
+  gap: 2.5rem;
   margin-bottom: 20px;
+  overflow-x: scroll;
+   scrollbar-width: none;     
+  -ms-overflow-style: none; 
 }
 
 .wizard-step {

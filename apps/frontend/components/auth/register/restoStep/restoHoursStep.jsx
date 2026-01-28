@@ -3,14 +3,35 @@ import Input from "@/components/shared/input/input";
 import React from "react";
 
 const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
+    const [errors, setErrors] = React.useState({});
+
     const handleOpeningHourChange = (index, field, value) => {
+        const updatedOpeningHours = data.openingHours.map((item, i) =>
+            i === index ? { ...item, [field]: value } : item,
+        );
+
         setData((prev) => ({
             ...prev,
-            openingHours: prev.openingHours.map((item, i) =>
-                i === index ? { ...item, [field]: value } : item
-            ),
+            openingHours: updatedOpeningHours,
         }));
+
+        // Validation APRÈS
+        const { open, close } = updatedOpeningHours[index];
+
+        setErrors((prevErrors) => {
+            const newErrors = { ...prevErrors };
+
+            if (open && close && open >= close) {
+                newErrors[index] =
+                    "L'heure d'ouverture doit être avant l'heure de fermeture";
+            } else {
+                delete newErrors[index];
+            }
+
+            return newErrors;
+        });
     };
+
     function handleSkip() {
         setData((prev) => ({
             ...prev,
@@ -50,11 +71,12 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
                             label={"Ouverture"}
                             type={"time"}
                             value={dayInfo.open}
+                            errors={errors[index]}
                             onChange={(e) =>
                                 handleOpeningHourChange(
                                     index,
                                     "open",
-                                    e.target.value
+                                    e.target.value,
                                 )
                             }
                         />
@@ -62,11 +84,12 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
                             label={"Fermeture"}
                             type={"time"}
                             value={dayInfo.close}
+                            min={dayInfo.open || undefined}
                             onChange={(e) =>
                                 handleOpeningHourChange(
                                     index,
                                     "close",
-                                    e.target.value
+                                    e.target.value,
                                 )
                             }
                         />
@@ -74,20 +97,26 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
                 ))}
             </div>
             <div className="skip-step-container">
-                <Button
+                <span
                     className="skip-step"
                     type="outline-btn"
                     onClick={handleSkip}
                 >
-                    Passer pour le moment
-                </Button>
+                    Passer pour le moment{" "}
+                    <i className="fi fi-rr-arrow-right"></i>
+                </span>
             </div>
 
             <div className="wizard-buttons">
                 <Button type="outline-btn" onClick={onPrevious}>
                     Précédent
                 </Button>
-                <Button onClick={onNext}>Suivant</Button>
+                <Button
+                    onClick={onNext}
+                    disabled={Object.keys(errors).length > 0}
+                >
+                    Suivant
+                </Button>
             </div>
         </div>
     );

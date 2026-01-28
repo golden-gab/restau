@@ -171,13 +171,12 @@
     /* align-items: center; */
     height: 100vh;
   background-color: var(--dark);
-    border-right: var(--border);
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     z-index: 400;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-end;
     padding: var(--padding);
   }
 
@@ -185,10 +184,12 @@
   .nav-right {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
+    width: 55%;
   }
 
   .header .navbar.active {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 40% 100%);
   }
 
   .fa-times {

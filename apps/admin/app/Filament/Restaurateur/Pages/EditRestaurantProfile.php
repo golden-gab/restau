@@ -67,15 +67,12 @@ class EditRestaurantProfile extends EditTenantProfile
                     TextInput::make('latitude')
                         ->label('Latitude')
                         ->numeric()
-                        ->step(0.000001)
                         ->placeholder('Ex: 4.0511')
                         ->reactive()
                         ->nullable(),
-
                     TextInput::make('longitude')
                         ->label('Longitude')
                         ->numeric()
-                        ->step(0.000001)
                         ->placeholder('Ex: 9.7679')
                         ->reactive()
                         ->nullable(),
@@ -89,15 +86,20 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->extraAttributes([
                             'x-data' => '{}',
                             'x-on:click.prevent' => "
-                                if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition(function(position) {
-                                        \$wire.fillLocation(position.coords.latitude, position.coords.longitude);
-                                    }, function(error) {
-                                        alert('Impossible de récupérer votre position : ' + error.message);
-                                    });
-                                } else {
-                                    alert('La géolocalisation n\\'est pas supportée par votre navigateur.');
+                                navigator.geolocation.getCurrentPosition((position) => {
+                                    console.log(position);
+                                    \$wire.fillLocation(position.coords.latitude, position.coords.longitude);
+                                },
+                                (error) => {
+                                    console.error(error);
+                                    alert(error.code + ' - ' + error.message);
+                                },
+                                {
+                                    enableHighAccuracy: true,
+                                    timeout: 10000,
+                                    maximumAge: 0
                                 }
+                            );
                             ",
                         ])
                 ]),
