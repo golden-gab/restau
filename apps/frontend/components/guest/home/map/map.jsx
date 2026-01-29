@@ -77,7 +77,6 @@ const Map = ({ data }) => {
             alert("La géolocalisation n'est pas supportée par ce navigateur.");
         }
     };
-
     const positionToUse = userPosition || initialPosition;
     const restaurants = [
         {

@@ -46,9 +46,9 @@ const Hero = () => {
                         Retrouver un restaurant{" "}
                         <i className="fi fi-rr-search"></i>
                     </Link>
-                    <Button>
+                    <Link href={"/register"} className="button full-btn">
                         commencer maintenant <i className="fi fi-rr-play"></i>
-                    </Button>
+                    </Link>
                 </div>
             </motion.div>
             {/* <div className="about-hero-footer">
