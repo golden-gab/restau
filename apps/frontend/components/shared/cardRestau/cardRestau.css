@@ -71,3 +71,17 @@
     justify-content:center;
     background-color: var(--fourth-color);
 }
+.restaurant-specialities{
+    display: flex;
+    gap: calc(var(--padding)/6);
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    /* justify-content: center; */
+}
+.restaurant-speciality{
+    background-color: var(--fourth-color);
+    color: var(--main-color);
+    padding: calc(var(--padding)/8) calc(var(--padding)/4);
+    border-radius: var(--bradius);
+    font-size: var(--fs-xs);
+}

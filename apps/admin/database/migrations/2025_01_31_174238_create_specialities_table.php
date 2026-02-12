@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commande_plat', function (Blueprint $table) {
+        Schema::create('specialities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plat_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('commande_id')->constrained()->cascadeOnDelete();
-            $table->integer('quantite')->default(1);
-            $table->json('options')->nullable(); 
+            $table->string('designation');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commande_plat');
+        Schema::dropIfExists('specialities');
     }
 };

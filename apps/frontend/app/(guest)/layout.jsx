@@ -5,7 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 
 const Layout = ({ children }) => {
     return (
-        <div>
+        <div className="guest-layout">
             <Header />
             <CartProvider>{children}</CartProvider>
             <Footer />

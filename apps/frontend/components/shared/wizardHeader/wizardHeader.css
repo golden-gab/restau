@@ -4,8 +4,22 @@
   gap: 2.5rem;
   margin-bottom: 20px;
   overflow-x: scroll;
-   scrollbar-width: none;     
+  scrollbar-width: none;     
   -ms-overflow-style: none; 
+}
+/* Chrome, Safari, Edge */
+.wizard-header::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.wizard-header {
+  scrollbar-width: none;
+}
+
+/* IE / vieux Edge */
+.wizard-header {
+  -ms-overflow-style: none;
 }
 
 .wizard-step {

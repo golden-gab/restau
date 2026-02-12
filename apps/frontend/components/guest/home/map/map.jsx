@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "leaflet/dist/leaflet.css";
 import "./map.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
@@ -8,6 +8,8 @@ import Input from "@/components/shared/input/input";
 import Image from "next/image";
 import CardRestau from "@/components/shared/cardRestau/cardRestau";
 import MapSearch from "../mapSearch/mapSearch";
+import MapFilter from "../mapFilter/mapFilter";
+import { useMapFilterStore } from "@/stores/useMapFilterStore";
 
 const customIcon = () =>
     L.divIcon({
@@ -34,8 +36,19 @@ const FlyToLocation = ({ position }) => {
 const Map = ({ data }) => {
     const initialPosition = [4.0511, 9.7679];
     const [userPosition, setUserPosition] = useState(null);
+    const { toggleFilter, selectedSpecialities ,isOpen } = useMapFilterStore();
 
-    // Demande de géolocalisation au chargement de la page
+    const filteredRestaurants = useMemo(() => {
+        // aucun filtre → pas de calcul inutile
+        if (selectedSpecialities.length === 0) return data;
+
+        return data.filter(restaurant =>
+            restaurant.specialities?.some(spec =>
+                selectedSpecialities.includes(spec.id)
+            )
+        );
+    }, [data, selectedSpecialities]);
+
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -49,16 +62,16 @@ const Map = ({ data }) => {
                 (err) => {
                     console.warn(
                         "Géolocalisation refusée ou indisponible:",
-                        err
+                        err,
                     );
                     // on reste sur initialPosition
                     setUserPosition(null);
-                }
+                },
             );
         }
     }, []);
 
-    const handleLocate = () => { 
+    const handleLocate = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -71,12 +84,13 @@ const Map = ({ data }) => {
                 (err) => {
                     console.error("Erreur géolocalisation:", err);
                     setUserPosition(null);
-                }
+                },
             );
         } else {
             alert("La géolocalisation n'est pas supportée par ce navigateur.");
         }
     };
+  
     const positionToUse = userPosition || initialPosition;
     const restaurants = [
         {
@@ -182,7 +196,22 @@ const Map = ({ data }) => {
     return (
         <div className="map-container">
             <div className="map-header">
-                <MapSearch/>
+                <MapSearch />
+                <div className="map-filter-wrapper">
+                    <i
+                        className={`fi fi-sr-filter location-btn ${
+                            isOpen ? "active" : ""
+                        }`}
+                        onClick={toggleFilter}
+                    ></i>
+                    <div
+                        className={`map-filter-container ${
+                            isOpen ? "active" : ""
+                        }`}
+                    >
+                        <MapFilter />
+                    </div>
+                </div>
                 <i
                     title="Ma position"
                     className="fi fi-sr-land-layer-location location-btn"
@@ -199,7 +228,7 @@ const Map = ({ data }) => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {data.map((resto) => {
+                {filteredRestaurants.map((resto) => {
                     // Vérifier que les coordonnées sont valides
                     const lat = parseFloat(resto.latitude);
                     const lng = parseFloat(resto.longitude);
@@ -208,7 +237,7 @@ const Map = ({ data }) => {
                         console.warn(
                             `Coordonnées invalides pour ${resto.name}:`,
                             resto.latitude,
-                            resto.longitude
+                            resto.longitude,
                         );
                         return null;
                     }

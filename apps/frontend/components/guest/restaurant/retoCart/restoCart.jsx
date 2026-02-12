@@ -31,7 +31,7 @@ const RestoCart = ({ tel, restoId }) => {
             )
             .join("\n") +
         `\nTotal : ${tarif(getTotal(slug))} \n` +
-        `\nCommande générée depuis ...`;
+        `\nCommande générée depuis Mealop`;
 
     const whatsappUrl = `https://wa.me/${tel}?text=${encodeURIComponent(
         message
@@ -62,7 +62,7 @@ const RestoCart = ({ tel, restoId }) => {
             <div className="resto-cart-container" ref={nav}>
                 <div className="resto-cart">
                     <div className="resto-cart-header">
-                        <h3>- Panier</h3>
+                        <h3>Panier</h3>
                     </div>
                     <ul className="resto-cart-list">
                         {cart.length > 0 ? (

@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import "./mapSearch.css";
 import { fetcher, seeMore } from "@/helpers/function";
 import useSWR from "swr";
+import { useMapFilterStore } from "@/stores/useMapFilterStore";
 
 const MapSearch = () => {
     const [showResults, setShowResults] = useState(false);
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState(""); // Query pour déclencher la recherche
-
+    const {toggleFilter} = useMapFilterStore()
     // Configuration SWR avec query conditionnel
     const {
         data: restaurants,
@@ -42,6 +43,7 @@ const MapSearch = () => {
                 <Input
                     placeholder="Retrouver un restaurant"
                     value={search}
+                    onClick={toggleFilter}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 {!showResults ? (

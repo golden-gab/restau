@@ -46,7 +46,7 @@ const RestoMenu = ({ plats, categories, acceptOrder }) => {
             className={acceptOrder == 0 ? "resto-menu full" : "resto-menu "}
             id="menu"
         >
-            <h3 className="main-color">- Menu du restaurant</h3>
+            <h3 >Menu du restaurant</h3>
             <div className="resto-menu-header">
                 <Input
                     placeholder={"Entrez le nom d'un plat..."}

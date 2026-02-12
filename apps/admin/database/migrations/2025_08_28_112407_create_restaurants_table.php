@@ -25,6 +25,7 @@ return new class extends Migration
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->string('logo_path')->nullable();
+            $table->string('banniere')->nullable();
             $table->string('phone')->nullable();
             $table->string('ville')->nullable();
             $table->string('email')->nullable();

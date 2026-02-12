@@ -3,6 +3,7 @@
   width: 100px; /* taille réelle du logo */
   height: 50px; 
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
     zoom: 140%;
@@ -10,6 +11,7 @@
 }
 
 .logo-img {
-    height: 10rem;
+    height: 5rem;
+    width: 5rem;
   object-fit: contain;
 }

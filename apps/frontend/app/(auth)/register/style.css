@@ -7,7 +7,20 @@
    justify-content: center;
 
 }
+/* Chrome, Safari, Edge */
+.register-container::-webkit-scrollbar {
+  display: none;
+}
 
+/* Firefox */
+.register-container {
+  scrollbar-width: none;
+}
+
+/* IE / vieux Edge */
+.register-container {
+  -ms-overflow-style: none;
+}
 .register-image {
    width: 70%;
    object-fit: cover;

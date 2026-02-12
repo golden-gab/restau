@@ -20,14 +20,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [
         new GetCollection(
             name: "get_restaurants",
-            normalizationContext: ['groups' => ['restaurant:read']],
+            normalizationContext: ['groups' => ['restaurant:read','restaurant:restaurant:speciality:read']],
             provider: RestaurantCollectionProvider::class
         ),
         new Get(
             uriTemplate: '/restaurants/{slug}',
             // requirements: ['slug' => '[a-z0-9\-]+'],
             uriVariables: ['slug'],
-            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read']]
+            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:speciality:read','restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read']]
         ),
         new Post(denormalizationContext: ['groups' => ['restaurant:write']]),
     ]
@@ -48,9 +48,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read']), property: 'phone')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read']), property: 'status')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'accept_order')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'banniere')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write',]), property: 'opening_hours')]
 #[ApiProperty(serialize: new Groups(['restaurant:categorie:read']), property: 'categories')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read', 'restaurant:plat:categorie:read']), property: 'plats')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:speciality:read', 'restaurant:speciality:read']), property: 'specialities')]
 
 class Restaurant extends Model
 {
@@ -99,5 +101,10 @@ class Restaurant extends Model
     public function categories()
     {
         return $this->hasMany(Categorie::class);
+    }
+    public function specialities()
+    {
+        return $this->belongsToMany(Speciality::class, 'speciality_restaurants')
+            ->withTimestamps();
     }
 }

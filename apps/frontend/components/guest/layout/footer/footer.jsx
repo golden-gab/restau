@@ -72,12 +72,6 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p className="footer-text flaticon">
-                    Uicons by{" "}
-                    <a href="https://www.flaticon.com/uicons" target="_blank">
-                        Flaticon
-                    </a>
-                </p>
                 <p className="footer-text">
                     Copyright &copy;2026 Mealop. Développé par {""}
                     <a

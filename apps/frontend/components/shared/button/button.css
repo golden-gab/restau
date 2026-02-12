@@ -4,7 +4,7 @@
     width: fit-content;
     align-items: center;
     border: none;
-    border-radius: var(--bradius) 0 ;
+    border-radius: var(--bradius)  ;
     font-size: var(--fs-md);
     /* text-transform:; */
     color: var(--white) !important;

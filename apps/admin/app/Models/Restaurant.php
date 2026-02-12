@@ -19,6 +19,7 @@ class Restaurant extends Model implements HasAvatar
         'latitude',
         'longitude',
         'logo_path',
+        'banniere',
         'phone',
         'ville',
         'email',
@@ -56,5 +57,11 @@ class Restaurant extends Model implements HasAvatar
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function specialities()
+    {
+        return $this->belongsToMany(Speciality::class, 'speciality_restaurants')
+            ->withTimestamps();
     }
 }

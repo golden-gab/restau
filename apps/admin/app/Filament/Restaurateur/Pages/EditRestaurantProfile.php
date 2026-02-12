@@ -3,6 +3,7 @@
 namespace App\Filament\Restaurateur\Pages;
 
 use Filament\Actions\Action;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
@@ -29,6 +30,20 @@ class EditRestaurantProfile extends EditTenantProfile
             Section::make('Informations du restaurant')
                 // ->columns(2)
                 ->schema([
+                    FileUpload::make('banniere')
+                        ->label('Bannière du restaurant')
+                        ->directory('restaurants/bannieres')
+                        ->image()
+                        ->disk('public')
+                        ->visibility('public')
+                        ->maxSize(2048)
+                        ->nullable()
+                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB')
+                        ->deleteUploadedFileUsing(function ($file) {
+                            // Supprimer l’ancien fichier
+                            Storage::disk('public')->delete($file);
+                        }),
+
                     FileUpload::make('logo_path')
                         ->label('Logo du restaurant')
                         ->image()
@@ -52,7 +67,12 @@ class EditRestaurantProfile extends EditTenantProfile
                     Textarea::make('description')
                         ->label('Description')
                         ->nullable(),
-                    // ->visibility('public')
+
+                    CheckboxList::make('specialities')
+                        ->relationship(titleAttribute: 'designation')
+                        ->columns(3)
+                        ->label("Spécialités du restaurant"),
+
                     Toggle::make('accept_order')
                         ->label('Accepter les livraison')
                         ->required(),
