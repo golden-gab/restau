@@ -22,7 +22,7 @@ class Restaurant extends Model implements HasAvatar
         'banniere',
         'phone',
         'ville',
-        'email',
+        'email', 
         'whatsapp_number',
         'opening_hours',
         'accept_order',

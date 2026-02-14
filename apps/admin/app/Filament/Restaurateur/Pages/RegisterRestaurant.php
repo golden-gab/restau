@@ -67,13 +67,13 @@ class RegisterRestaurant extends RegisterTenant
         $data['slug'] = Str::slug($data['name']);
         $data['status'] = 'active';
         $data['opening_hours'] = [
-            ['day' => 'Lundi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
-            ['day' => 'Mardi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
-            ['day' => 'Mercredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
-            ['day' => 'Jeudi', 'opens_at' => '09:00', 'closes_at' => '22:00'],
-            ['day' => 'Vendredi', 'opens_at' => '09:00', 'closes_at' => '22:00'],
-            ['day' => 'Samedi', 'opens_at' => '10:00', 'closes_at' => '23:00'],
-            ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null], // fermé
+            ['day' => 'Lundi', 'open' => '09:00', 'close' => '18:00'],
+            ['day' => 'Mardi', 'open' => '09:00', 'close' => '18:00'],
+            ['day' => 'Mercredi', 'open' => '09:00', 'close' => '18:00'],
+            ['day' => 'Jeudi', 'open' => '09:00', 'close' => '22:00'],
+            ['day' => 'Vendredi', 'open' => '09:00', 'close' => '22:00'],
+            ['day' => 'Samedi', 'open' => '10:00', 'close' => '23:00'],
+            ['day' => 'Dimanche', 'open' => null, 'close' => null], // fermé
         ];
         return Restaurant::create($data);
     }

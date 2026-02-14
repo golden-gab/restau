@@ -10,6 +10,8 @@ import CardRestau from "@/components/shared/cardRestau/cardRestau";
 import MapSearch from "../mapSearch/mapSearch";
 import MapFilter from "../mapFilter/mapFilter";
 import { useMapFilterStore } from "@/stores/useMapFilterStore";
+import { APIProvider } from "@vis.gl/react-google-maps";
+import Spinner from "@/components/shared/spinner/spinner";
 
 const customIcon = () =>
     L.divIcon({
@@ -36,16 +38,17 @@ const FlyToLocation = ({ position }) => {
 const Map = ({ data }) => {
     const initialPosition = [4.0511, 9.7679];
     const [userPosition, setUserPosition] = useState(null);
-    const { toggleFilter, selectedSpecialities ,isOpen } = useMapFilterStore();
+    const { toggleFilter, selectedSpecialities, isOpen } = useMapFilterStore();
+    const [loadPosition, setLoadPosition] = useState(false);
 
     const filteredRestaurants = useMemo(() => {
         // aucun filtre → pas de calcul inutile
         if (selectedSpecialities.length === 0) return data;
 
-        return data.filter(restaurant =>
-            restaurant.specialities?.some(spec =>
-                selectedSpecialities.includes(spec.id)
-            )
+        return data.filter((restaurant) =>
+            restaurant.specialities?.some((spec) =>
+                selectedSpecialities.includes(spec.id),
+            ),
         );
     }, [data, selectedSpecialities]);
 
@@ -70,8 +73,9 @@ const Map = ({ data }) => {
             );
         }
     }, []);
-
+    console.log(userPosition)
     const handleLocate = () => {
+        setLoadPosition(true);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -80,17 +84,19 @@ const Map = ({ data }) => {
                         lng: pos.coords.longitude,
                     };
                     setUserPosition(latlng);
+                    setLoadPosition(false);
                 },
                 (err) => {
                     console.error("Erreur géolocalisation:", err);
                     setUserPosition(null);
+                    setLoadPosition(false);
                 },
             );
         } else {
             alert("La géolocalisation n'est pas supportée par ce navigateur.");
         }
     };
-  
+
     const positionToUse = userPosition || initialPosition;
     const restaurants = [
         {
@@ -212,11 +218,17 @@ const Map = ({ data }) => {
                         <MapFilter />
                     </div>
                 </div>
-                <i
-                    title="Ma position"
-                    className="fi fi-sr-land-layer-location location-btn"
-                    onClick={handleLocate}
-                ></i>
+                {loadPosition ? (
+                    <div className="location-btn">
+                        <Spinner />
+                    </div>
+                ) : (
+                    <i
+                        title="Ma position"
+                        className="fi fi-sr-land-layer-location location-btn"
+                        onClick={handleLocate}
+                    ></i>
+                )}
             </div>
 
             <MapContainer
@@ -258,7 +270,6 @@ const Map = ({ data }) => {
                     );
                 })}
 
-                {/* Marker utilisateur */}
                 {userPosition && (
                     <>
                         <Marker position={userPosition} icon={locationIcon()} />

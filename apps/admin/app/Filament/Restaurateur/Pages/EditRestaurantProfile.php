@@ -10,6 +10,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
+use Filament\Notifications\Notification;
 use Filament\Schemas\Schema;
 use Filament\Pages\Page;
 use Filament\Pages\Tenancy\EditTenantProfile;
@@ -103,24 +104,30 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->size('sm')
                         ->outlined()
                         ->action(fn() => null)
-                        ->extraAttributes([
-                            'x-data' => '{}',
+                         ->extraAttributes([
+                            'x-data' => '{ loading: false }',
+                            'x-bind:disabled' => 'loading',
                             'x-on:click.prevent' => "
-                                navigator.geolocation.getCurrentPosition((position) => {
-                                    console.log(position);
-                                    \$wire.fillLocation(position.coords.latitude, position.coords.longitude);
-                                },
-                                (error) => {
-                                    console.error(error);
-                                    alert(error.code + ' - ' + error.message);
-                                },
-                                {
-                                    enableHighAccuracy: true,
-                                    timeout: 10000,
-                                    maximumAge: 0
-                                }
-                            );
+                                loading = true;
+
+                                navigator.geolocation.getCurrentPosition(
+                                    (position) => {
+                                        \$wire.fillLocation(position.coords.latitude, position.coords.longitude)
+                                            .then(() => loading = false);
+                                    },
+                                    (error) => {
+                                        loading = false;
+                                        console.error(error);
+                                        alert(error.code + ' - ' + error.message);
+                                    },
+                                    {
+                                        enableHighAccuracy: true,
+                                        timeout: 10000,
+                                        maximumAge: 0
+                                    }
+                                );
                             ",
+                            'x-text' => "loading ? 'Localisation en cours…' : 'Utiliser ma position actuelle'",
                         ])
                 ]),
             Section::make('Contact du restaurant')
@@ -151,10 +158,10 @@ class EditRestaurantProfile extends EditTenantProfile
                             TextInput::make('day')
                                 ->label('Jour')
                                 ->readOnly(), // Important pour sauvegarder la valeur
-                            TimePicker::make('opens_at')
+                            TimePicker::make('open')
                                 ->label('Ouvre à')
                                 ->seconds(false),
-                            TimePicker::make('closes_at')
+                            TimePicker::make('close')
                                 ->label('Ferme à')
                                 ->seconds(false),
                         ])
@@ -181,5 +188,10 @@ class EditRestaurantProfile extends EditTenantProfile
 
         // Remplit le formulaire avec toutes les données
         $this->form->fill($data);
+        
+    Notification::make()
+        ->title('Position récupérée avec succès')
+        ->success()
+        ->send();
     }
 }
