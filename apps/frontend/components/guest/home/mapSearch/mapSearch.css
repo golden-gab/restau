@@ -1,3 +1,6 @@
+.map-search-bar{
+    /* display: flex; */
+}
 .map-search-results{
     padding:calc(var(--padding)/4);
     background-color: var(--white);

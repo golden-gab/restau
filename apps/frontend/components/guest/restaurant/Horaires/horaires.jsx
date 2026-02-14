@@ -5,7 +5,7 @@ const Horaires = ({ week }) => {
 
     return (
         <section id="horaires">
-            <h3 className="main-color">- Horaires du restaurant</h3>
+            <h3>Horaires du restaurant</h3>
             <div className="horaires-grid">
                 {week.map((item, idx) => (
                     <HoraireCard key={idx} data={item} index={idx + 1} />

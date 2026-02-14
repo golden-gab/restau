@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
+#[ApiResource( 
     operations: []
 )]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'id')]

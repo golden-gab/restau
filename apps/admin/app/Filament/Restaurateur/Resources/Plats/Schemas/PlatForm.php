@@ -23,8 +23,8 @@ class PlatForm
                     ->schema([
                         FileUpload::make('image_path')
                             ->label('Image du plat')
-                            ->image()
                             ->directory('restaurants/plats')
+                            ->image()
                             ->disk('public')
                             ->visibility('public')
                             ->maxSize(2048)

@@ -21,8 +21,16 @@ const CardRestau = ({ userPosition, data }) => {
                 />
                 <div className="restaurant-info">
                     <p className="restaurant-name">{data.name}</p>
-                    <span className="restaurant-number">{data.phone}</span>
-                    <p className="restaurant-description">{seeMore( data.description,50)}</p>
+                     <div className="restaurant-specialities">
+                            {
+                                data.specialities && data.specialities.map((speciality, index) => (
+                                    <div key={index} className="restaurant-speciality">
+                                        {speciality.designation}
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    {/* <p className="restaurant-description">{seeMore( data.description,50)}</p> */}
                 </div>
             </div>
             <div className="restaurant-actions">

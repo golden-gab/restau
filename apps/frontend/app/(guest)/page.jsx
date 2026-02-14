@@ -10,7 +10,7 @@ const Map = dynamic(() => import("@/components/guest/home/map/map"), {
 
 export default function Home() {
     const { data, error, isLoading } = RestaurantService.getAll();
- 
+    console.log(isLoading)
     return (
         <main className="home-container">
             {isLoading ? (
@@ -19,11 +19,9 @@ export default function Home() {
                     <p>Chargement de la map...</p>
                 </div>
             ) : (
-                // <div className="map-loader">
-                //     <Spinner />
-                //     <p>Chargement de la map...</p>
-                // </div>
                 <Map data={data.member} />
+               
+                // <GMap/>
             )}
         </main>
     );
