@@ -29,18 +29,25 @@ const locationIcon = () =>
 
 const FlyToLocation = ({ position }) => {
     const map = useMap();
-    if (position) {
-        map.flyTo(position, map.getZoom());
-    }
+
+    useEffect(() => {
+        if (!position) return;
+
+        map.flyTo(position, 16, {
+            animate: true,
+            duration: 1.2,
+        });
+    }, [position, map]);
+
     return null;
 };
 
 const Map = ({ data }) => {
-    const initialPosition = [4.0511, 9.7679];
+    const initialPosition = [3.848, 11.5021];
     const [userPosition, setUserPosition] = useState(null);
     const { toggleFilter, selectedSpecialities, isOpen } = useMapFilterStore();
     const [loadPosition, setLoadPosition] = useState(false);
-
+    console.log(userPosition)
     const filteredRestaurants = useMemo(() => {
         // aucun filtre → pas de calcul inutile
         if (selectedSpecialities.length === 0) return data;
@@ -73,11 +80,11 @@ const Map = ({ data }) => {
             );
         }
     }, []);
-    console.log(userPosition)
+
     const handleLocate = () => {
         setLoadPosition(true);
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
+            (navigator.geolocation.getCurrentPosition(
                 (pos) => {
                     const latlng = {
                         lat: pos.coords.latitude,
@@ -91,7 +98,7 @@ const Map = ({ data }) => {
                     setUserPosition(null);
                     setLoadPosition(false);
                 },
-            );
+            ));
         } else {
             alert("La géolocalisation n'est pas supportée par ce navigateur.");
         }

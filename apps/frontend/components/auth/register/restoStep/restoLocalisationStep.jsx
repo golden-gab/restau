@@ -4,6 +4,7 @@ import Input from "@/components/shared/input/input";
 import React, { useState } from "react";
 import "./restoStep.css";
 import { handleChange } from "@/helpers/function";
+import Spinner from "@/components/shared/spinner/spinner";
 
 const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
     const [errors, setErrors] = useState({
@@ -48,7 +49,6 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
                         longitude: pos.coords.longitude,
                     });
                     setLoadPosition(false);
-                    console.log("hi");
                 },
                 (err) => {
                     setErrors({
@@ -102,13 +102,19 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
                         name={"longitude"}
                         onChange={(e) => handleChange(e, data, setData)}
                     />
-                    <div className="localte-section">
-                        <i
-                            className="fi fi-sr-land-layer-location  locate-btn"
-                            onClick={handleLocate}
-                            title="Récupérer ma position actuelle"
-                            // isLoading={loadPosition}
-                        ></i>
+                    <div
+                        className="localte-section   locate-btn"
+                        onClick={handleLocate}
+                    >
+                        {loadPosition ? (
+                            <Spinner />
+                        ) : (
+                            <i
+                                className="fi fi-sr-land-layer-location"
+                                title="Récupérer ma position actuelle"
+                                // isLoading={loadPosition}
+                            ></i>
+                        )}
                     </div>
                 </div>
                 <div className="skip-step-container">
@@ -117,7 +123,8 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
                         type="outline-btn"
                         onClick={handleSkip}
                     >
-                        Passer pour le moment <i className="fi fi-rr-arrow-right"></i>
+                        Passer pour le moment{" "}
+                        <i className="fi fi-rr-arrow-right"></i>
                     </span>
                 </div>
 
