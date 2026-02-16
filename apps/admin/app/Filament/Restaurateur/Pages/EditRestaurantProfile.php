@@ -3,6 +3,7 @@
 namespace App\Filament\Restaurateur\Pages;
 
 use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -39,11 +40,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->visibility('public')
                         ->maxSize(2048)
                         ->nullable()
-                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB')
-                        ->deleteUploadedFileUsing(function ($file) {
-                            // Supprimer l’ancien fichier
-                            Storage::disk('public')->delete($file);
-                        }),
+                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB'),
 
                     FileUpload::make('logo_path')
                         ->label('Logo du restaurant')
@@ -54,11 +51,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->avatar()
                         ->maxSize(2048)
                         ->nullable()
-                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB')
-                        ->deleteUploadedFileUsing(function ($file) {
-                            // Supprimer l’ancien fichier
-                            Storage::disk('public')->delete($file);
-                        }),
+                        ->helperText('Format accepté : JPG, PNG, WebP. Taille max : 2MB'),
 
                     TextInput::make('name')
                         ->label('Nom du restaurant')
@@ -104,7 +97,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->size('sm')
                         ->outlined()
                         ->action(fn() => null)
-                         ->extraAttributes([
+                        ->extraAttributes([
                             'x-data' => '{ loading: false }',
                             'x-bind:disabled' => 'loading',
                             'x-on:click.prevent' => "
@@ -188,10 +181,34 @@ class EditRestaurantProfile extends EditTenantProfile
 
         // Remplit le formulaire avec toutes les données
         $this->form->fill($data);
-        
-    Notification::make()
-        ->title('Position récupérée avec succès')
-        ->success()
-        ->send();
+
+        Notification::make()
+            ->title('Position récupérée avec succès')
+            ->success()
+            ->send();
+    }
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $tenant = Filament::getTenant();
+
+        // BANNIERE
+        if (
+            $tenant?->banniere &&
+            $tenant->banniere !== $data['banniere'] &&
+            Storage::disk('public')->exists($tenant->banniere)
+        ) {
+            Storage::disk('public')->delete($tenant->banniere);
+        }
+
+        // LOGO
+        if (
+            $tenant?->logo_path &&
+            $tenant->logo_path !== $data['logo_path'] &&
+            Storage::disk('public')->exists($tenant->logo_path)
+        ) {
+            Storage::disk('public')->delete($tenant->logo_path);
+        }
+
+        return $data;
     }
 }

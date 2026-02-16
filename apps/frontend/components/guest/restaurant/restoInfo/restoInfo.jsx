@@ -10,6 +10,7 @@ const RestoInfo = ({ data }) => {
         navigator.clipboard.writeText(window.location.href);
         toast.success("Lien copié dans le presse papier");
     }
+    console.log(data)
     return (
         <div className="resto-section">
             <Image
@@ -17,9 +18,9 @@ const RestoInfo = ({ data }) => {
                 height={500}
                 width={800}
                 src={
-                            data.logoPath
+                            data.banniere
                                 ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.banniere}`
-                                : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/banniere/default.jpg`
+                                : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/bannieres/default.jpg`
                         }
                 className="resto-img"
             />
