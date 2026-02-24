@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\State\OnlineRestaurantsProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -20,21 +21,50 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [
         new GetCollection(
             name: "get_restaurants",
-            normalizationContext: ['groups' => ['restaurant:read','restaurant:restaurant:speciality:read']],
-            provider: RestaurantCollectionProvider::class
+            normalizationContext: ['groups' => ['restaurant:read', 'restaurant:restaurant:speciality:read']],
+            provider: RestaurantCollectionProvider::class,
+            parameters: [
+                new QueryParameter(
+                    key: 'status',
+                    filter: EqualsFilter::class,
+                    properties: ['status']
+                ),
+                new QueryParameter(
+                    key: 'name',
+                    filter: PartialSearchFilter::class,
+                    properties: ['name']
+                ),
+            ],
+        ),
+        new GetCollection(
+            uriTemplate: '/restaurants/online',
+            description: "Retrieves online restaurants",
+            parameters: [
+                new QueryParameter(
+                    key: 'latitude',
+                    properties: ['latitude']
+                ),
+                new QueryParameter(
+                    key: 'longitude',
+                    properties: ['longitude']
+                ),
+            ],
+            normalizationContext: ['groups' => ['restaurant:read', 'restaurant:restaurant:speciality:read']],
+            provider: OnlineRestaurantsProvider::class
         ),
         new Get(
             uriTemplate: '/restaurants/{slug}',
             // requirements: ['slug' => '[a-z0-9\-]+'],
             uriVariables: ['slug'],
-            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:speciality:read','restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read']]
+            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:speciality:read', 'restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read', 'restaurant:plat:accompagnement:read']]
         ),
+
         new Post(denormalizationContext: ['groups' => ['restaurant:write']]),
     ]
 )]
 
-#[QueryParameter(key: 'status', filter: EqualsFilter::class, properties: ['status'])]
-#[QueryParameter(key: 'name', filter: PartialSearchFilter::class, properties: ['name'])]
+// #[QueryParameter(key: 'status', filter: EqualsFilter::class, properties: ['status'])]
+// #[QueryParameter(key: 'name', filter: PartialSearchFilter::class, properties: ['name'])]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'id')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'name')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'description')]
@@ -51,7 +81,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'banniere')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write',]), property: 'opening_hours')]
 #[ApiProperty(serialize: new Groups(['restaurant:categorie:read']), property: 'categories')]
-#[ApiProperty(serialize: new Groups(['restaurant:plat:read', 'restaurant:plat:categorie:read']), property: 'plats')]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:read', 'restaurant:plat:categorie:read', "restaurant:plat:accompagnement:read"]), property: 'plats')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:speciality:read', 'restaurant:speciality:read']), property: 'specialities')]
 
 class Restaurant extends Model

@@ -16,7 +16,6 @@ class Dashboard extends BaseDashboard
 {
     
     // protected static string $view = 'filament.pages.dashboard';
-
     public function getWidgets(): array
     {
         return [

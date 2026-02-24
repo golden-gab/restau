@@ -1,0 +1,101 @@
+.onlineRestaurants-section {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 28dvh;
+    background-color: var(--white);
+    width: 100dvw;
+    z-index: 5;
+    border-top: 1px solid var(--gray2);
+    border-radius: var(--bradius);
+    padding: calc(var(--padding)/1);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.onlineRestaurants-section.up {
+    height: 70dvh;
+}
+.onlineRestaurants-noLocation{
+    display:flex ;
+    flex-direction:column ;
+    align-items: center;
+    gap:0.5rem;
+    padding:calc(var(--padding)/2);
+    width: 100%;
+    border-radius:var(--bradius);
+    background-color: var(--gray3);
+    border: 1px solid var(--gray2);
+}
+.onlineRestaurants-section-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.onlineRestaurants-section-title {
+    font-size: var(--fs-md);
+}
+
+.onlineRestaurants-section-header i {
+    cursor: pointer;
+    padding: calc(var(--padding)/4);
+    background-color: var(--gray3);
+    border-radius: var(--bradius);
+    border: 1px solid var(--gray2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.onlineRestaurants-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+}
+.onlineRestaurants-list .skeleton-loader-line{
+    height: 5rem;
+}
+.onlineRestaurant {
+    display: flex;
+    padding: calc(var(--padding)/2);
+    background-color: var(--white);
+    border: 1px solid var(--gray2);
+    border-radius: var(--bradius);
+    cursor: pointer;
+    gap: calc(var(--padding)/2);
+}
+
+.onlineRestaurant:hover {
+    transform: scale(1.03);
+}
+
+.onlineRestaurant-logo {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.onlineRestaurant-specialities {
+    display: flex;
+    gap: 0.25rem;
+
+}
+
+.onlineRestaurant-speciality {
+    background-color: var(--fourth-color);
+    color: var(--main-color);
+    font-weight: bold;
+    height: fit-content;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--bradius);
+    font-size: var(--fs-xs);
+    /* border: 1px solid var(--main-color); */
+}

@@ -13,14 +13,19 @@ final class RestaurantCollectionProvider implements ProviderInterface
 {
     public function __construct(
         private CollectionProvider $collectionProvider
-    ) {}
+    ) {
+    }
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
-       // On part sur la query de base
-        $query = Restaurant::query()
-            ->whereNotNull('latitude')
-            ->whereNotNull('longitude');
+        // On part sur la query de base
+        $query = Restaurant::query();
+
+        // Si on veut afficher les restaurants de la carte on suppose qu'on ne recherche pas
+        if (empty($context['filters']['name'])) {
+            $query->whereNotNull('latitude')
+                    ->whereNotNull('longitude');
+        }
 
         // appliquer filtres éventuels (status, name) passés dans l'URL
         if (!empty($context['filters']['status'])) {
@@ -32,6 +37,6 @@ final class RestaurantCollectionProvider implements ProviderInterface
         }
 
         return $query->get();
-    
+
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Restaurateur\Resources\Plats\Schemas;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -34,8 +35,17 @@ class PlatForm
                                 // Supprimer l’ancien fichier
                                 Storage::disk('public')->delete($file);
                             }),
-
+                        FileUpload::make('video_path')
+                            ->label('Vidéo')
+                            ->multiple() // Si tu veux plusieurs vidéos
+                            ->nullable()
+                            ->acceptedFileTypes(['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/webm'])
+                            ->maxSize(102400) // Taille max en KB (ici 100 MB)
+                            ->disk('public') // Disk de stockage
+                            ->directory('videos') // Dossier de destination
+                            ->visibility('public'),
                         Select::make('categorie_id')
+                        
                             ->relationship('categorie', 'designation')
                             ->searchable()
                             ->preload()
@@ -50,6 +60,12 @@ class PlatForm
                             ->required()
                             ->numeric()
                             ->prefix('FCFA'),
+
+                        CheckboxList::make('accompagnements')
+                            ->relationship(titleAttribute: 'designation')
+                            ->columns(3)
+                            ->label("Accompagnements"),
+
                         Toggle::make('is_available')
                             ->label('disponible')
                             ->required(),

@@ -38,7 +38,7 @@ const CardRestau = ({ userPosition, data }) => {
                     <i
                         className="fi fi-sr-up-right-from-square"
                         title="En savoir plus"
-                    ></i>
+                    ></i> 
                 </Link>
 
                 {/* <i

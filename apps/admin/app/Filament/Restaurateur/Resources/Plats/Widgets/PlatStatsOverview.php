@@ -45,7 +45,7 @@ class PlatStatsOverview extends StatsOverviewWidget
                 ->description(now()->translatedFormat('F Y'))
                 ->color('info'),
 
-            Stat::make('Commandes aujourd’hui', $commandesJour)
+            Stat::make('Commandes du jour', $commandesJour)
                 ->description('Aujourd’hui')
                 ->color('warning'),
         ];

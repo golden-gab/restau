@@ -137,7 +137,10 @@
         [x-cloak] { 
             display: none !important; 
         }
-
+        :root {
+            --main-color: #D45C3A;
+            --second-color: #2E4057;
+        }
         /* Modal plein écran */
         .onboarding-modal {
             position: fixed;
@@ -158,12 +161,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        }
+            background: linear-gradient(
+                    135deg,
+                    var(--second-color) 0%,
+                    #1f2d3d 50%,
+                    var(--main-color) 100%
+                );        
+            }
 
         html.dark .onboarding-background {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        }
+ background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        var(--second-color) 50%,
+        #1f2933 100%
+    );        }
 
         /* Pattern overlay */
         .onboarding-pattern {
@@ -250,13 +262,13 @@
         .onboarding-progress-fill {
             height: 6px;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.3);
+             background: rgba(255, 255, 255, 0.2);
             transition: all 0.4s ease;
         }
 
         .onboarding-progress-fill.active {
-            background: white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    background: var(--main-color);
+    box-shadow: 0 0 20px rgba(212, 92, 58, 0.6);
         }
 
         .onboarding-progress-text {
@@ -280,7 +292,8 @@
             width: 128px;
             height: 128px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+    background: rgba(212, 92, 58, 0.25);
+    border: 1px solid rgba(212, 92, 58, 0.25);
             backdrop-filter: blur(10px);
             margin: 0 auto 32px;
             transition: transform 0.3s ease;
@@ -299,7 +312,7 @@
         .onboarding-icon {
             width: 64px;
             height: 64px;
-            color: white;
+        color: var(--main-color);
         }
 
         /* Texte */
@@ -341,17 +354,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
             padding: 0;
+    background: rgba(255, 255, 255, 0.3);
         }
 
         .onboarding-dot:hover {
             background: rgba(255, 255, 255, 0.6);
             transform: scale(1.2);
+    background: rgba(212, 92, 58, 0.8);
         }
 
         .onboarding-dot.active {
             width: 32px;
             border-radius: 5px;
-            background: white;
+    background: var(--main-color);
         }
 
         /* Actions */
@@ -420,12 +435,12 @@
 
         .onboarding-btn-primary {
             background: white;
-            color: #667eea;
+    background: var(--main-color);
         }
 
         .onboarding-btn-primary:hover {
             transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(212, 92, 58, 0.4);
         }
 
         /* Responsive */

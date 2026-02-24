@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource( 
+#[ApiResource(
     operations: []
 )]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'id')]
@@ -19,6 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'price')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'image_path')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:categorie:read']), property: 'categorie')]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:accompagnement:read']), property: 'accompagnements')]
 
 class Plat extends Model
 {
@@ -42,5 +43,11 @@ class Plat extends Model
     public function categorie(): BelongsTo
     {
         return $this->belongsTo(Categorie::class);
+    }
+
+    public function accompagnements()
+    {
+        return $this->belongsToMany(Accompagnement::class, 'accompagement_plats')
+            ->withTimestamps();
     }
 }

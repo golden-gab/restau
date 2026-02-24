@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Plat extends Model
 {
-     use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'restaurant_id',
@@ -21,7 +21,7 @@ class Plat extends Model
         'is_available',
     ];
 
-     public function restaurant(): BelongsTo
+    public function restaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class);
     }
@@ -31,12 +31,17 @@ class Plat extends Model
         return $this->belongsTo(Categorie::class);
     }
 
-     public function getImageUrlAttribute()
+    public function getImageUrlAttribute()
     {
         if (!$this->image_path) {
             return null;
         }
-        
+
         return url(Storage::disk('public')->path($this->image_path));
+    }
+    public function accompagnements()
+    {
+        return $this->belongsToMany(Accompagnement::class, 'accompagement_plats')
+            ->withTimestamps();
     }
 }

@@ -1,36 +1,39 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-    // Structure : { [restaurantSlug]: [ { plat, qty }, ... ] }
     const [carts, setCarts] = useState({});
 
-    function addToCart(restaurant, plat) {
+    function getItemKey(platId, accompagnementId) {
+        return `${platId}_${accompagnementId ?? "none"}`;
+    }
+
+    function addToCart(restaurant, plat, accompagnement = null) {
         setCarts((prev) => {
             const cart = prev[restaurant] || [];
-            const found = cart.find((item) => item.plat.id === plat.id);
+            const key = getItemKey(plat.id, accompagnement?.id);
+            const found = cart.find((item) => item.key === key);
             let newCart;
             if (found) {
                 newCart = cart.map((item) =>
-                    item.plat.id === plat.id
+                    item.key === key
                         ? { ...item, qty: item.qty + 1 }
                         : item
                 );
             } else {
-                newCart = [...cart, { plat, qty: 1 }];
+                newCart = [...cart, { key, plat, accompagnement, qty: 1 }];
             }
             return { ...prev, [restaurant]: newCart };
         });
     }
 
-    function removeFromCart(restaurant, platId) {
+    function removeFromCart(restaurant, key) {
         setCarts((prev) => {
             const cart = prev[restaurant] || [];
             const newCart = cart
                 .map((item) =>
-                    item.plat.id === platId
+                    item.key === key
                         ? { ...item, qty: item.qty - 1 }
                         : item
                 )
@@ -48,22 +51,15 @@ export function CartProvider({ children }) {
     }
 
     function getTotal(restaurantSlug) {
-        let somme = 0;
-        const cart = carts[restaurantSlug] || []
-        cart.map(
-            (item) => (somme += item.plat.price * item.qty)
-        );
-        return somme;
+        const cart = carts[restaurantSlug] || [];
+        return cart.reduce((somme, item) => somme + item.plat.price * item.qty, 0);
     }
 
-    function getTotalItem(restaurantSlug){
-        let somme = 0;
-        const cart = carts[restaurantSlug] || []
-        cart.map(
-            (item) => somme += item.qty
-        );
-        return somme;
+    function getTotalItem(restaurantSlug) {
+        const cart = carts[restaurantSlug] || [];
+        return cart.reduce((somme, item) => somme + item.qty, 0);
     }
+
     return (
         <CartContext.Provider
             value={{ carts, addToCart, removeFromCart, clearCart, getTotal, getTotalItem }}

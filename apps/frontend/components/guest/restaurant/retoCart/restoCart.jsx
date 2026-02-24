@@ -15,9 +15,10 @@ const RestoCart = ({ tel, restoId }) => {
     const shadow = useRef();
     const { trigger, isMutating } = useSWRMutation(
         `${process.env.NEXT_PUBLIC_API_URL}/commandes`,
-        sendRequest
+        sendRequest,
     );
-    const { carts, removeFromCart, addToCart, getTotal, getTotalItem } = useCart();
+    const { carts, removeFromCart, addToCart, getTotal, getTotalItem } =
+        useCart();
     const cart = carts[slug] || [];
 
     const message =
@@ -25,16 +26,14 @@ const RestoCart = ({ tel, restoId }) => {
         cart
             .map(
                 (item) =>
-                    `- ${item.plat.name} x${item.qty} (${tarif(
-                        item.plat.price * item.qty
-                    )})`
+                    `- ${item.plat.name}${item.accompagnement ? ` (${item.accompagnement.designation})` : ""} x${item.qty} (${tarif(item.plat.price * item.qty)})`,
             )
             .join("\n") +
         `\nTotal : ${tarif(getTotal(slug))} \n` +
         `\nCommande générée depuis Mealop`;
 
     const whatsappUrl = `https://wa.me/${tel}?text=${encodeURIComponent(
-        message
+        message,
     )}`;
     function handleOrder() {
         try {
@@ -42,6 +41,7 @@ const RestoCart = ({ tel, restoId }) => {
                 restaurant_id: restoId,
                 plats: cart.map((item) => ({
                     platId: item.plat.id,
+                    accompagnementId: item.accompagnement?.id ?? null,
                     quantite: item.qty,
                 })),
             });
@@ -53,7 +53,7 @@ const RestoCart = ({ tel, restoId }) => {
             alert("Erreur lors de la commande. Veuillez réessayer.");
         }
     }
-    function handleCart(){
+    function handleCart() {
         nav.current.classList.toggle("active");
         shadow.current.classList.toggle("active");
     }
@@ -67,9 +67,20 @@ const RestoCart = ({ tel, restoId }) => {
                     <ul className="resto-cart-list">
                         {cart.length > 0 ? (
                             cart.map((item, index) => (
-                                <li className="resto-cart-item" key={index}>
+                                <li className="resto-cart-item" key={item.key}>
                                     <div className="resto-cart-item-text">
-                                        <p>{item.plat.name}</p>
+                                        <p>
+                                            {item.plat.name} -{" "}
+                                            {item.accompagnement && (
+                                                <span className="resto-cart-item-acc">
+                                                    {
+                                                        item.accompagnement
+                                                            .designation
+                                                    }
+                                                </span>
+                                            )}
+                                        </p>
+
                                         <span className="resto-cart-item-prix">
                                             {tarif(item.plat.price)}
                                         </span>
@@ -81,7 +92,7 @@ const RestoCart = ({ tel, restoId }) => {
                                                 onClick={() =>
                                                     removeFromCart(
                                                         slug,
-                                                        item.plat.id
+                                                        item.key,
                                                     )
                                                 }
                                             ></i>
@@ -89,7 +100,11 @@ const RestoCart = ({ tel, restoId }) => {
                                             <i
                                                 className="fi fi-sr-add"
                                                 onClick={() =>
-                                                    addToCart(slug, item.plat)
+                                                    addToCart(
+                                                        slug,
+                                                        item.plat,
+                                                        item.accompagnement,
+                                                    )
                                                 }
                                             ></i>
                                         </div>
@@ -125,8 +140,7 @@ const RestoCart = ({ tel, restoId }) => {
                     </div>
                 </div>
             </div>
-            <div className="card-shadow" ref={shadow}>
-            </div>
+            <div className="card-shadow" ref={shadow}></div>
             <Button type="full-btn btn-card" onClick={handleCart}>
                 <i className="fi fi-rr-shopping-cart"></i>
                 <div className="btn-card-quantite">{getTotalItem(slug)}</div>

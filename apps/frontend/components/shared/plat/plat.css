@@ -66,3 +66,24 @@
     justify-content:center;
     background-color: var(--fourth-color); */
 }
+
+.accompagnements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.accompagnement {
+    padding: calc(var(--padding)/8) calc(var(--padding)/4);
+    background-color: var(--gray3);
+    border: 1px solid var(--gray1);
+    border-radius:var(--bradius);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+}
+
+.accompagnement.active{
+    background-color: var(--main-color);
+    color: var(--white);
+}

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\State\OnlineRestaurantsProvider;
 use App\State\CommandeProcessor;
 use ApiPlatform\State\ProcessorInterface;
 use App\State\RestaurantCollectionProvider;
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
 		$this->app->tag(RestaurantCollectionProvider::class, ProviderInterface::class);
 
 		$this->app->tag(CommandeProcessor::class, ProcessorInterface::class);
+
+		$this->app->tag(OnlineRestaurantsProvider::class, ProviderInterface::class);
     }
 }

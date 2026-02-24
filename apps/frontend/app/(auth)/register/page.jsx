@@ -30,13 +30,13 @@ const Register = () => {
         latitude: "",
         longitude: "",
         openingHours: [
-            { day: "Lundi", open: "", close: "" },
-            { day: "Mardi", open: "", close: "" },
-            { day: "Mercredi", open: "", close: "" },
-            { day: "Jeudi", open: "", close: "" },
-            { day: "Vendredi", open: "", close: "" },
-            { day: "Samedi", open: "", close: "" },
-            { day: "Dimanche", open: "", close: "" },
+            { day: "Lundi", open: "08:00", close: "20:00" },
+            { day: "Mardi", open: "08:00", close: "20:00" },
+            { day: "Mercredi", open: "08:00", close: "20:00" },
+            { day: "Jeudi", open: "08:00", close: "20:00" },
+            { day: "Vendredi", open: "08:00", close: "20:00" },
+            { day: "Samedi", open: "08:00", close: "20:00" },
+            { day: "Dimanche", open: "08:00", close: "20:00" },
         ],
     });
 
@@ -125,11 +125,8 @@ const Register = () => {
                         setCurrentStep(activeStep)
                     }
                 >
-                    <div>
+                    {/* <div>
                         <div className="tab-header">
-                            {/* <h3>
-                                Bienvenue sur {process.env.NEXT_PUBLIC_APP_NAME}🎉
-                            </h3> */}
                             <h3>Bienvenue 🎉</h3>
                             <p>Merci de l'intérêt que vous nous portez !</p>
                             <p className="second-description">
@@ -153,23 +150,24 @@ const Register = () => {
                                 Suivant
                             </Button>
                         </div>
-                    </div>
+                    </div> */}
+
                     {/* Étape 1 */}
-                    <UserStep
+                    {/* <UserStep
                         data={data}
                         setData={setData}
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
-                    />
+                    /> */}
 
                     {/* Étape 2 */}
 
-                    <RestoInfoStep
+                    {/* <RestoInfoStep
                         data={data}
                         setData={setData}
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
-                    />
+                    /> */}
 
                     {/* Étape 3 */}
                     <RestoLocalisationStep

@@ -26,7 +26,7 @@ class Settings extends Page implements HasForms
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Cog6Tooth;
 
     protected string $view = 'filament.restaurateur.pages.settings';
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
     protected static ?string $title = 'Paramètres';
 
     public ?array $data = [];
