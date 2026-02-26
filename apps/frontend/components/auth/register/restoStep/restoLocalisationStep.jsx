@@ -88,8 +88,7 @@ const RestoLocalisationStep = ({ data, setData, onNext, onPrevious }) => {
             <div className="tab-header">
                 <h3>Localisation du restaurant</h3>
                 <p>
-                    Si vous avez un local, veuillez enrégistrer ses coodonnées
-                    géographiques
+                    En fonction du type de restaurant, veuillez renseigner sa localisation
                 </p>
             </div>
             <div className="resto-types">

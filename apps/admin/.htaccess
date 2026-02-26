@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options +FollowSymLinks
+    </IfModule>
+   
+    RewriteEngine On
+    RewriteBase /
+    
+    # Permettre l'accès direct aux fichiers d'assets (CSS, JS, fonts, images) pour filament
+    RewriteCond %{REQUEST_URI} ^/fonts/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/css/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/js/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/images/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/storage/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/vendor/.*$ [OR]
+    RewriteCond %{REQUEST_URI} ^/livewire/.*$
+    RewriteRule ^(.*)$ public/$1 [L]
+    
+    # Rediriger tout le reste vers Laravel
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>

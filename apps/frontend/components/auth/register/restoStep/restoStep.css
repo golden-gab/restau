@@ -146,5 +146,11 @@
     margin-right: 0.25rem;
 }
 @media screen and (max-width:768px) {
-    
+    .resto-types{
+        padding:calc(var(--padding)/2) 0;
+        gap: 0.5rem;
+    }
+    .resto-type{
+        width: 50%;
+    }
 }

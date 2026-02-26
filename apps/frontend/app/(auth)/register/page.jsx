@@ -104,9 +104,9 @@ const Register = () => {
 
             <div className="register-container">
                 <div className="back">
-                    <Link href={"/about"} className="back-link">
+                    {/* <Link href={"/about"} className="back-link">
                         <i className="fi fi-rr-arrow-left"></i> Accueil
-                    </Link>
+                    </Link> */}
                     <Link href={"/about"}>
                         <Image
                             height={300}
@@ -125,7 +125,7 @@ const Register = () => {
                         setCurrentStep(activeStep)
                     }
                 >
-                    {/* <div>
+                    <div>
                         <div className="tab-header">
                             <h3>Bienvenue 🎉</h3>
                             <p>Merci de l'intérêt que vous nous portez !</p>
@@ -150,24 +150,24 @@ const Register = () => {
                                 Suivant
                             </Button>
                         </div>
-                    </div> */}
+                    </div>
 
                     {/* Étape 1 */}
-                    {/* <UserStep
+                    <UserStep
                         data={data}
                         setData={setData}
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
-                    /> */}
+                    />
 
                     {/* Étape 2 */}
 
-                    {/* <RestoInfoStep
+                    <RestoInfoStep
                         data={data}
                         setData={setData}
                         onNext={handleNextStep}
                         onPrevious={handlePreviousStep}
-                    /> */}
+                    />
 
                     {/* Étape 3 */}
                     <RestoLocalisationStep

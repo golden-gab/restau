@@ -12,7 +12,7 @@ const RestoInfo = ({ data }) => {
     }
     console.log(data)
     return (
-        <div className="resto-section">
+        <div className="resto-section"> 
             <Image
                 alt="Image du restaurant"
                 height={500}
