@@ -8,7 +8,7 @@ function getAll() {
 
 function getOnline(position) {
     const key = position
-        ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/online?lat=${position.lat}&lng=${position.lng}`
+        ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/online?latitude=${position.lat}&longitude=${position.lng}`
         : null; // 👈 SWR ne fetch pas si null
     
       return useSWR(key, fetcher);

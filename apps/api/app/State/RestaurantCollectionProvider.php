@@ -24,7 +24,7 @@ final class RestaurantCollectionProvider implements ProviderInterface
         // Si on veut afficher les restaurants de la carte on suppose qu'on ne recherche pas
         if (empty($context['filters']['name'])) {
             $query->whereNotNull('latitude')
-                    ->whereNotNull('longitude');
+                    ->whereNotNull('longitude'); 
         }
 
         // appliquer filtres éventuels (status, name) passés dans l'URL

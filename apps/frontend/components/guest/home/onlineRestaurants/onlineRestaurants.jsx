@@ -11,13 +11,15 @@ import Button from "@/components/shared/button/button";
 
 const OnlineRestaurants = () => {
     const { userPosition, handleUserPosition } = usePosition();
-    const { data, error, isLoading } = RestaurantService.getOnline(userPosition);
+    const { data, error, isLoading } =
+        RestaurantService.getOnline(userPosition);
     const [sectionUp, setSectionUp] = useState(false);
+    console.log(data);
     return (
         <div className={`onlineRestaurants-section ${sectionUp ? " up" : ""}`}>
             <div className="onlineRestaurants-section-header">
                 <p className="onlineRestaurants-section-title">
-                    Quelques restaurants numériques dans votre ville
+                    Quelques restaurants numériques dans votre région
                 </p>
                 <i
                     className={`fi  ${sectionUp ? " fi-rr-angle-small-down" : "fi-rr-angle-small-up"}`}
@@ -43,10 +45,14 @@ const OnlineRestaurants = () => {
                         <SkeletonLoaderLine />
                     </>
                 )}
-
+                {!isLoading && data && data.restaurants.length === 0 && (
+                    <div className="onlineRestaurants-noLocation">
+                        <p>Aucun restaurant disponible dans votre région.</p>
+                    </div>
+                )}
                 {!isLoading &&
                     data &&
-                    data.member.map((resto) => (
+                    data.restaurants.map((resto) => (
                         <OnlineRestaurant key={resto.slug} data={resto} />
                     ))}
             </div>
@@ -85,12 +91,6 @@ function OnlineRestaurant({ data }) {
                     </span>
                 </div>
             </div>
-            {/* <Link href={"/restaurants/"}>
-                <i
-                    className="fi fi-sr-up-right-from-square restaurant-action"
-                    title="En savoir plus"
-                ></i>
-            </Link> */}
         </Link>
     );
 }

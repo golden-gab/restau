@@ -15,7 +15,7 @@ const RestoInfo = ({ data }) => {
         <div className="resto-section"> 
             <Image
                 alt="Image du restaurant"
-                height={500}
+                height={500} 
                 width={800}
                 src={
                             data.banniere
