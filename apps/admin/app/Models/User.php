@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Filament\Auth\Notifications\ResetPassword;
+use Filament\Facades\Filament;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -56,7 +58,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     public function restaurants()
     {
         return $this->hasMany(Restaurant::class);
-    } 
+    }
 
 
     public function getTenants(Panel $panel): Collection
@@ -79,6 +81,11 @@ class User extends Authenticatable implements FilamentUser, HasTenants
             return $this->role_id === 2;
         }
         return false;
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPassword($token));
     }
 
 }

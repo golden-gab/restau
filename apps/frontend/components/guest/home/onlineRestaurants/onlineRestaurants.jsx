@@ -45,14 +45,12 @@ const OnlineRestaurants = () => {
                         <SkeletonLoaderLine />
                     </>
                 )}
-                {!isLoading && data && data.restaurants.length === 0 && (
+                {!isLoading && data?.restaurants?.length === 0 && (
                     <div className="onlineRestaurants-noLocation">
                         <p>Aucun restaurant disponible dans votre région.</p>
                     </div>
                 )}
-                {!isLoading &&
-                    data &&
-                    data.restaurants.map((resto) => (
+                {!isLoading && data?.restaurants?.map((resto) => (
                         <OnlineRestaurant key={resto.slug} data={resto} />
                     ))}
             </div>

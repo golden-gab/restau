@@ -23,7 +23,7 @@ const Footer = () => {
                             <i className="fi fi-brands-facebook"></i>
                         </a>
                         <a
-                            href="mailto:contact@ndd.com"
+                            href="mailto:contact@meailop.com"
                             target="_blank"
                             aria-label="Envoyez-nous un mail"
                         >

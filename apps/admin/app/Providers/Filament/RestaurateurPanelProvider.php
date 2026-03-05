@@ -38,6 +38,7 @@ class RestaurateurPanelProvider extends PanelProvider
             ->path('restaurateur')
             ->login()
             ->passwordReset()
+            ->authPasswordBroker('users')
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
