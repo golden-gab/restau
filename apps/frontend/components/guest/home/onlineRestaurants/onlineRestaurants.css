@@ -99,3 +99,10 @@
     font-size: var(--fs-xs);
     /* border: 1px solid var(--main-color); */
 }
+
+@media screen and (max-width:768px) {
+    .onlineRestaurants-section {
+        
+        height: 15dvh;
+    }
+}

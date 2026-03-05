@@ -45,7 +45,7 @@
 
    
 }
-.map-filter-speciality:hover,.map-filter-speciality.active{
+.map-filter-speciality.active{
         background-color: var(--main-color);
         color: var(--white);
     }
