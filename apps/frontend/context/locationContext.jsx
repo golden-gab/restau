@@ -7,14 +7,18 @@ const PositionContext = createContext(null);
 const DEFAULT_POSITION = { lat: 4.0511, lng: 9.7679 }; // Douala
 
 export function PositionProvider({ children }) {
-    const [userPosition, setUserPosition] = useState(null);
+    const [userPosition, setUserPosition] = useState(() => {
+        if (typeof window === "undefined") return null;
+        const saved = sessionStorage.getItem("userPosition");
+        return saved ? JSON.parse(saved) : null;
+    });
     const [loadPosition, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     function handleUserPosition() {
         if (!navigator.geolocation) {
             setError("Géolocalisation non supportée");
-            return; 
+            return;
         }
 
         setLoading(true);
@@ -22,23 +26,32 @@ export function PositionProvider({ children }) {
 
         navigator.geolocation.getCurrentPosition(
             (pos) => {
-                setUserPosition({
+                const position = {
                     lat: pos.coords.latitude,
                     lng: pos.coords.longitude,
-                });
+                };
+                setUserPosition(position);
+                sessionStorage.setItem(
+                    "userPosition",
+                    JSON.stringify(position),
+                ); // ← persister
                 setLoading(false);
             },
             (err) => {
                 if (err.code === err.PERMISSION_DENIED) {
                     setError("Permission refusée");
-                    toast.error("Permission de géolocalisation refusée. Affichage de la carte centrée sur Douala.");
+                    toast.error(
+                        "Permission de géolocalisation refusée. Affichage de la carte centrée sur Douala.",
+                    );
                 } else {
                     setError("Erreur de géolocalisation");
-                    toast.error("Erreur lors de la récupération de votre position. Affichage de la carte centrée sur Douala.");
+                    toast.error(
+                        "Erreur lors de la récupération de votre position. Affichage de la carte centrée sur Douala.",
+                    );
                 }
                 setLoading(false);
             },
-            { enableHighAccuracy: true, timeout: 10000 }
+            { enableHighAccuracy: true, timeout: 10000 },
         );
     }
 

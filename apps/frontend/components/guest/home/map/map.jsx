@@ -48,9 +48,9 @@ const Map = ({ data }) => {
     const initialPosition = [3.848, 11.5021];
     const { toggleFilter, selectedSpecialities, isOpen } = useMapFilterStore();
     const { userPosition, loadPosition, handleUserPosition } = usePosition();
-    useEffect(() => {
-        handleUserPosition();
-    }, []);
+    // useEffect(() => {
+    //     handleUserPosition();
+    // }, [userPosition]);
 
     const filteredRestaurants = useMemo(() => {
         // aucun filtre → pas de calcul inutile
