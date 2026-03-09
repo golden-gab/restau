@@ -35,15 +35,15 @@ class PlatForm
                                 // Supprimer l’ancien fichier
                                 Storage::disk('public')->delete($file);
                             }),
-                        FileUpload::make('video_path')
-                            ->label('Vidéo')
-                            ->multiple() // Si tu veux plusieurs vidéos
-                            ->nullable()
-                            ->acceptedFileTypes(['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/webm'])
-                            ->maxSize(102400) // Taille max en KB (ici 100 MB)
-                            ->disk('public') // Disk de stockage
-                            ->directory('videos') // Dossier de destination
-                            ->visibility('public'),
+                        // FileUpload::make('video_path')
+                        //     ->label('Vidéo')
+                        //     ->multiple() // Si tu veux plusieurs vidéos
+                        //     ->nullable()
+                        //     ->acceptedFileTypes(['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/webm'])
+                        //     ->maxSize(102400) // Taille max en KB (ici 100 MB)
+                        //     ->disk('public') // Disk de stockage
+                        //     ->directory('videos') // Dossier de destination
+                        //     ->visibility('public'),
                         Select::make('categorie_id')
                         
                             ->relationship('categorie', 'designation')

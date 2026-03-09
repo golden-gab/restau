@@ -25,7 +25,7 @@ final class CommandeProcessor implements ProcessorInterface
                 'nom_client' => $data->nom_client ?? null,
                 'telephone_client' => $data->telephone_client ?? null,
                 'notes' => $data->notes ?? null,
-                'restaurant_id' => $data->restaurant_id
+                'restaurant_id' => $data->restaurant_id,
             ]);
             $commande->save();
 
@@ -42,6 +42,7 @@ final class CommandeProcessor implements ProcessorInterface
             $commandeDto = new CommandeDto();
             $commandeDto->id = $commande->id;
             $commandeDto->restaurant_id = $commande->restaurant_id;
+            // $commandeDto->accompagnement_id = $data->accompagnement_id ?? null
             // $commandeDto->plats = $commande
             
             return $commandeDto;
@@ -60,6 +61,7 @@ final class CommandeProcessor implements ProcessorInterface
             $commande->plats()->attach($plat->id, [
                 'quantite' => $platData['quantite'],
                 'restaurant_id' => $commande->restaurant_id,
+                'accompagnement_id'=>$platData['accompagnementId'] ?? null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

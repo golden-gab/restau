@@ -1,0 +1,35 @@
+#resto-location {
+    padding: calc(var(--padding)/2) calc(var(--padding)*4);
+
+}
+
+.resto-map-container {
+    height: 20rem;
+    padding: calc(var(--padding)/2) 0;
+
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    border-radius: var(--bradius);
+
+}
+
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+}
+
+.marker-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.marker-icon i {
+    font-size: 1.5rem;
+    color: var(--second-color);
+}

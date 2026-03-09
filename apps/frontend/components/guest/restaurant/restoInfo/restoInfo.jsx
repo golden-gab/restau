@@ -10,7 +10,7 @@ const RestoInfo = ({ data }) => {
         navigator.clipboard.writeText(window.location.href);
         toast.success("Lien copié dans le presse papier");
     }
-    console.log(data)
+
     return (
         <div className="resto-section"> 
             <Image

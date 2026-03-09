@@ -15,13 +15,7 @@ const Footer = () => {
                         toute sérénité.
                     </p>
                     <div className="social-network">
-                        <a
-                            href="https://web.facebook.com/"
-                            target="_blank"
-                            aria-label="Notre compte Facebook"
-                        >
-                            <i className="fi fi-brands-facebook"></i>
-                        </a>
+                      
                         <a
                             href="mailto:contact@meailop.com"
                             target="_blank"
@@ -59,13 +53,10 @@ const Footer = () => {
                 <div className="footer-links">
                     <p className="footer-links-title">Contact</p>
                     <div className="footer-links-list">
-                        <div className="footer-text">
-                            <i className="fi fi-rr-phone-flip"></i>{" "}
-                            <span>+237 698 17 96 38</span>
-                        </div>
+                        
                         <div className="footer-text">
                             <i className="fi fi-rr-envelope"></i>{" "}
-                            <span>contact@ndd.com</span>
+                            <span>contact@mealop.com</span>
                         </div>
                     </div>
                 </div>

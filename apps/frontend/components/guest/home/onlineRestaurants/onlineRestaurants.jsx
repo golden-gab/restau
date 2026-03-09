@@ -12,9 +12,9 @@ import Button from "@/components/shared/button/button";
 const OnlineRestaurants = () => {
     const { userPosition, handleUserPosition } = usePosition();
     const { data, error, isLoading } =
-        RestaurantService.getOnline(userPosition);
+    RestaurantService.getOnline(userPosition);
     const [sectionUp, setSectionUp] = useState(false);
-    console.log(data);
+
     return (
         <div className={`onlineRestaurants-section ${sectionUp ? " up" : ""}`}>
             <div className="onlineRestaurants-section-header">

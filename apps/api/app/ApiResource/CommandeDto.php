@@ -31,6 +31,9 @@ class CommandeDto{
     // #[Groups(['commande:write'])]
     // public ?string $statut = null;
 
+    // #[Groups(['commande:write'])]
+    // public ?int $accompagnement_id = null;
+
     #[Groups(['commande:write'])]
     public ?int $restaurant_id = null;
 

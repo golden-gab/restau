@@ -62,7 +62,7 @@ class Settings extends Page implements HasForms
                         Action::make('updateInfo')
                             ->label('Enregistrer')
                             ->color('primary')
-                            ->icon('heroicon-m-user')
+                            // ->icon('heroicon-m-user')
                             ->action(fn() => $this->updateInfo()),
 
                     ]),
@@ -98,7 +98,7 @@ class Settings extends Page implements HasForms
 
                         Action::make('updatePassword')
                             ->label('Modifier mon mot de passe')
-                            ->icon('heroicon-m-key')
+                            // ->icon('heroicon-m-key')
                             ->action(fn() => $this->updatePassword()),
                     ]),
             ])
