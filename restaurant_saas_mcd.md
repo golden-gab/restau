@@ -1,4 +1,4 @@
-# MCD/MLD - SaaS Restaurant Multi-Tenant
+# MCD/MLD 
 *Documentation Technique - Architecture Base de Données*
 
 ---
@@ -7,7 +7,6 @@
 
 ### Modèle Principal : **Restaurant = Tenant**
 
-Oui, le modèle `Restaurant` doit être votre tenant principal, car c'est l'entité métier centrale autour de laquelle gravitent toutes les fonctionnalités.
 
 ## 1. Entités Principales
 

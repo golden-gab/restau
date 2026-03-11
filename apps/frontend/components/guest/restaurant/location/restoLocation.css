@@ -33,3 +33,10 @@
     font-size: 1.5rem;
     color: var(--second-color);
 }
+
+@media screen and (max-width:768px) {
+    #resto-location {
+        padding:0 calc(var(--padding)/2);
+
+}
+}

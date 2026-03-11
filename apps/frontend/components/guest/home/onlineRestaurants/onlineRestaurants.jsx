@@ -47,7 +47,7 @@ const OnlineRestaurants = () => {
                 )}
                 {!isLoading && data?.restaurants?.length === 0 && (
                     <div className="onlineRestaurants-noLocation">
-                        <p>Aucun restaurant disponible dans votre région.</p>
+                        <p>Aucun restaurant disponible dans votre région. </p>
                     </div>
                 )}
                 {!isLoading && data?.restaurants?.map((resto) => (

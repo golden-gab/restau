@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import './restoLocation.css';
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
-const RestoLocation = ({ latitude, longitude }) => {
+const RestoLocation = ({ latitude, longitude }) => { 
     const customIcon = () =>
         L.divIcon({
             html: `<div class="marker-icon" style="width: 2rem; height: 2rem; border-radius: 50%;"><i class="fi fi-sr-marker"></i></div>`,

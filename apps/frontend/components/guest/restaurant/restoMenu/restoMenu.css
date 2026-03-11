@@ -36,5 +36,9 @@
 @media screen and (max-width:1200px) {
     .resto-menu{
     width: 100%;
+}.resto-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.5rem;
 }
 }

@@ -1,18 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import "@flaticon/flaticon-uicons/css/regular/rounded.css";
 import "@flaticon/flaticon-uicons/css/brands/all.css";
 import "@flaticon/flaticon-uicons/css/solid/rounded.css";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+const fontTitle = Montserrat({
+    variable: "--font1",
     subsets: ["latin"],
+    display: "swap", // ← ajouter
+    preload: true,
 });
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const fontText = Roboto({
+    variable: "--font2",
     subsets: ["latin"],
+    display: "swap", // ← ajouter
 });
 
 export const metadata = {
@@ -33,7 +35,7 @@ export default function RootLayout({ children }) {
                     crossOrigin=""
                 /> */}
             </head>
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <body className={`${fontTitle.variable} ${fontText.variable}`}>
                 <Toaster position="top-right" richColors expand={true} />
                 {children}
             </body>

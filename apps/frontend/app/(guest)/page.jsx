@@ -7,6 +7,7 @@ import { PositionProvider } from "@/context/locationContext";
 
 const Map = dynamic(() => import("@/components/guest/home/map/map"), {
     ssr: false,
+    loading: () => <div className="map-skeleton" />
 });
 
 export default function Home() {

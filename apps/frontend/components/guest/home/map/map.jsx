@@ -62,7 +62,7 @@ const Map = ({ data }) => {
             ),
         );
     }, [data, selectedSpecialities]);
- 
+
     const positionToUse = userPosition || initialPosition;
     const restaurants = [
         {
@@ -165,7 +165,6 @@ const Map = ({ data }) => {
         },
     ];
 
-    console.log(loadPosition);
     return (
         <div className="map-container">
             <div className="map-header">
@@ -204,8 +203,12 @@ const Map = ({ data }) => {
                 scrollWheelZoom={true}
             >
                 <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    // Option 1 : CartoDB (plus léger, moderne)
+                    url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                    // Option 2 : Ajouter un cache plus long
+                    maxZoom={19}
+                    keepBuffer={2} // réduit les tuiles chargées en avance
                 />
                 {filteredRestaurants.map((resto) => {
                     // Vérifier que les coordonnées sont valides
