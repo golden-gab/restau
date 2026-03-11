@@ -19,7 +19,7 @@ const OnlineRestaurants = () => {
         <div className={`onlineRestaurants-section ${sectionUp ? " up" : ""}`}>
             <div className="onlineRestaurants-section-header">
                 <p className="onlineRestaurants-section-title">
-                    Quelques restaurants numériques dans votre région
+                   Restaurants digitaux près de vous
                 </p>
                 <i
                     className={`fi  ${sectionUp ? " fi-rr-angle-small-down" : "fi-rr-angle-small-up"}`}

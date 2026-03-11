@@ -1,9 +1,10 @@
 import { Geist, Geist_Mono, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import "@flaticon/flaticon-uicons/css/regular/rounded.css";
-import "@flaticon/flaticon-uicons/css/brands/all.css";
-import "@flaticon/flaticon-uicons/css/solid/rounded.css";
+// import "@flaticon/flaticon-uicons/css/regular/rounded.css";
+// import "@flaticon/flaticon-uicons/css/brands/all.css";
+// import "@flaticon/flaticon-uicons/css/solid/rounded.css";
+import IconsLoader from "@/components/shared/iconsLoader/iconsLoader";
 
 const fontTitle = Montserrat({
     variable: "--font1",
@@ -34,8 +35,10 @@ export default function RootLayout({ children }) {
                     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                     crossOrigin=""
                 /> */}
+                
             </head>
             <body className={`${fontTitle.variable} ${fontText.variable}`}>
+                <IconsLoader />
                 <Toaster position="top-right" richColors expand={true} />
                 {children}
             </body>

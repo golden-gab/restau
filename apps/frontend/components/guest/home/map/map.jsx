@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import "./map.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
@@ -206,9 +206,7 @@ const Map = ({ data }) => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     // Option 1 : CartoDB (plus léger, moderne)
                     url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-                    // Option 2 : Ajouter un cache plus long
-                    maxZoom={19}
-                    keepBuffer={2} // réduit les tuiles chargées en avance
+                  
                 />
                 {filteredRestaurants.map((resto) => {
                     // Vérifier que les coordonnées sont valides
