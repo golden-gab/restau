@@ -7,7 +7,7 @@ const Logo = () => {
     return (
         <div className="logo-container">
             <Image
-                src="/logo3.webp"
+                src="/logo3.png"
                 alt="Logo"
                 width={140}
                 height={140}
