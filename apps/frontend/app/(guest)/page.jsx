@@ -7,7 +7,20 @@ import { PositionProvider } from "@/context/locationContext";
 
 const Map = dynamic(() => import("@/components/guest/home/map/map"), {
     ssr: false,
-    loading: () => <div className="map-skeleton" />
+    // loading: () => (
+    //     <div
+    //         style={{
+    //             width: "100%",
+    //             height: "100vh",
+    //             background: "#f0f0f0",
+    //             display: "flex",
+    //             alignItems: "center",
+    //             justifyContent: "center",
+    //         }}
+    //     >
+    //         Chargement de la carte...
+    //     </div>
+    // ),
 });
 
 export default function Home() {
