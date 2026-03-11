@@ -30,13 +30,13 @@ const Register = () => {
         latitude: "",
         longitude: "",
         openingHours: [
-            { day: "Lundi", open: "08:00", close: "20:00" },
-            { day: "Mardi", open: "08:00", close: "20:00" },
-            { day: "Mercredi", open: "08:00", close: "20:00" },
-            { day: "Jeudi", open: "08:00", close: "20:00" },
-            { day: "Vendredi", open: "08:00", close: "20:00" },
-            { day: "Samedi", open: "08:00", close: "20:00" },
-            { day: "Dimanche", open: "08:00", close: "20:00" },
+            { day: "Lundi", open: "12:00", close: "20:00" },
+            { day: "Mardi", open: "12:00", close: "20:00" },
+            { day: "Mercredi", open: "12:00", close: "20:00" },
+            { day: "Jeudi", open: "12:00", close: "20:00" },
+            { day: "Vendredi", open: "12:00", close: "20:00" },
+            { day: "Samedi", open: "12:00", close: "20:00" },
+            { day: "Dimanche", open: "12:00", close: "20:00" },
         ],
     });
 
@@ -95,8 +95,8 @@ const Register = () => {
     return (
         <div className="register-page">
             {/* <Image 
-                height={1080}
-                width={1080}
+                height={1120}
+                width={1120}
                 alt="fried-chicken-image"
                 src={"/register-image.jpg"}
                 className="register-image"

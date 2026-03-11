@@ -24,7 +24,7 @@ const Page = () => {
             ssr: false,
         },
     );
-    console.log(data)
+  
     return (
         <main className="restaurant-page">
             {isLoading ? (

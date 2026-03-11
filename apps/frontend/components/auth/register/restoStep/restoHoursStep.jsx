@@ -33,18 +33,18 @@ const RestoHoursStep = ({ data, setData, onNext, onPrevious }) => {
     };
 
     function handleSkip() {
-        setData((prev) => ({
-            ...prev,
-            openingHours: [
-                { day: "Lundi", open: "", close: "" },
-                { day: "Mardi", open: "", close: "" },
-                { day: "Mercredi", open: "", close: "" },
-                { day: "Jeudi", open: "", close: "" },
-                { day: "Vendredi", open: "", close: "" },
-                { day: "Samedi", open: "", close: "" },
-                { day: "Dimanche", open: "", close: "" },
-            ],
-        }));
+        // setData((prev) => ({
+        //     ...prev,
+        //     openingHours: [
+        //         { day: "Lundi", open: "", close: "" },
+        //         { day: "Mardi", open: "", close: "" },
+        //         { day: "Mercredi", open: "", close: "" },
+        //         { day: "Jeudi", open: "", close: "" },
+        //         { day: "Vendredi", open: "", close: "" },
+        //         { day: "Samedi", open: "", close: "" },
+        //         { day: "Dimanche", open: "", close: "" },
+        //     ],
+        // }));
         onNext();
     }
 

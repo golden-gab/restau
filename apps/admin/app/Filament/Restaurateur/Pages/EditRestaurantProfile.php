@@ -68,8 +68,26 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->label("Spécialités du restaurant"),
 
                     Toggle::make('accept_order')
-                        ->label('Accepter les livraison')
-                        ->required(),
+                        ->label('Accepter les livraisons')
+                        ->required()
+                        ->disabled(fn($get) => empty($get('whatsapp_number')))
+                        ->helperText(
+                            fn($get) => empty($get('whatsapp_number'))
+                            ? new \Illuminate\Support\HtmlString(
+                                '⚠️ Vous devez renseigner un <a href="#whatsapp-field" 
+                style="text-decoration: underline; color: inherit; font-weight: 600;">
+                numéro WhatsApp
+            </a> pour activer les livraisons.'
+                            )
+                            : null
+                        )
+                        ->dehydrated(fn($get) => !empty($get('whatsapp_number')))
+                        ->afterStateHydrated(function ($set, $get, $state) {
+                            // Si le numéro WhatsApp est vide, forcer accept_order à false
+                            if (empty($get('whatsapp_number'))) {
+                                $set('accept_order', false);
+                            }
+                        }),
                 ]),
             Section::make('Localisation du restaurant')
                 ->schema([
@@ -128,7 +146,8 @@ class EditRestaurantProfile extends EditTenantProfile
                 ->schema([
                     TextInput::make('phone')
                         ->label('Téléphone')
-                        ->nullable(),
+                        ->nullable()
+                        ->extraAttributes(['id' => 'whatsapp-field']),
 
                     TextInput::make('email')
                         ->label('Email')
@@ -138,8 +157,15 @@ class EditRestaurantProfile extends EditTenantProfile
                     TextInput::make('whatsapp_number')
                         ->label('Numéro WhatsApp')
                         ->tel()
-                        ->placeholder('+237 600 00 00 00')
-                        ->nullable(),
+                        ->placeholder('+237600000000')
+                        ->nullable()
+                        ->reactive()  // ← rend le champ réactif
+                        ->afterStateUpdated(function ($set, $state) {
+                            // Si le numéro est vidé, désactiver automatiquement les livraisons
+                            if (empty($state)) {
+                                $set('accept_order', false);
+                            }
+                        }),
                 ]),
 
             Section::make("Horaires du restaurant")
@@ -190,6 +216,10 @@ class EditRestaurantProfile extends EditTenantProfile
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $tenant = Filament::getTenant();
+
+        if (empty($data['whatsapp_number'])) {
+            $data['accept_order'] = false;
+        }
 
         // BANNIERE
         if (
