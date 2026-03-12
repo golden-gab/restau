@@ -159,9 +159,8 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->tel()
                         ->placeholder('+237600000000')
                         ->nullable()
-                        ->reactive()  // ← rend le champ réactif
+                        ->reactive()  
                         ->afterStateUpdated(function ($set, $state) {
-                            // Si le numéro est vidé, désactiver automatiquement les livraisons
                             if (empty($state)) {
                                 $set('accept_order', false);
                             }
@@ -176,7 +175,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->schema([
                             TextInput::make('day')
                                 ->label('Jour')
-                                ->readOnly(), // Important pour sauvegarder la valeur
+                                ->readOnly(), 
                             TimePicker::make('open')
                                 ->label('Ouvre à')
                                 ->seconds(false),

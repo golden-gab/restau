@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
             $table->string('designation');
             $table->text('description')->nullable();
+            $table->softDeletes('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

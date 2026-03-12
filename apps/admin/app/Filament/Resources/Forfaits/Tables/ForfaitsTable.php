@@ -1,42 +1,42 @@
 <?php
 
-namespace App\Filament\Restaurateur\Resources\Plats\Tables;
+namespace App\Filament\Resources\Forfaits\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class PlatsTable
+class ForfaitsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-               ImageColumn::make('image_path')
-                    ->disk('public')
-                    ->label('Image')
-                    ->imageWidth(100)
-                    ->visibility('public'),
-                TextColumn::make('categorie.designation')
-                    ->searchable(),
                 TextColumn::make('name')
-                    ->label('Nom')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->label('Prix')
-                    ->money('XAF')
+                    ->money()
                     ->sortable(),
-                IconColumn::make('is_available')
-                    ->label('Disponible')
+                TextColumn::make('billing_cycle'),
+                TextColumn::make('max_menu_items')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('max_orders_per_month')
+                    ->numeric()
+                    ->sortable(),
+                IconColumn::make('is_active')
                     ->boolean(),
+                TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -47,12 +47,11 @@ class PlatsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                // 
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -62,4 +61,6 @@ class PlatsTable
                 ]),
             ]);
     }
+    
 }
+

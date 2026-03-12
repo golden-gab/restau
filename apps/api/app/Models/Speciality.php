@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -17,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 class Speciality extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
      protected $fillable = ['designation'];
 

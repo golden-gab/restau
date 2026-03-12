@@ -32,9 +32,9 @@ return new class extends Migration
             $table->string('whatsapp_number')->nullable();
 
             $table->json('opening_hours')->nullable();
-            $table->boolean('accept_order')->default(true);
+            $table->boolean('accept_order')->default(false);
             $table->enum('status', ['active', 'inactive', 'suspended'])->default('active');
-
+            $table->softDeletes('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

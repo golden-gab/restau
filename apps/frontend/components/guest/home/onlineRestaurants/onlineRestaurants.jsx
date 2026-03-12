@@ -82,11 +82,6 @@ function OnlineRestaurant({ data }) {
                             {s.designation}
                         </span>
                     ))}
-
-                    <span className="onlineRestaurant-speciality">Glacier</span>
-                    <span className="onlineRestaurant-speciality">
-                        Fast food
-                    </span>
                 </div>
             </div>
         </Link>

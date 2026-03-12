@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2); // Prix avec 2 décimales
             $table->string('image_path')->nullable();
             $table->boolean('is_available')->default(true);
+            $table->softDeletes('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Filament\Restaurateur\Resources\Plats\Pages;
+namespace App\Filament\Resources\Forfaits\Pages;
 
-use App\Filament\Restaurateur\Resources\Plats\PlatResource;
+use App\Filament\Resources\Forfaits\ForfaitResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
-use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPlat extends EditRecord
+class EditForfait extends EditRecord
 {
-    protected static string $resource = PlatResource::class;
+    protected static string $resource = ForfaitResource::class;
+
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make(),
             DeleteAction::make(),
             ForceDeleteAction::make(),
             RestoreAction::make(),

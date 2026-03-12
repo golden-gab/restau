@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('max_menu_items')->nullable();
             $table->unsignedInteger('max_orders_per_month')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->softDeletes('deleted_at', precision: 0);
             $table->timestamps(); // created_at & updated_at
         });
     }

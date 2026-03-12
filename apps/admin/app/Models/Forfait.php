@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Forfait extends Model
 {
-    use HasFactory;
-    
+    use HasFactory, softDeletes;
+
     protected $fillable = [
         'name',
         'description',
@@ -19,7 +20,9 @@ class Forfait extends Model
         'max_orders_per_month',
         'is_active',
     ];
-
+    protected $casts = [
+        'features' => 'array',
+    ];
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
