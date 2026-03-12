@@ -16,7 +16,7 @@
     align-items: center;
     gap: 1rem;
     width: 55%;
-    animation:reveal 1.5s ease-out;
+    /* animation:reveal 1.5s ease-out; */
 }
 
 .about-hero-label{
