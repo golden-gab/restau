@@ -15,7 +15,7 @@ const fontTitle = Montserrat({
 const fontText = Roboto({
     variable: "--font2",
     subsets: ["latin"],
-    display: "swap", // ← ajouter
+    display: "swap", 
 });
 
 export const metadata = {

@@ -10,6 +10,9 @@ const nextConfig = {
     //         },
     //     ];
     // },
+    experimental: {
+        optimizeCss: true, // uses critters to inline critical CSS
+    },
     images: {
         remotePatterns: [
             {

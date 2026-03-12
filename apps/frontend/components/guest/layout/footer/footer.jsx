@@ -1,14 +1,14 @@
 import React from "react";
 import "./footer.css";
 import Link from "next/link";
-// import Logo from "../../../shared/logo/logo";
+import Logo from "../../../shared/logo/logo";
 
 const Footer = () => {
     return (
         <footer>
             <div className="footer-top">
                 <div className="footer-app">
-                    {/* <Logo /> */}
+                    <Logo />
                     <p className="footer-text">
                         Une solution simple et efficace pour digitaliser vos menus,
                         gérer vos commandes via WhatsApp et suivre vos commandes en

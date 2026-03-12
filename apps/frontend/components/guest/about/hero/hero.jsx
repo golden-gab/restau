@@ -17,13 +17,13 @@ const Hero = () => {
                 className="about-hero-img"
             />
             <Image
-                src="/plat.webp"
+                src="/plat.webp" 
                 alt="Image of a dish"
                 width={500}
                 height={500}
                 className="about-hero-img2"
             />
-            <motion.div
+            <div
                 className="about-hero-container"
               
             >
@@ -50,10 +50,7 @@ const Hero = () => {
                         commencer maintenant <i className="fi fi-rr-play"></i>
                     </Link>
                 </div>
-            </motion.div>
-            {/* <div className="about-hero-footer">
-                <i className="fi fi-rr-arrow-down"></i>
-            </div> */}
+            </div>
         </div>
     );
 };
