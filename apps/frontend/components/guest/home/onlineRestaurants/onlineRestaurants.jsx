@@ -29,11 +29,11 @@ const OnlineRestaurants = () => {
             {!userPosition && (
                 <div className="onlineRestaurants-noLocation">
                     <p>
-                        Active ta localisation pour voir les restaurants proches
-                        de toi
+                        Activez la géolocalisation pour trouver les restaurants proches
+                        de vous
                     </p>
                     <Button onClick={handleUserPosition}>
-                        Activer la localisation
+                        Déterminer ma position
                     </Button>
                 </div>
             )}
@@ -78,7 +78,7 @@ function OnlineRestaurant({ data }) {
                 <p>{data.name}</p>
                 <div className="onlineRestaurant-specialities">
                     {data.specialities.map((s) => (
-                        <span className="onlineRestaurant-speciality">
+                        <span className="onlineRestaurant-speciality" key={s.id}>
                             {s.designation}
                         </span>
                     ))}

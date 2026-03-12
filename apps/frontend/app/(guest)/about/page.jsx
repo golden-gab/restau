@@ -1,3 +1,4 @@
+// import BottomAction from '@/components/guest/about/bottomAction/bottomAction';
 import BottomAction from '@/components/guest/about/bottomAction/bottomAction';
 import Cta from '@/components/guest/about/cta/cta';
 import Faq from '@/components/guest/about/faq/faq';

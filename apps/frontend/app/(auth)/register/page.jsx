@@ -19,6 +19,7 @@ import RestoLocalisationStep from "@/components/auth/register/restoStep/restoLoc
 import RestoHoursStep from "@/components/auth/register/restoStep/restoHoursStep";
 import Confirmation from "@/components/auth/register/restoStep/confirmation";
 
+
 const Register = () => {
     const [data, setData] = useState({
         email: "",

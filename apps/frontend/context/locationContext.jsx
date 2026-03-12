@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const PositionContext = createContext(null);
@@ -7,14 +7,15 @@ const PositionContext = createContext(null);
 const DEFAULT_POSITION = { lat: 4.0511, lng: 9.7679 }; // Douala
 
 export function PositionProvider({ children }) {
-    const [userPosition, setUserPosition] = useState(() => {
-        if (typeof window === "undefined") return null;
-        const saved = sessionStorage.getItem("userPosition");
-        return saved ? JSON.parse(saved) : null;
-    });
+    const [userPosition, setUserPosition] = useState(null);
     const [loadPosition, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const saved = sessionStorage.getItem("userPosition");
+        if (saved) setUserPosition(JSON.parse(saved));
+    }, []);
+    
     function handleUserPosition() {
         if (!navigator.geolocation) {
             setError("Géolocalisation non supportée");

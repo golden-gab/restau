@@ -7,20 +7,6 @@ import { PositionProvider } from "@/context/locationContext";
 
 const Map = dynamic(() => import("@/components/guest/home/map/map"), {
     ssr: false,
-    // loading: () => (
-    //     <div
-    //         style={{
-    //             width: "100%",
-    //             height: "100vh",
-    //             background: "#f0f0f0",
-    //             display: "flex",
-    //             alignItems: "center",
-    //             justifyContent: "center",
-    //         }}
-    //     >
-    //         Chargement de la carte...
-    //     </div>
-    // ),
 });
 
 export default function Home() {
@@ -35,7 +21,7 @@ export default function Home() {
                     </div>
                 ) : (
                     <Map data={data.member} />
-
+                    // <p>sdf</p>
                     // <GMap/>
                 )}
             </main>

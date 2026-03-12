@@ -54,6 +54,7 @@ const UserStep = ({ data, setData, onNext, onPrevious }) => {
                     type={"password"}
                     value={data.password}
                     name={"password"}
+                    placeholder={"8 caractères minimum"}
                     errors={errors.password}
                     onChange={(e) => handleChange(e, data, setData)}
                 />
@@ -64,6 +65,7 @@ const UserStep = ({ data, setData, onNext, onPrevious }) => {
                     value={data.confirmPassword}
                     name={"confirmPassword"}
                     errors={errors.confirmPassword}
+                    placeholder={"8 caractères minimum"}
                     onChange={(e) => handleChange(e, data, setData)}
                 />
             </div>

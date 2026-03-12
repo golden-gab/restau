@@ -60,14 +60,14 @@ const Header = () => {
 
     return (
         <header className={`${isScrolled ? "header scrolled" : "header "}`}>
-            <Link href="/" className="sm-logo">
-                <Logo />
+            <Link href="/" className="sm-logo"> 
+                 <Logo /> 
             </Link>
 
             <nav className="navbar" ref={nav}>
-                <Link href="/" className="lg-logo" style={{ width: "25%" }}>
-                    <Logo />
-                </Link>
+                <Link href="/" className="lg-logo" style={{ width: "25%" }}> 
+                    <Logo /> 
+               </Link>
 
                 <Navigation links={links} onClick={handleNavMobile} />
 
