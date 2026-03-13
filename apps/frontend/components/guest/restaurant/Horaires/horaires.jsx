@@ -24,14 +24,14 @@ function HoraireCard({ data, index }) {
 
     // Vérifie si c'est le jour courant
     const open =
-        data.opens_at && data.closes_at
-            ? parseInt(data.opens_at.split(":")[0], 10) * 60 +
-              parseInt(data.opens_at.split(":")[1], 10)
+        data.open && data.close
+            ? parseInt(data.open.split(":")[0], 10) * 60 +
+              parseInt(data.open.split(":")[1], 10)
             : "";
     const close =
-        data.opens_at && data.closes_at
-            ? parseInt(data.closes_at.split(":")[0], 10) * 60 +
-              parseInt(data.closes_at.split(":")[1], 10)
+        data.open && data.close
+            ? parseInt(data.close.split(":")[0], 10) * 60 +
+              parseInt(data.close.split(":")[1], 10)
             : "";
     const isToday = date.getDay() === index;
 
@@ -48,9 +48,9 @@ function HoraireCard({ data, index }) {
                 </span>
             )}
             <h3 className="horaire-day">{data.day}</h3>
-            {data.opens_at && data.closes_at ? (
+            {data.open && data.close ? (
                 <p className="horaire-hour">
-                    {data.opens_at} - {data.closes_at}
+                    {data.open} - {data.close}
                 </p>
             ) : (
                 <span className={``}></span>

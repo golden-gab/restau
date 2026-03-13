@@ -113,6 +113,7 @@ class EditRestaurantProfile extends EditTenantProfile
                         ->label('Utiliser ma position actuelle')
                         ->color('primary')
                         ->size('sm')
+                        ->extraAttributes(['id' => 'whatsapp-field'])
                         ->outlined()
                         ->action(fn() => null)
                         ->extraAttributes([
@@ -144,15 +145,14 @@ class EditRestaurantProfile extends EditTenantProfile
             Section::make('Contact du restaurant')
                 // ->columns(2)
                 ->schema([
-                    TextInput::make('phone')
-                        ->label('Téléphone')
-                        ->nullable()
-                        ->extraAttributes(['id' => 'whatsapp-field']),
+                    // TextInput::make('phone')
+                    //     ->label('Téléphone')
+                    //     ->nullable(),
 
-                    TextInput::make('email')
-                        ->label('Email')
-                        ->email()
-                        ->nullable(),
+                    // TextInput::make('email')
+                    //     ->label('Email')
+                    //     ->email()
+                    //     ->nullable(),
 
                     TextInput::make('whatsapp_number')
                         ->label('Numéro WhatsApp')
