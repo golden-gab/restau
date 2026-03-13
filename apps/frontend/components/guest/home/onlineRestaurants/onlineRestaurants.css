@@ -102,7 +102,6 @@
 
 @media screen and (max-width:768px) {
     .onlineRestaurants-section {
-        
-        height: 15dvh;
+        height: 28dvh;
     }
 }
