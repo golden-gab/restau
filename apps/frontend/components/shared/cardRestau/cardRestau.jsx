@@ -12,24 +12,27 @@ const CardRestau = ({ userPosition, data }) => {
                     src={
                         data.logoPath
                             ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`
-                            : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg`
+                            : `https://ui-avatars.com/api/?name=${data.name.at(0)}&background=000&color=fff`
                     }
                     width={500}
                     height={500}
+                    unoptimized
                     alt="restaurant-logo"
                     className="restaurant-logo"
                 />
                 <div className="restaurant-info">
                     <p className="restaurant-name">{data.name}</p>
-                     <div className="restaurant-specialities">
-                            {
-                                data.specialities && data.specialities.map((speciality, index) => (
-                                    <div key={index} className="restaurant-speciality">
-                                        {speciality.designation}
-                                    </div>
-                                ))
-                            }
-                        </div>
+                    <div className="restaurant-specialities">
+                        {data.specialities &&
+                            data.specialities.map((speciality, index) => (
+                                <div
+                                    key={index}
+                                    className="restaurant-speciality"
+                                >
+                                    {speciality.designation}
+                                </div>
+                            ))}
+                    </div>
                     {/* <p className="restaurant-description">{seeMore( data.description,50)}</p> */}
                 </div>
             </div>
@@ -38,7 +41,7 @@ const CardRestau = ({ userPosition, data }) => {
                     <i
                         className="fi fi-sr-up-right-from-square"
                         title="En savoir plus"
-                    ></i> 
+                    ></i>
                 </Link>
 
                 {/* <i

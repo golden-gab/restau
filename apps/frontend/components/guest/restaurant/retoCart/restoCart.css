@@ -1,6 +1,6 @@
 .resto-cart-container{
     width: 25%;
-    z-index: 2;
+    z-index: 3; 
 }
 .resto-cart {
     background-color: var(--white);

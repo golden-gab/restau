@@ -6,22 +6,21 @@ import { seeMore } from "@/helpers/function";
 import { toast } from "sonner";
 
 const RestoInfo = ({ data }) => {
-     function share() {
+    function share() {
         navigator.clipboard.writeText(window.location.href);
         toast.success("Lien copié dans le presse papier");
     }
-
     return (
-        <div className="resto-section"> 
+        <div className="resto-section">
             <Image
                 alt="Image du restaurant"
-                height={500} 
+                height={500}
                 width={800}
                 src={
-                            data.banniere
-                                ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.banniere}`
-                                : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/bannieres/default.jpg`
-                        }
+                    data.banniere
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.banniere}`
+                        : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/bannieres/default.jpg`
+                }
                 className="resto-img"
             />
             <div className="resto-overlay"></div>
@@ -31,11 +30,12 @@ const RestoInfo = ({ data }) => {
                         src={
                             data.logoPath
                                 ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.logoPath}`
-                                : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg`
+                                : `https://ui-avatars.com/api/?name=${data.name.at(0)}&background=000&color=fff`
                         }
-                        alt="logo-du-restaurant" 
+                        alt="logo-du-restaurant"
                         height={300}
                         width={300}
+                        unoptimized
                         className="resto-logo"
                     />
                     <div className="resto-text">
@@ -47,18 +47,21 @@ const RestoInfo = ({ data }) => {
                                     <span>{data.ville}</span>
                                 </p>
                             )}
-                        
                         </div>
                         <div className="resto-specialities">
-                            {
-                                data.specialities && data.specialities.map((speciality, index) => (
-                                    <div key={index} className="resto-speciality">
+                            {data.specialities &&
+                                data.specialities.map((speciality, index) => (
+                                    <div
+                                        key={index}
+                                        className="resto-speciality"
+                                    >
                                         {speciality.designation}
                                     </div>
-                                ))
-                            }
+                                ))}
                         </div>
-                        <p className="resto-description">{seeMore(data.description,150) }</p>
+                        <p className="resto-description">
+                            {seeMore(data.description, 150)}
+                        </p>
                     </div>
                 </div>
                 <div className="resto-actions">

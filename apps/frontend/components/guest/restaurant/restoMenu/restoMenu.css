@@ -10,7 +10,7 @@
     gap: 0.5rem;
 }
 .resto-menu-header{
-    display: flex;
+    display: flex; 
     align-items: center;
 }
 .resto-menu-header .form-group{

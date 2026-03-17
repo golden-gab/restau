@@ -10,15 +10,20 @@ const nextConfig = {
     //         },
     //     ];
     // },
-    experimental: {
-        optimizeCss: true, // uses critters to inline critical CSS
-    },
+    // experimental: {
+    //     optimizeCss: true, 
+    // },
     images: {
         remotePatterns: [
             {
                 protocol: process.env.IMAGE_PROTOCOL,
                 hostname: process.env.IMAGE_HOSTNAME,
                 pathname: process.env.IMAGE_PATHNAME,
+            },
+             {
+                protocol: "https",
+                hostname: "ui-avatars.com",
+                pathname: "/api/**",
             },
         ],
     },
