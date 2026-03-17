@@ -54,7 +54,7 @@ const Page = async ({ params }) => {
         "openingHours": formatOpeningHours(restaurant.openingHours),
         "hasMenu": {
             "@type": "Menu",
-            "name": "Menu en ligne",
+            "name": "Menu digital",
             "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${restaurant.slug}`
         },
         "servesCuisine": restaurant.specialities?.map(s => s.designation) ?? "Camerounaise",
