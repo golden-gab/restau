@@ -2,6 +2,25 @@ import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 import React from "react";
 import styles from "./politique.module.css";
 
+export const metadata = {
+    title: "Politique de confidentialité | Mealop",
+    description:
+        "Consultez la politique de confidentialité de Mealop et découvrez comment nous collectons, utilisons et protégeons vos données.",
+    openGraph: {
+        title: "Politique de confidentialité - Mealop",
+        description:
+            "Découvrez comment Mealop protège vos données et respecte votre vie privée.",
+        url: "https://mealop.com/politique",
+        type: "website",
+    },
+    alternates: {
+        canonical: "https://mealop.com/politique",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+};
 const Page = () => {
     return (
         <section>

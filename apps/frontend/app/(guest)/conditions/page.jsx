@@ -2,6 +2,25 @@ import SectionTItre from "@/components/shared/sectionTItre/sectionTItre";
 import React from "react";
 import styles from "./conditions.module.css";
 
+export const metadata = {
+    title: "Conditions d’utilisation | Mealop",
+    description:
+        "Consultez les conditions d’utilisation de Mealop pour comprendre les règles d’accès et d’utilisation de la plateforme.",
+    openGraph: {
+        title: "Conditions d’utilisation - Mealop",
+        description:
+            "Découvrez les règles et conditions d’utilisation de la plateforme Mealop.",
+        url: "https://mealop.com/conditions",
+        type: "website",
+    },
+    alternates: {
+        canonical: "https://mealop.com/conditions",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+};
 const Page = () => {
     return (
         <section>
