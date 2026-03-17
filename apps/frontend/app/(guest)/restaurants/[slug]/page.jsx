@@ -1,61 +1,78 @@
-"use client";
-import useSWR from "swr";
-import RestoInfo from "@/components/guest/restaurant/restoInfo/restoInfo";
-import RestoMenu from "@/components/guest/restaurant/restoMenu/restoMenu";
-import React from "react";
-import "./style.css";
-import RestoCart from "@/components/guest/restaurant/retoCart/restoCart";
-import Horaires from "@/components/guest/restaurant/Horaires/horaires";
-import { useParams } from "next/navigation";
-import SkeletonLoader from "@/components/shared/skeletonLoader/skeletonLoader";
-import RestoLoader from "@/components/guest/restaurant/RestoLoader/restoLoader";
-import dynamic from "next/dynamic";
+import RestoClient from "./RestoClient";
+import { formatOpeningHours } from "@/helpers/formatHours";
 
-const Page = () => {
-    const { slug } = useParams();
-    const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = useSWR(
-        slug ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}` : null,
-        fetcher,
-    );
-    const Map = dynamic(
-        () => import("@/components/guest/restaurant/location/restoLocation"),
-        {
-            ssr: false,
+async function getRestaurant(slug) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}`, {
+        next: { revalidate: 3600 }
+    });
+    if (!res.ok) return null;
+    return res.json();
+}
+
+export async function generateMetadata({ params }) {
+    const restaurant = await getRestaurant(params.slug);
+    if (!restaurant) return { title: "Restaurant introuvable" };
+
+    return {
+        title: `${restaurant.name} - Restaurant ${restaurant.ville ?? "Cameroun"} | Menu & Commande`,
+        description: `Commandez chez ${restaurant.name} à ${restaurant.ville ?? "Cameroun"}. ${restaurant.description ?? ""}. Livraison disponible.`,
+        openGraph: {
+            title: `${restaurant.name} - ${restaurant.ville ?? "Cameroun"}`,
+            images: restaurant.logoPath
+                ? [`${process.env.NEXT_PUBLIC_STORAGE_URL}/${restaurant.logoPath}`]
+                : [],
         },
-    );
-//   console.log(data)
-    return (
-        <main className="restaurant-page">
-            {isLoading ? (
-                <RestoLoader />
-            ) : (
-                <>
-                    <RestoInfo data={data} />
+        alternates: {
+            canonical: `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${params.slug}`,
+        },
+    };
+}
 
-                    <div className="resto-menu-panier">
-                        <RestoMenu
-                            acceptOrder={data.acceptOrder}
-                            plats={data.plats}
-                            categories={data.categories}
-                        />
-                        {data.acceptOrder == 1 && (
-                            <RestoCart
-                                tel={data.whatsappNumber}
-                                restoId={data.id}
-                            />
-                        )}
-                    </div>
-                    <Horaires week={data.openingHours} />
-                    {data.latitude && data.longitude && (
-                        <Map
-                            latitude={data.latitude}
-                            longitude={data.longitude}
-                        />
-                    )}
-                </>
+const Page = async ({ params }) => {
+    const restaurant = await getRestaurant(params.slug);
+
+    const jsonLd = restaurant ? {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": restaurant.name,
+        "description": restaurant.description ?? undefined,
+        "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${restaurant.slug}`,
+        "telephone": restaurant.phone ?? undefined,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": restaurant.address ?? undefined,
+            "addressLocality": restaurant.ville ?? undefined,
+            "addressCountry": "CM"
+        },
+        ...(restaurant.latitude && restaurant.longitude && {
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": restaurant.latitude,
+                "longitude": restaurant.longitude
+            }
+        }),
+        "openingHours": formatOpeningHours(restaurant.openingHours),
+        "hasMenu": {
+            "@type": "Menu",
+            "name": "Menu en ligne",
+            "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${restaurant.slug}`
+        },
+        "servesCuisine": restaurant.specialities?.map(s => s.designation) ?? "Camerounaise",
+        ...(restaurant.logoPath && {
+            "image": `${process.env.NEXT_PUBLIC_STORAGE_URL}/${restaurant.logoPath}`
+        }),
+    } : null;
+
+    return (
+        <>
+            {jsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
             )}
-        </main>
+            <RestoClient slug={params.slug} />
+        </>
     );
 };
 
