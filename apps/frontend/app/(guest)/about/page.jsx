@@ -22,6 +22,10 @@ export const metadata = {
     alternates: {
         canonical: "https://mealop.com/about",
     },
+    robots: {
+        index: true,
+        follow: true,
+    },
     keywords: [
         // Général
         "restaurant cameroun",
