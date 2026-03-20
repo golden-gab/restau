@@ -62,9 +62,21 @@ class RegisterRestaurant extends RegisterTenant
 
     protected function handleRegistration(array $data): Restaurant
     {
+        $parts = array_filter([
+            $data['name'],
+            $data['ville'] ?? null,
+        ]);
+        $baseSlug = Str::slug(implode(' ', $parts));
+        $slug = $baseSlug;
+        $count = 1;
+
+        while (Restaurant::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $count;
+            $count++;
+        }
+
         $data['user_id'] = Auth::user()->id;
-        // $data['owner_id'] = auth()->user()->id;
-        $data['slug'] = Str::slug($data['name']);
+        $data['slug'] = $slug;
         $data['status'] = 'active';
         $data['opening_hours'] = [
             ['day' => 'Lundi', 'open' => '09:00', 'close' => '18:00'],
@@ -73,8 +85,9 @@ class RegisterRestaurant extends RegisterTenant
             ['day' => 'Jeudi', 'open' => '09:00', 'close' => '22:00'],
             ['day' => 'Vendredi', 'open' => '09:00', 'close' => '22:00'],
             ['day' => 'Samedi', 'open' => '10:00', 'close' => '23:00'],
-            ['day' => 'Dimanche', 'open' => null, 'close' => null], // fermé
+            ['day' => 'Dimanche', 'open' => null, 'close' => null],
         ];
+
         return Restaurant::create($data);
     }
 }

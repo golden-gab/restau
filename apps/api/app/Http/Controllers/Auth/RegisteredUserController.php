@@ -42,16 +42,29 @@ class RegisteredUserController extends Controller
             DB::beginTransaction();
 
             $user = User::create([
-                'name' => $request->restoName, // Use restaurant name as user name
+                'name' => $request->restoName,
                 'role_id' => 2,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
+            $parts = array_filter([
+                $request->restoName,
+                $request->ville ?? null,
+            ]);
+            $baseSlug = Str::slug(implode(' ', $parts));
+            $slug = $baseSlug;
+            $count = 1;
+
+            while (Restaurant::where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $count;
+                $count++;
+            }
+
             $restaurant = Restaurant::create([
                 'user_id' => $user->id,
                 'name' => $request->restoName,
-                'slug' => Str::slug($request->restoName) . '-' . Str::random(5),
+                'slug' => $slug,
                 'description' => $request->restoDescription,
                 'ville' => $request->ville ?? null,
                 'latitude' => $request->latitude ?? null,
@@ -63,7 +76,7 @@ class RegisteredUserController extends Controller
                     ['day' => 'Jeudi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
                     ['day' => 'Vendredi', 'opens_at' => '09:00', 'closes_at' => '18:00'],
                     ['day' => 'Samedi', 'opens_at' => '10:00', 'closes_at' => '23:00'],
-                    ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null], // fermé
+                    ['day' => 'Dimanche', 'opens_at' => null, 'closes_at' => null],
                 ],
             ]);
 
