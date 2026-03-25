@@ -19,6 +19,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'description')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'price')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'image_path')]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'is_available')]
+#[ApiProperty(serialize: new Groups(['restaurant:plat:read']), property: 'available_days')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:categorie:read']), property: 'categorie')]
 #[ApiProperty(serialize: new Groups(['restaurant:plat:accompagnement:read']), property: 'accompagnements')]
 
@@ -34,8 +36,11 @@ class Plat extends Model
         'price',
         'image_path',
         'is_available',
+        'available_days'
     ];
-
+     protected $casts = [
+        'available_days' => 'array',
+    ];
     public function restaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class);

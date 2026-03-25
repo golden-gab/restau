@@ -2,6 +2,7 @@
 
 namespace App\Filament\Restaurateur\Resources\Plats\Schemas;
 
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -45,7 +46,7 @@ class PlatForm
                         //     ->directory('videos') // Dossier de destination
                         //     ->visibility('public'),
                         Select::make('categorie_id')
-                        
+
                             ->relationship('categorie', 'designation')
                             ->searchable()
                             ->preload()
@@ -63,12 +64,35 @@ class PlatForm
 
                         CheckboxList::make('accompagnements')
                             ->relationship(titleAttribute: 'designation')
-                            ->columns(3)
+                            ->columns(4)
                             ->label("Accompagnements"),
 
                         Toggle::make('is_available')
-                            ->label('disponible')
-                            ->required(),
+                            ->label('Plat disponible')
+                            ->helperText('Désactivez si le plat est temporairement indisponible (rupture de stock, retiré du menu...)'),
+
+                        Toggle::make('all_days')
+                            ->label('Disponible tous les jours')
+                            ->helperText('Désactivez si ce plat n\'est proposé que certains jours de la semaine (plat du jour, spécial week-end...)')
+                            ->default(true)
+                            ->live(),
+
+                        CheckboxList::make('available_days')
+                            ->label('Jours de disponibilité')
+                            ->helperText('Cochez les jours où ce plat est proposé')
+                            ->options([
+                                'Lundi' => 'Lundi',
+                                'Mardi' => 'Mardi',
+                                'Mercredi' => 'Mercredi',
+                                'Jeudi' => 'Jeudi',
+                                'Vendredi' => 'Vendredi',
+                                'Samedi' => 'Samedi',
+                                'Dimanche' => 'Dimanche',
+                            ])
+                            ->columns(4)
+                            ->visible(fn($get) => !$get('all_days'))
+                            ->required(fn($get) => !$get('all_days')),
+
                     ]),
 
             ]);

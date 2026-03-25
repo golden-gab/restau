@@ -82,6 +82,12 @@ class PlatInfolist
                             ->emptyTooltip("Aucun accompagnement")
                             ->getStateUsing(fn($record) => $record->accompagnements->pluck('designation')),
 
+                        TextEntry::make('available_days')
+                            ->label('Jours de disponibilité')
+                            ->badge()
+                            ->color('info')
+                            ->placeholder('Disponible tous les jours')
+                            ->getStateUsing(fn($record) => $record->available_days ?? []),
                     ])
                     ->columnSpan(1),
             ]);

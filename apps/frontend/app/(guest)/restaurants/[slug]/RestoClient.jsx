@@ -21,7 +21,7 @@ const RestoClient = ({ slug }) => {
         slug ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${slug}` : null,
         fetcher
     );
-
+    
     return (
         <main className="restaurant-page">
             {isLoading ? (

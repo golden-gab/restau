@@ -10,7 +10,8 @@ async function getRestaurant(slug) {
 }
 
 export async function generateMetadata({ params }) {
-    const restaurant = await getRestaurant(params.slug);
+    const { slug } = await params; // 👈
+    const restaurant = await getRestaurant(slug);
     if (!restaurant) return { title: "Restaurant introuvable" };
 
     return {
@@ -23,20 +24,21 @@ export async function generateMetadata({ params }) {
                 : [],
         },
         alternates: {
-            canonical: `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${params.slug}`,
+            canonical: `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${slug}`,
         },
     };
 }
 
 const Page = async ({ params }) => {
-    const restaurant = await getRestaurant(params.slug);
+    const { slug } = await params; // 👈
+    const restaurant = await getRestaurant(slug);
 
     const jsonLd = restaurant ? {
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "name": restaurant.name,
         "description": restaurant.description ?? undefined,
-        "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${restaurant.slug}`,
+        "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${slug}`,
         "telephone": restaurant.phone ?? undefined,
         "address": {
             "@type": "PostalAddress",
@@ -55,7 +57,7 @@ const Page = async ({ params }) => {
         "hasMenu": {
             "@type": "Menu",
             "name": "Menu digital",
-            "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${restaurant.slug}`
+            "url": `${process.env.NEXT_PUBLIC_APP_URL}/restaurants/${slug}`
         },
         "servesCuisine": restaurant.specialities?.map(s => s.designation) ?? "Camerounaise",
         ...(restaurant.logoPath && {
@@ -71,7 +73,7 @@ const Page = async ({ params }) => {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             )}
-            <RestoClient slug={params.slug} />
+            <RestoClient slug={slug} />
         </>
     );
 };

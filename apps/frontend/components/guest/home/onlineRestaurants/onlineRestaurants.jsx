@@ -61,7 +61,7 @@ const OnlineRestaurants = () => {
 
 export default OnlineRestaurants;
 
-function OnlineRestaurant({ data }) {
+export function OnlineRestaurant({ data }) {
     
     return (
         <Link className="onlineRestaurant" href={"/restaurants/" + data.slug}>

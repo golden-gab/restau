@@ -224,7 +224,7 @@ class EditRestaurantProfile extends EditTenantProfile
         if (
             $tenant?->banniere &&
             $tenant->banniere !== $data['banniere'] &&
-            Storage::disk('public')->exists($tenant->banniere)
+            Storage::disk('public')->exists($tenant->banniere) 
         ) {
             Storage::disk('public')->delete($tenant->banniere);
         }

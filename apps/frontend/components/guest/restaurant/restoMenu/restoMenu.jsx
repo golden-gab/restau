@@ -24,7 +24,6 @@ const RestoMenu = ({ plats, categories, acceptOrder }) => {
         setCurrentPage(pageNumber);
         router.push("#menu");
     }
-
     useEffect(() => {
         let filtered = plats;
         if (active !== "Tout") {

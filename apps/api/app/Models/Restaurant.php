@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\State\OnlineRestaurantsProvider;
+use App\State\RestaurantProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -56,7 +57,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             uriTemplate: '/restaurants/{slug}',
             // requirements: ['slug' => '[a-z0-9\-]+'],
             uriVariables: ['slug'],
-            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:speciality:read', 'restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read', 'restaurant:plat:accompagnement:read']]
+            normalizationContext: ['groups' => ['restaurant:restaurant:read', 'restaurant:speciality:read', 'restaurant:categorie:read', 'restaurant:plat:read', 'restaurant:plat:categorie:read', 'restaurant:plat:accompagnement:read']],
+            provider: RestaurantProvider::class
         ),
 
         new Post(denormalizationContext: ['groups' => ['restaurant:write']]),
@@ -70,8 +72,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'description')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read']), property: 'logo_path')]
 #[ApiProperty(serialize: new Groups(['restaurant:read']), property: 'slug')]
-#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read','restaurant:write',]), property: 'latitude')]
-#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read','restaurant:write',]), property: 'longitude')]
+#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',]), property: 'latitude')]
+#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',]), property: 'longitude')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write',]), property: 'ville')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'email')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'whatsapp_number')]

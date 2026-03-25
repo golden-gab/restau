@@ -21,6 +21,7 @@ const RestoInfo = ({ data }) => {
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.banniere}`
                         : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/bannieres/default.jpg`
                 }
+                priority
                 className="resto-img"
             />
             <div className="resto-overlay"></div>

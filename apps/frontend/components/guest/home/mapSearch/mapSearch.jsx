@@ -11,7 +11,7 @@ const MapSearch = () => {
     const [showResults, setShowResults] = useState(false);
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState(""); // Query pour déclencher la recherche
-    const {toggleFilter,isOpen} = useMapFilterStore()
+    const { toggleFilter, isOpen } = useMapFilterStore();
     // Configuration SWR avec query conditionnel
     const {
         data: restaurants,
@@ -22,7 +22,7 @@ const MapSearch = () => {
         searchQuery
             ? `${process.env.NEXT_PUBLIC_API_URL}/restaurants?page=1&name=${searchQuery}`
             : null,
-        fetcher
+        fetcher,
     );
 
     function handleSubmit(e) {
@@ -33,17 +33,18 @@ const MapSearch = () => {
         }
     }
 
-    function clearSearch(){
-        setSearch('')
-        setShowResults(false)
+    function clearSearch() {
+        setSearch("");
+        setShowResults(false);
     }
+    console.log(restaurants);
     return (
         <div className="map-search-bar">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <Input
                     placeholder="Retrouver un restaurant"
                     value={search}
-                    onClick={isOpen ? toggleFilter : ()=>{}}
+                    onClick={isOpen ? toggleFilter : () => {}}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 {!showResults ? (
@@ -52,10 +53,7 @@ const MapSearch = () => {
                         onClick={(e) => handleSubmit(e)}
                     ></i>
                 ) : (
-                    <i
-                        className="fi fi-rr-cross"
-                        onClick={clearSearch}
-                    ></i>
+                    <i className="fi fi-rr-cross" onClick={clearSearch}></i>
                 )}
             </form>
             {showResults && (
@@ -74,8 +72,10 @@ const MapSearch = () => {
                             <span>Aucun résultat</span>
                         </div>
                     ) : (
+                        
                         restaurants.member &&
                         restaurants.member.map((d) => (
+                            
                             <Link
                                 href={"restaurants/" + d.slug}
                                 key={d.slug}
@@ -85,18 +85,26 @@ const MapSearch = () => {
                                     src={
                                         d.logoPath
                                             ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${d.logoPath}`
-                                            : `${process.env.NEXT_PUBLIC_STORAGE_URL}/restaurants/logos/default.jpg`
+                                            : `https://ui-avatars.com/api/?name=${d.name.at(0)}&background=000&color=fff`
                                     }
                                     width={200}
+                                    unoptimized
                                     height={200}
                                     alt="restaurant-logo"
                                     className="map-search-result-logo"
                                 />
                                 <div>
                                     <p>{d.name}</p>
-                                    <p className="map-search-result-info">
-                                        {seeMore(d.description, 50)}
-                                    </p>
+                                    <div className="onlineRestaurant-specialities">
+                                        {d.specialities.map((s) => (
+                                            <span
+                                                className="onlineRestaurant-speciality"
+                                                key={s.id}
+                                            >
+                                                {s.designation}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </Link>
                         ))

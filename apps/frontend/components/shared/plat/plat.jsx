@@ -14,6 +14,7 @@ const Plat = ({ data, acceptOrder }) => {
     const [activeAcc, setActiveAcc] = useState(
         data.accompagnements ? data.accompagnements[0] : null,
     );
+   
     return (
         <div className="plat-card">
             <Image

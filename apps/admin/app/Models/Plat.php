@@ -20,8 +20,12 @@ class Plat extends Model
         'price',
         'image_path',
         'is_available',
+        'available_days'
     ];
 
+    protected $casts = [
+        'available_days' => 'array',
+    ];
     public function restaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class);
