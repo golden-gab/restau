@@ -65,7 +65,7 @@ const Footer = () => {
             <div className="footer-bottom">
                 <p className="footer-text">
                     Copyright &copy;2026 Mealop. Développé par {""}
-                    <a
+                    <a 
                         href="https://golden-gab.com"
                         className="main-color"
                         target="_blank"
