@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Plat extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'restaurant_id',
@@ -48,5 +49,10 @@ class Plat extends Model
     {
         return $this->belongsToMany(Accompagnement::class, 'accompagement_plats')
             ->withTimestamps();
+    }
+
+    public function medias(): HasMany
+    {
+        return $this->hasMany(PlatMedia::class)->orderBy('order');
     }
 }
