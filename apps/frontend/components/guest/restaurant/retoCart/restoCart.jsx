@@ -8,6 +8,7 @@ import { sendRequest, tarif } from "@/helpers/function";
 import useSWRMutation from "swr/mutation";
 import { toast } from "sonner";
 import Spinner from "@/components/shared/spinner/spinner";
+import { trackEvent } from "@/helpers/analytics";
 
 const RestoCart = ({ tel, restoId }) => {
     const { slug } = useParams();
@@ -35,7 +36,9 @@ const RestoCart = ({ tel, restoId }) => {
     const whatsappUrl = `https://wa.me/${tel}?text=${encodeURIComponent(
         message,
     )}`;
+    
     function handleOrder() {
+        trackEvent("order_initiated",{ restaurant_id: restoId });
         try {
             const result = trigger({
                 restaurant_id: restoId,
@@ -46,6 +49,7 @@ const RestoCart = ({ tel, restoId }) => {
                 })),
             });
             if (result) {
+
                 window.open(whatsappUrl, "_blank");
             }
         } catch (error) {

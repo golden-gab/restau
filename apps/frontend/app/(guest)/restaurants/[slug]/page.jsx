@@ -10,7 +10,7 @@ async function getRestaurant(slug) {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params; // 👈
+    const { slug } = await params;
     const restaurant = await getRestaurant(slug);
     if (!restaurant) return { title: "Restaurant introuvable" };
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
 }
 
 const Page = async ({ params }) => {
-    const { slug } = await params; // 👈
+    const { slug } = await params; 
     const restaurant = await getRestaurant(slug);
 
     const jsonLd = restaurant ? {

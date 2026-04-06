@@ -8,6 +8,7 @@ import { toast } from "sonner";
 const RestoInfo = ({ data }) => {
     function share() {
         navigator.clipboard.writeText(window.location.href);
+        trackEvent("link_copied",{ restaurant_id: data.id });
         toast.success("Lien copié dans le presse papier");
     }
     return (
