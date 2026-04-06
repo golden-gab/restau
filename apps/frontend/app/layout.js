@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import { Toaster } from "sonner";
 // import "@flaticon/flaticon-uicons/css/regular/rounded.css";
 // import "@flaticon/flaticon-uicons/css/brands/all.css";
@@ -34,15 +35,19 @@ export default function RootLayout({ children }) {
                     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                     crossOrigin=""
                 /> */}
-                <script
+                <Script
+                    strategy="afterInteractive"
                     async
                     src="https://www.googletagmanager.com/gtag/js?id=G-6QFGRW5ML0"
-                ></script>
-                <script>
-                    window.dataLayer = window.dataLayer || []; function gtag()
-                    {dataLayer.push(arguments)}
-                    gtag('js', new Date()); gtag('config', 'G-6QFGRW5ML0');
-                </script>
+                ></Script>
+                <Script id="google-analytics">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-6QFGRW5ML0');
+                    `}
+                </Script>
             </head>
             <body className={`${fontTitle.variable} ${fontText.variable}`}>
                 <IconsLoader />
