@@ -1,5 +1,5 @@
 import React from "react";
-import "./restoInfo.css";
+import "./restoInfo.css"; 
 import Image from "next/image";
 import Link from "next/link";
 import { seeMore } from "@/helpers/function";

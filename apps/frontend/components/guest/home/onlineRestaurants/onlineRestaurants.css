@@ -87,7 +87,7 @@
 .onlineRestaurant-specialities {
     display: flex;
     gap: 0.25rem;
-
+ flex-wrap: wrap;
 }
 
 .onlineRestaurant-speciality {
@@ -104,5 +104,8 @@
 @media screen and (max-width:768px) {
     .onlineRestaurants-section {
         height: 28dvh;
+    }
+    .onlineRestaurant-speciality {
+        font-size: calc(var(--fs-xs)/1.2) !important;
     }
 }
