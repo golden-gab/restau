@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\State\SpecialityStateProvider;
 use App\State\RestaurantProvider;
 use App\State\OnlineRestaurantsProvider;
 use App\State\CommandeProcessor;
@@ -40,5 +41,7 @@ class AppServiceProvider extends ServiceProvider
 		$this->app->tag(OnlineRestaurantsProvider::class, ProviderInterface::class);
 
 		$this->app->tag(RestaurantProvider::class, ProviderInterface::class);
+
+		$this->app->tag(SpecialityStateProvider::class, ProviderInterface::class);
     }
 }

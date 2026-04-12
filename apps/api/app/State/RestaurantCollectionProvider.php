@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\State;
 
-use ApiPlatform\Laravel\Eloquent\State\CollectionProvider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Models\Restaurant;
@@ -12,7 +11,7 @@ use App\Models\Restaurant;
 final class RestaurantCollectionProvider implements ProviderInterface
 {
     public function __construct(
-        private CollectionProvider $collectionProvider
+        // private CollectionProvider $collectionProvider
     ) {
     }
 

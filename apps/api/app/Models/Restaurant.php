@@ -67,13 +67,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 // #[QueryParameter(key: 'status', filter: EqualsFilter::class, properties: ['status'])]
 // #[QueryParameter(key: 'name', filter: PartialSearchFilter::class, properties: ['name'])]
-#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'id')]
-#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'name')]
-#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read']), property: 'description')]
-#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read']), property: 'logo_path')]
-#[ApiProperty(serialize: new Groups(['restaurant:read']), property: 'slug')]
-#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',]), property: 'latitude')]
-#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',]), property: 'longitude')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read','speciality:speciality:restaurant:read']), property: 'id')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read','speciality:speciality:restaurant:read']), property: 'name')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write', 'restaurant:read','speciality:speciality:restaurant:read']), property: 'description')]
+#[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:read','speciality:speciality:restaurant:read']), property: 'logo_path')]
+#[ApiProperty(serialize: new Groups(['restaurant:read','speciality:speciality:restaurant:read']), property: 'slug')]
+#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',"speciality:speciality:restaurant:read"]), property: 'latitude')]
+#[ApiProperty(serialize: new Groups(['restaurant:read', 'restaurant:restaurant:read', 'restaurant:write',"speciality:speciality:restaurant:read"]), property: 'longitude')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read', 'restaurant:write',]), property: 'ville')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'email')]
 #[ApiProperty(serialize: new Groups(['restaurant:restaurant:read']), property: 'whatsapp_number')]
@@ -134,6 +134,7 @@ class Restaurant extends Model
     {
         return $this->hasMany(Categorie::class);
     }
+    
     public function specialities()
     {
         return $this->belongsToMany(Speciality::class, 'speciality_restaurants')
