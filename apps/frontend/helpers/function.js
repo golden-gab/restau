@@ -84,3 +84,7 @@ export async function sendRequest(url, { arg }) {
         body: JSON.stringify(arg),
     }).then((res) => res.json());
 }
+
+export const trackEvent = (action, params = {}) => {
+  window.gtag?.('event', action, params);
+};

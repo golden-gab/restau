@@ -2,11 +2,14 @@ import React from "react";
 import "./restoInfo.css"; 
 import Image from "next/image";
 import Link from "next/link";
-import { seeMore } from "@/helpers/function";
+import { seeMore, trackEvent } from "@/helpers/function";
 import { toast } from "sonner";
 
 const RestoInfo = ({ data }) => {
     function share() {
+        trackEvent('share_restaurant', {
+            restaurant: data.slug,
+        });
         navigator.clipboard.writeText(window.location.href);
         toast.success("Lien copié dans le presse papier");
     }

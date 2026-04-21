@@ -5,7 +5,7 @@ import "./plat.css";
 import Button from "../button/button";
 import { useCart } from "@/context/CartContext";
 import { useParams } from "next/navigation";
-import { seeMore, tarif } from "@/helpers/function";
+import { seeMore, tarif, trackEvent } from "@/helpers/function";
 
 const Plat = ({ data, acceptOrder }) => {
     const { addToCart } = useCart();
@@ -14,7 +14,16 @@ const Plat = ({ data, acceptOrder }) => {
     const [activeAcc, setActiveAcc] = useState(
         data.accompagnements ? data.accompagnements[0] : null,
     );
-   
+   function handleCart() {
+        addToCart(slug, data, activeAcc);
+    
+        trackEvent('add_to_cart', {
+            restaurant: slug,
+            plat: data.name,
+            price: data.price,
+            accompagnement: activeAcc ? activeAcc.designation : 'none',
+        });
+   }
     return (
         <div className="plat-card">
             <Image
@@ -52,7 +61,7 @@ const Plat = ({ data, acceptOrder }) => {
             <div className="plat-footer">
                 <p className="plat-prix">{tarif(data.price)}</p>
                 {acceptOrder === 1 && (
-                    <Button onClick={() => addToCart(slug, data, activeAcc)}>
+                    <Button onClick={handleCart}>
                         <i className="fi fi-sr-shopping-cart"></i>
                     </Button>
                 )}

@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import "./mapSearch.css";
-import { fetcher, seeMore } from "@/helpers/function";
+import { fetcher, seeMore, trackEvent } from "@/helpers/function";
 import useSWR from "swr";
 import { useMapFilterStore } from "@/stores/useMapFilterStore";
+import { tr } from "motion/react-client";
 
 const MapSearch = () => {
     const [showResults, setShowResults] = useState(false);
@@ -27,6 +28,9 @@ const MapSearch = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
+        trackEvent('search_restaurant', {
+            query: search.trim(),
+        });
         if (search.trim().length > 0) {
             setSearchQuery(search.trim());
             setShowResults(true);
@@ -37,7 +41,7 @@ const MapSearch = () => {
         setSearch("");
         setShowResults(false);
     }
-    console.log(restaurants);
+   
     return (
         <div className="map-search-bar">
             <form onSubmit={(e) => handleSubmit(e)}>

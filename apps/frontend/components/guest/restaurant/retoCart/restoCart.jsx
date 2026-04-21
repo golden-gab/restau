@@ -4,10 +4,11 @@ import "./restoCart.css";
 import Button from "@/components/shared/button/button";
 import { useCart } from "@/context/CartContext";
 import { useParams } from "next/navigation";
-import { sendRequest, tarif } from "@/helpers/function";
+import { sendRequest, tarif, trackEvent } from "@/helpers/function";
 import useSWRMutation from "swr/mutation";
 import { toast } from "sonner";
 import Spinner from "@/components/shared/spinner/spinner";
+import { tr } from "motion/react-client";
 
 const RestoCart = ({ tel, restoId }) => {
     const { slug } = useParams();
@@ -32,10 +33,17 @@ const RestoCart = ({ tel, restoId }) => {
         `\nTotal : ${tarif(getTotal(slug))} \n` +
         `\nCommande générée depuis Mealop`;
 
-    const whatsappUrl = `https://wa.me/${tel}?text=${encodeURIComponent(
+    let telCleaned = tel.replaceAll(' ', '');
+
+    const whatsappUrl = `https://wa.me/${telCleaned}?text=${encodeURIComponent(
         message,
     )}`;
     function handleOrder() {
+        trackEvent('order_to_whatsapp', {
+            restaurant: slug,
+            total_price: getTotal(slug),
+            total_items: getTotalItem(slug),
+        });
         try {
             const result = trigger({
                 restaurant_id: restoId,
